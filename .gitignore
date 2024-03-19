@@ -48,10 +48,10 @@ luac.out
 *.x86_64
 *.hex
 
-# LunarVim
+
+java
+
 plugin/packer_compiled.lua
-
-.luacheckcache
-
-# ETC
-.idea
+lazy-lock.json
+rplugin/node/nvim-example
+test_db

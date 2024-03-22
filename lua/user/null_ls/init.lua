@@ -72,19 +72,8 @@ M.config = function()
         return utils.root_has_file ".solhint.json"
       end,
     },
-    nls.builtins.diagnostics.ruff.with {
-      condition = function(utils)
-        return utils.root_has_file { "ruff.toml", ".ruff.toml" }
-      end,
-    },
     nls.builtins.diagnostics.hadolint,
-    -- nls.builtins.diagnostics.selene,
-    nls.builtins.diagnostics.eslint_d.with {
-      condition = function(utils)
-        return utils.root_has_file { ".eslintrc", ".eslintrc.js" }
-      end,
-      prefer_local = "node_modules/.bin",
-    },
+    nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
         return utils.root_has_file ".semgrepignore" and use_semgrep
@@ -121,12 +110,6 @@ M.config = function()
     nls.builtins.code_actions.shellcheck,
     -- WARN: broken on neovim-head because of `nvim.treesitter.get_node_at_pos` being deprecated
     -- nls.builtins.code_actions.gomodifytags,
-    nls.builtins.code_actions.eslint_d.with {
-      condition = function(utils)
-        return utils.root_has_file { ".eslintrc", ".eslintrc.js" }
-      end,
-      prefer_local = "node_modules/.bin",
-    },
     -- TODO: try these later on
     -- nls.builtins.formatting.google_java_format,
     -- nls.builtins.code_actions.proselint,

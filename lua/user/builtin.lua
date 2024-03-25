@@ -381,7 +381,7 @@ M.config = function()
     -- { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
     { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
   }
-  lvim.builtin.treesitter.ensure_installed = languages
+  -- lvim.builtin.treesitter.ensure_installed = languages
   lvim.builtin.treesitter.highlight.disable = { "org" }
   lvim.builtin.treesitter.highlight.aditional_vim_regex_highlighting = { "org" }
   lvim.builtin.treesitter.ignore_install = { "haskell", "norg" }

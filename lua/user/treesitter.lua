@@ -39,7 +39,7 @@ lvim.builtin.treesitter.rainbow = {
 }
 
 lvim.builtin.treesitter.autotag.enable = true
-lvim.builtin.treesitter.auto_install = false
+-- lvim.builtin.treesitter.auto_install = false
 
 -- lvim.builtin.treesitter.ignore_install = { "markdown" }
 

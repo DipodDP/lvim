@@ -41,7 +41,7 @@ vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
-lvim.lsp.installer.setup.automatic_installation = true
+-- lvim.lsp.installer.setup.automatic_installation = true
 
 -- Customization
 -- =========================================
@@ -169,7 +169,7 @@ end
 --   "tsserver",
 --   "yamlls",
 -- })
-require("user.null_ls").config()
+-- require("user.null_ls").config()
 
 
 local options = {

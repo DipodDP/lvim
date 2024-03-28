@@ -138,6 +138,6 @@ M.show_documentation = function()
     vim.lsp.buf.hover()
   end
 end
-vim.api.nvim_set_keymap("n", "K", ":lua require('user.keymaps').show_documentation()<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "K", ":lua require('keymaps').show_documentation()<CR>", opts)
 
 return M

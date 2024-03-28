@@ -1,7 +1,6 @@
 -- Common options
 --****************************************************************************--
---*                               [init.lua]                                 *--
---*                           [NVIM LAUNCH POINT]                            *--
+--*                               [init.lua]                                 *-- *                           [NVIM LAUNCH POINT]                            *--
 --*                     [Author/Credit - Tanweer Ashif]                      *--
 --* [LinkedIn/tanweerashif | GitHub/HacksPloiter | https://tanweerashif.com] *--
 --****************************************************************************--
@@ -22,7 +21,7 @@ local options = {
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   -- cmdheight = 1, -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-  conceallevel = 0, -- so that `` is visible in markdown files
+  conceallevel = 2, -- so that `` is visible in markdown files
   fileencoding = "utf-8", -- the encoding written to a file
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
@@ -69,7 +68,7 @@ vim.opt.fillchars = vim.opt.fillchars + "eob: "
 vim.opt.fillchars:append {
   stl = " ",
 }
-reload "options"
+-- reload "options"
 
 vim.opt.shortmess:append "c"
 
@@ -115,10 +114,10 @@ lvim.keys.term_mode = { ["<C-l>"] = false }
 -- =========================================
 lvim.leader = " "
 -- lvim.colorscheme = "onedark"
-lvim.colorscheme = "darkplus"
--- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
+-- lvim.colorscheme = "darkplus"
+lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
 -- lvim.colorscheme = "primer_dark"
-lvim.builtin.time_based_themes = false -- set false to use your own configured theme
+-- lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = true -- enable/disable transparency
 -- lvim.debug = true
 vim.lsp.set_log_level "error"
@@ -132,24 +131,24 @@ lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai =
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
-lvim.builtin.presence = { active = false } -- change to true if you want discord presence
-lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
-lvim.builtin.dap.active = false -- change this to enable/disable debugging
+-- lvim.builtin.presence = { active = false } -- change to true if you want discord presence
+-- lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
+-- lvim.builtin.dap.active = false -- change this to enable/disable debugging
 lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
-lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
-lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
+-- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
+-- lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 -- lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
-lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
+-- lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
 lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 lvim.builtin.remote_dev = { active = false } -- enable/disable remote development
 lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
-lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
+-- lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
 lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
 lvim.builtin.csv_support = false -- enable/disable csv support
 lvim.builtin.sidebar = { active = false } -- enable/disable sidebar
@@ -171,7 +170,7 @@ lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim 
 lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
 lvim.builtin.legendary = { active = false } -- enable/disable legendary plugin ( ctrl-p command )
-lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
+-- lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 -- lvim.builtin.lir.active = false
 -- lvim.builtin.breadcrumbs.active = false
 -- lvim.builtin.illuminate.active = false
@@ -193,27 +192,27 @@ lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.
 -- Custom User Config
 -- Additional Keybindings
 -- =========================================
-local user = vim.env.USER
-if user and user == "abz" then
-  lvim.reload_config_on_save = true
-  require("user.custom_user").config()
-end
+-- local user = vim.env.USER
+-- if user and user == "abz" then
+--   lvim.reload_config_on_save = true
+--   require("user.custom_user").config()
+-- end
 reload "keymaps"
 
 -- Additional Actions Based on Custom User Config
 -- Plugins Configuration
 -- =========================================
-if lvim.builtin.winbar_provider == "navic" then
-  vim.opt.showtabline = 1
-  lvim.keys.normal_mode["<tab>"] =
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
-  lvim.builtin.bufferline.active = false
-  lvim.builtin.breadcrumbs.active = true
-end
-if lvim.builtin.breadcrumbs.active and lvim.builtin.noice.active then
-  table.insert(lvim.builtin.breadcrumbs.winbar_filetype_exclude, "vim")
-end
-lvim.builtin.nvimtree.active = lvim.builtin.tree_provider == "nvimtree"
+-- if lvim.builtin.winbar_provider == "navic" then
+--   vim.opt.showtabline = 1
+--   lvim.keys.normal_mode["<tab>"] =
+--     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
+--   lvim.builtin.bufferline.active = false
+--   lvim.builtin.breadcrumbs.active = true
+-- end
+-- if lvim.builtin.breadcrumbs.active and lvim.builtin.noice.active then
+--   table.insert(lvim.builtin.breadcrumbs.winbar_filetype_exclude, "vim")
+-- end
+-- lvim.builtin.nvimtree.active = lvim.builtin.tree_provider == "nvimtree"
 lvim.builtin.latex = {
   view_method = "skim", -- change to zathura if you are on linux
   preview_exec = "/Applications/Skim.app/Contents/SharedSupport/displayline", -- change this to zathura as well
@@ -224,52 +223,52 @@ if lvim.builtin.cursorline.active then
   lvim.lsp.document_highlight = false
 end
 
--- StatusLine
--- Additional Plugins
--- =========================================
-if lvim.builtin.fancy_statusline.active then
-  require("user.lualine").config()
-end
--- reload "plugins"
+-- -- StatusLine
+-- -- Additional Plugins
+-- -- =========================================
+-- if lvim.builtin.fancy_statusline.active then
+--   require("user.lualine").config()
+-- end
+-- -- reload "plugins"
 
--- Debugging
--- =========================================
-if lvim.builtin.dap.active then
-  require("user.dap").config()
-end
---================================-> END <-===================================--
+-- -- Debugging
+-- -- =========================================
+-- if lvim.builtin.dap.active then
+--   require("user.dap").config()
+-- end
+-- --================================-> END <-===================================--
 
--- Language Specific
--- =========================================
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
-  "clangd",
-  "dockerls",
-  "gopls",
-  "golangci_lint_ls",
-  "jdtls",
-  "pyright",
-  "rust_analyzer",
-  "taplo",
-  "texlab",
-  -- "tsserver",
-  "yamlls",
-})
---================================-> START <-=================================--
---                        BACKUP INFO - WHAT TO BACKUP                        --
---------------------------------------------------------------------------------
--- $HOME/.config/nvim
---     |
---     |-- init.lua (✓)
---     |
---     |-- lua ---------
---                     |------ keyconfig.lua (✓)
---                     |------ optconfig.lua (✓)
---                     |------ lazyconfig.lua (✓)
---                     |------ themeplugconfig.lua (✓)
---
---================================-> END <-===================================--
+-- -- Language Specific
+-- -- =========================================
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
+--   "clangd",
+--   "dockerls",
+--   "gopls",
+--   "golangci_lint_ls",
+--   "jdtls",
+--   "pyright",
+--   "rust_analyzer",
+--   "taplo",
+--   "texlab",
+--   -- "tsserver",
+--   "yamlls",
+-- })
+-- --================================-> START <-=================================--
+-- --                        BACKUP INFO - WHAT TO BACKUP                        --
+-- --------------------------------------------------------------------------------
+-- -- $HOME/.config/nvim
+-- --     |
+-- --     |-- init.lua (✓)
+-- --     |
+-- --     |-- lua ---------
+-- --                     |------ keyconfig.lua (✓)
+-- --                     |------ optconfig.lua (✓)
+-- --                     |------ lazyconfig.lua (✓)
+-- --                     |------ themeplugconfig.lua (✓)
+-- --
+-- --================================-> END <-===================================--
 
--- require 'lspconfig'.csharp_ls.setup {}
+-- -- require 'lspconfig'.csharp_ls.setup {}
 
 -- require("swagger-preview").setup({
 --   -- The port to run the preview server on
@@ -277,17 +276,16 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 --   -- The host to run the preview server on
 --   host = "localhost",
 -- })
-require("user.null_ls").config()
+-- require("user.null_ls").config()
 
 -- Additional Plugins
 -- =========================================
 require("user.plugins").config()
 reload "user.dap"
-reload "user.modicator"
 -- reload "user.nvimtree"
 reload "user.lualine"
 reload "user.modicator"
-reload "user.lsp"
+-- reload "user.lsp"
 reload "user.smoothie"
 -- reload "user.harpoon"
 reload "user.webdev-icons"
@@ -295,7 +293,7 @@ reload "user.cybu"
 reload "user.neotest"
 reload "user.surround"
 -- reload "user.bookmark"
-reload "user.bookmarks"
+-- reload "user.bookmarks"
 reload "user.todo-comments"
 -- reload "user.jaq"
 -- reload "user.fidget"
@@ -304,54 +302,54 @@ reload "user.git"
 reload "user.zen-mode"
 -- reload "user.inlay-hints"
 -- reload "user.telescope"
-reload "user.bqf"
-reload "user.dial"
-reload "user.numb"
+-- reload "user.bqf"
+-- reload "user.dial"
+-- reload "user.numb"
 reload "user.treesitter"
 -- reload "user.neogit"
-reload "user.colorizer"
-reload "user.neoscroll"
-reload "user.dotenv"
--- reload "user.tabnine"
--- reload "user.copilot"
--- reload "user.chatgpt"
--- reload "user.neoai"
-reload "user.whichkey"
-reload "user.cmp"
-reload "nostr"
+-- reload "user.colorizer"
+-- reload "user.neoscroll"
+-- reload "user.dotenv"
+-- -- reload "user.tabnine"
+-- -- reload "user.copilot"
+-- -- reload "user.chatgpt"
+-- -- reload "user.neoai"
+-- reload "user.whichkey"
+-- reload "user.cmp"
+-- reload "nostr"
 -- reload "user.astro-tools"
-reload "user.matchup"
+-- reload "user.matchup"
 reload "user.betterescape"
 reload "user.yanky"
-reload "user.rest"
-reload "user.metals"
+-- reload "user.rest"
+-- reload "user.metals"
 -- reload "user.image"
 -- reload "user.neorg"
-reload"plugins"
+-- reload"plugins"
 
--- Override Lunarvim defaults
--- =========================================
-require("user.builtin").config()
+-- -- Override Lunarvim defaults
+-- -- =========================================
+-- require("user.builtin").config()
 
 -- Autocommands
 -- =========================================
-require("user.autocommands").config()
+-- require("user.autocommands").config()
 
 reload "autocommands"
 
--- Additional Keybindings
--- =========================================
-require("user.keybindings").config()
--- require("transparent").setup({ -- Optional, you don't have to run setup.
---   groups = {                   -- table: default groups
---     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
---     'Float', 'NormalFloat',
---     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
---     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
---     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
---     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
---     'EndOfBuffer',
---   },
---   extra_groups = {},   -- table: additional groups that should be cleared
---   exclude_groups = {}, -- table: groups you don't want to clear
--- })
+-- -- Additional Keybindings
+-- -- =========================================
+-- require("user.keybindings").config()
+-- -- require("transparent").setup({ -- Optional, you don't have to run setup.
+-- --   groups = {                   -- table: default groups
+-- --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
+-- --     'Float', 'NormalFloat',
+-- --     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+-- --     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+-- --     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+-- --     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+-- --     'EndOfBuffer',
+-- --   },
+-- --   extra_groups = {},   -- table: additional groups that should be cleared
+-- --   exclude_groups = {}, -- table: groups you don't want to clear
+-- -- })

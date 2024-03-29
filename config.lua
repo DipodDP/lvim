@@ -1,10 +1,12 @@
 -- Neovim
 -- =========================================
 lvim.leader = " "
-lvim.colorscheme = "tokyonight" -- set to a custom theme
+lvim.colorscheme = "onedark" -- set to a custom theme
+-- lvim.colorscheme = "darkplus" -- set to a custom theme
+-- lvim.colorscheme = "primer_dark"
 -- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
-lvim.transparent_window = false -- enable/disable transparency
-lvim.debug = true
+-- lvim.transparent_window = true -- enable/disable transparency
+-- lvim.debug = false
 vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
@@ -51,7 +53,7 @@ lvim.builtin.file_browser = { active = false } -- enable/disable telescope file 
 lvim.builtin.sniprun = { active = false } -- enable/disable sniprun
 lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista or outline)
 lvim.builtin.global_statusline = false -- set true to use global statusline
-lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
+lvim.builtin.dressing = { active = true } -- enable to override vim.ui.input and vim.ui.select with telescope
 lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim code_actions
 lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
@@ -151,3 +153,4 @@ require("user.autocommands").config()
 -- =========================================
 require("user.keybindings").config()
 
+reload "options"

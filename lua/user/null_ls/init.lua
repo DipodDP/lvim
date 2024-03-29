@@ -62,7 +62,7 @@ M.config = function()
       end,
     },
     nls.builtins.diagnostics.hadolint,
-    nls.builtins.diagnostics.selene,
+    -- nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
         return utils.root_has_file ".semgrepignore" and use_semgrep
@@ -73,14 +73,14 @@ M.config = function()
     -- Support for nix files
     nls.builtins.diagnostics.deadnix,
     nls.builtins.diagnostics.statix,
-    nls.builtins.diagnostics.markdownlint.with {
-      filetypes = { "markdown" },
-      extra_args = { "-r", "~MD013" },
-    },
-    nls.builtins.diagnostics.vale.with {
-      filetypes = { "markdown" },
-      extra_args = { "--config", vale_config },
-    },
+    -- nls.builtins.diagnostics.markdownlint.with {
+    --   filetypes = { "markdown" },
+    --   extra_args = { "-r", "~MD013" },
+    -- },
+    -- nls.builtins.diagnostics.vale.with {
+    --   filetypes = { "markdown" },
+    --   extra_args = { "--config", vale_config },
+    -- },
     -- nls.builtins.diagnostics.revive.with {
     --   condition = function(utils)
     --     return utils.root_has_file "revive.toml" or revive_conf

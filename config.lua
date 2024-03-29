@@ -2,14 +2,14 @@
 -- =========================================
 lvim.leader = " "
 lvim.colorscheme = "tokyonight" -- set to a custom theme
-lvim.builtin.time_based_themes = true -- set false to use your own configured theme
+-- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 lvim.transparent_window = false -- enable/disable transparency
-lvim.debug = false
+lvim.debug = true
 vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
-lvim.lsp.installer.setup.automatic_installation = false
+-- lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
 -- =========================================
@@ -57,9 +57,9 @@ lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and 
 lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
 lvim.builtin.legendary = { active = false } -- enable/disable legendary plugin ( ctrl-p command )
 lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
-lvim.builtin.lir.active = false
-lvim.builtin.breadcrumbs.active = false
-lvim.builtin.illuminate.active = false
+-- lvim.builtin.lir.active = false
+-- lvim.builtin.breadcrumbs.active = false
+-- lvim.builtin.illuminate.active = false
 lvim.builtin.noice = { active = false } -- enables noice.nvim and inc-rename.nvim
 lvim.builtin.go_programming = { active = false } -- gopher.nvim + nvim-dap-go
 lvim.builtin.python_programming = { active = false } -- swenv.nvim + nvim-dap-python + requirements.txt.vim
@@ -77,11 +77,11 @@ lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.
 
 -- Custom User Config
 -- =========================================
-local user = vim.env.USER
-if user and user == "abz" then
-  lvim.reload_config_on_save = true
-  require("user.custom_user").config()
-end
+-- local user = vim.env.USER
+-- if user and user == "abz" then
+--   lvim.reload_config_on_save = true
+--   require("user.custom_user").config()
+-- end
 
 -- Additional Actions Based on Custom User Config
 -- =========================================
@@ -124,19 +124,19 @@ end
 
 -- Language Specific
 -- =========================================
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
-  "clangd",
-  "dockerls",
-  "gopls",
-  "golangci_lint_ls",
-  "jdtls",
-  "pyright",
-  "rust_analyzer",
-  "taplo",
-  "texlab",
-  "tsserver",
-  "yamlls",
-})
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
+--   "clangd",
+--   "dockerls",
+--   "gopls",
+--   "golangci_lint_ls",
+--   "jdtls",
+--   "pyright",
+--   "rust_analyzer",
+--   "taplo",
+--   "texlab",
+--   "tsserver",
+--   "yamlls",
+-- })
 require("user.null_ls").config()
 
 -- Additional Plugins
@@ -150,3 +150,4 @@ require("user.autocommands").config()
 -- Additional Keybindings
 -- =========================================
 require("user.keybindings").config()
+

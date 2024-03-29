@@ -372,16 +372,16 @@ M.config = function()
   -- Treesitter
   -- =========================================
   lvim.builtin.treesitter.context_commentstring.enable = true
-  local languages = vim.tbl_flatten {
-    { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
-    { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
-    { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
-    { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
-    { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
-    { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
-    { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
-  }
-  lvim.builtin.treesitter.ensure_installed = languages
+  -- local languages = vim.tbl_flatten {
+  --   { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
+  --   { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
+  --   { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
+  --   { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
+  --   { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
+  --   { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
+  --   { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
+  -- }
+  -- lvim.builtin.treesitter.ensure_installed = languages
   lvim.builtin.treesitter.highlight.disable = { "org" }
   lvim.builtin.treesitter.highlight.aditional_vim_regex_highlighting = { "org" }
   lvim.builtin.treesitter.ignore_install = { "haskell", "norg" }
@@ -394,7 +394,7 @@ M.config = function()
       node_decremental = "<C-r>",
     },
   }
-  lvim.builtin.treesitter.matchup.enable = true
+  -- lvim.builtin.treesitter.matchup.enable = false
   -- lvim.treesitter.textsubjects.enable = true
   -- lvim.treesitter.playground.enable = true
   lvim.builtin.treesitter.query_linter = {
@@ -920,29 +920,29 @@ M.enhanced_float_handler = function(handler)
     vim.wo[win].concealcursor = "n"
 
     -- Extra highlights.
-    for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
-      for pattern, hl_group in pairs {
-        ["|%S-|"] = "@text.reference",
-        ["@%S+"] = "@parameter",
-        ["^%s*(Parameters:)"] = "@text.title",
-        ["^%s*(Return:)"] = "@text.title",
-        ["^%s*(See also:)"] = "@text.title",
-        ["{%S-}"] = "@parameter",
-      } do
-        local from = 1 ---@type integer?
-        while from do
-          local to
-          from, to = line:find(pattern, from)
-          if from then
-            vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
-              end_col = to,
-              hl_group = hl_group,
-            })
-          end
-          from = to and to + 1 or nil
-        end
-      end
-    end
+    -- for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
+    --   for pattern, hl_group in pairs {
+    --     ["|%S-|"] = "@text.reference",
+    --     ["@%S+"] = "@parameter",
+    --     ["^%s*(Parameters:)"] = "@text.title",
+    --     ["^%s*(Return:)"] = "@text.title",
+    --     ["^%s*(See also:)"] = "@text.title",
+    --     ["{%S-}"] = "@parameter",
+    --   } do
+    --     local from = 1 ---@type integer?
+    --     while from do
+    --       local to
+    --       from, to = line:find(pattern, from)
+    --       if from then
+    --         vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
+    --           end_col = to,
+    --           hl_group = hl_group,
+    --         })
+    --       end
+    --       from = to and to + 1 or nil
+    --     end
+    --   end
+    -- end
 
     -- Add keymaps for opening links.
     if not vim.b[buf].markdown_keys then

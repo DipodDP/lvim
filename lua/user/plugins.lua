@@ -6,6 +6,67 @@ M.config = function()
     neoclip_req = {}
   end
   lvim.plugins = {
+      "lunarvim/darkplus.nvim",
+    -- "folke/tokyonight.nvim",
+    -- "rebelot/kanagawa.nvim",
+    {
+      "ellisonleao/gruvbox.nvim",
+      config = function()
+        require("gruvbox").setup({
+          terminal_colors = true, -- add neovim terminal colors
+          undercurl = true,
+          underline = true,
+          bold = true,
+          italic = {
+            strings = true,
+            emphasis = true,
+            comments = true,
+            operators = false,
+            folds = true,
+          },
+          strikethrough = true,
+          invert_selection = false,
+          invert_signs = false,
+          invert_tabline = false,
+          invert_intend_guides = false,
+          inverse = true, -- invert background for search, diffs, statuslines and errors
+          contrast = "", -- can be "hard", "soft" or empty string
+          palette_overrides = {},
+          overrides = {
+            CursorLine = {
+              blend = vim.o.pumblend,
+              bg = "NONE",
+            },
+            CursorLineNr = {
+              blend = vim.o.pumblend,
+              bg = "NONE",
+            },
+            lualine_c_replace = {
+              -- guibg = "NONE",
+            },
+            lualine_c_visual = {
+              -- guibg = "NONE",
+            },
+            lualine_c_normal = {
+              -- guibg = "NONE",
+            },
+            lualine_c_insert = {
+              -- guibg = "NONE",
+            },
+            Pmenu = {
+              blend = 0,
+              bg = "NONE"
+            }
+          },
+          dim_inactive = false,
+          transparent_mode = true,
+        })
+      end
+    },
+    {
+      "vinnymeller/swagger-preview.nvim",
+      build = "npm install -g swagger-ui-watcher",
+    },
     -- {
     --   "folke/tokyonight.nvim",
     --   config = function()
@@ -53,6 +114,10 @@ M.config = function()
           and lvim.builtin.time_based_themes
       end,
     },
+    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
+    { url = "git@github.com:LunarVim/primer.nvim.git" },
+    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
+    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -937,10 +1002,6 @@ M.config = function()
     --   end,
     -- },
     -- "kkharji/sqlite.lua",
-    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
-    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
-    { url = "git@github.com:LunarVim/primer.nvim.git" },
-    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     -- "stevearc/dressing.nvim",
     -- "AckslD/swenv.nvim",
     "roobert/tailwindcss-colorizer-cmp.nvim",

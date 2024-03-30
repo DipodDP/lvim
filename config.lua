@@ -1,8 +1,8 @@
 -- Neovim
 -- =========================================
 lvim.leader = " "
-lvim.colorscheme = "onedark" -- set to a custom theme
--- lvim.colorscheme = "darkplus" -- set to a custom theme
+-- lvim.colorscheme = "onedark" -- set to a custom theme
+lvim.colorscheme = "darkplus" -- set to a custom theme
 -- lvim.colorscheme = "primer_dark"
 -- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 -- lvim.transparent_window = true -- enable/disable transparency

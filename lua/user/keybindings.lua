@@ -1,5 +1,4 @@
 local M = {}
-
 -- HACK: for some reason, the alt keybindings are not working in my wezterm
 M.set_wezterm_keybindings = function()
   lvim.keys.insert_mode["å"] = lvim.keys.insert_mode["<A-a>"]

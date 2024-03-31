@@ -171,7 +171,7 @@ brew install node
 ```shell
 bash <(curl -s "https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh")
 mv ~/.config/lvim ~/.config/lvim_backup
-git clone https://github.com/abzcoding/lvim.git ~/.config/lvim
+git clone https://github.com/DipodDP/lvim.git ~/.config/lvim
 lvim +LvimUpdate +LvimCacheReset +q
 lvim # run :Lazy sync
 ```

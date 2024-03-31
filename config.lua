@@ -1,3 +1,20 @@
+-- Common options
+--****************************************************************************--
+--*                               [init.lua]                                 *--
+--*                           [NVIM LAUNCH POINT]                            *--
+--*                     [Author/Credit - Tanweer Ashif]                      *--
+--* [LinkedIn/tanweerashif | GitHub/HacksPloiter | https://tanweerashif.com] *--
+--****************************************************************************--
+
+
+--================================-> START <-=================================--
+--                               File Imports                                 --
+--------------------------------------------------------------------------------
+-- require('keyconfig')        -- NVIM keymaps congis
+-- require('optconfig')        -- NVIM options configs
+-- require('themeplugtable')   -- NVIM Lazy configs
+-- require('themeplugconfig')  -- Installed theme and plugin configs
+
 -- Neovim
 -- =========================================
 lvim.leader = " "
@@ -77,6 +94,20 @@ lvim.builtin.indentlines.mine = true -- NOTE: using v3 till fixed upstream in lu
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
 lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
 
+-- lvim.builtin.alpha.active = true
+lvim.reload_config_on_save = true
+-- lvim.builtin.bufferline.active = false
+-- lvim.builtin.terminal.persist_mode = false
+-- lvim.builtin.lir.active = false
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.dap.active = true
+lvim.keys.term_mode = { ["<C-l>"] = false }
+
+
+lvim.builtin.cmp.formatting = {
+    format = require("tailwindcss-colorizer-cmp").formatter
+}
+
 -- Custom User Config
 -- =========================================
 -- local user = vim.env.USER
@@ -123,6 +154,20 @@ end
 if lvim.builtin.dap.active then
   require("user.dap").config()
 end
+-- --================================-> START <-=================================--
+-- --                        BACKUP INFO - WHAT TO BACKUP                        --
+-- --------------------------------------------------------------------------------
+-- -- $HOME/.config/nvim
+-- --     |
+-- --     |-- init.lua (✓)
+-- --     |
+-- --     |-- lua ---------
+-- --                     |------ keyconfig.lua (✓)
+-- --                     |------ optconfig.lua (✓)
+-- --                     |------ lazyconfig.lua (✓)
+-- --                     |------ themeplugconfig.lua (✓)
+-- --
+-- --================================-> END <-===================================--
 
 -- Language Specific
 -- =========================================
@@ -144,6 +189,50 @@ require("user.null_ls").config()
 -- Additional Plugins
 -- =========================================
 require("user.plugins").config()
+reload "user.dap"
+reload "user.nvimtree"
+reload "user.lualine"
+reload "user.modicator"
+reload "user.lsp"
+reload "user.smoothie"
+reload "user.harpoon"
+reload "user.webdev-icons"
+reload "user.cybu"
+reload "user.neotest"
+reload "user.surround"
+-- reload "user.bookmark"
+reload "user.bookmarks"
+reload "user.todo-comments"
+-- reload "user.jaq"
+-- reload "user.fidget"
+-- reload "user.lab"
+reload "user.git"
+reload "user.zen-mode"
+reload "user.inlay-hints"
+reload "user.telescope"
+-- reload "user.bqf"
+-- reload "user.dial"
+-- reload "user.numb"
+reload "user.treesitter"
+reload "user.neogit"
+reload "user.colorizer"
+-- reload "user.neoscroll"
+reload "user.dotenv"
+-- -- reload "user.tabnine"
+-- -- reload "user.copilot"
+-- -- reload "user.chatgpt"
+-- -- reload "user.neoai"
+reload "user.whichkey"
+-- reload "user.cmp"
+-- reload "nostr"
+-- reload "user.astro-tools"
+-- reload "user.matchup"
+reload "user.betterescape"
+reload "user.yanky"
+-- reload "user.rest"
+-- reload "user.metals"
+-- reload "user.image"
+-- reload "user.neorg"
 
 -- Autocommands
 -- =========================================

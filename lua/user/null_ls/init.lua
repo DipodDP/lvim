@@ -98,26 +98,26 @@ M.config = function()
     -- Support for nix files
     nls.builtins.diagnostics.deadnix,
     nls.builtins.diagnostics.statix,
-    -- nls.builtins.diagnostics.markdownlint.with {
-    --   filetypes = { "markdown" },
-    --   extra_args = { "-r", "~MD013" },
-    -- },
-    -- nls.builtins.diagnostics.vale.with {
-    --   filetypes = { "markdown" },
-    --   extra_args = { "--config", vale_config },
-    -- },
-    -- nls.builtins.diagnostics.revive.with {
-    --   condition = function(utils)
-    --     return utils.root_has_file "revive.toml" or revive_conf
-    --   end,
-    --   args = revive_args,
-    --   diagnostics_postprocess = function(d)
-    --     d.severity = vim.diagnostic.severity.INFO
-    --     d.end_col = d.col
-    --     d.end_row = d.row
-    --     d.end_lnum = d.lnum
-    --   end,
-    -- },
+    nls.builtins.diagnostics.markdownlint.with {
+      filetypes = { "markdown" },
+      extra_args = { "-r", "~MD013" },
+    },
+    nls.builtins.diagnostics.vale.with {
+      filetypes = { "markdown" },
+      extra_args = { "--config", vale_config },
+    },
+    nls.builtins.diagnostics.revive.with {
+      condition = function(utils)
+        return utils.root_has_file "revive.toml" or revive_conf
+      end,
+      args = revive_args,
+      diagnostics_postprocess = function(d)
+        d.severity = vim.diagnostic.severity.INFO
+        d.end_col = d.col
+        d.end_row = d.row
+        d.end_lnum = d.lnum
+      end,
+    },
     nls.builtins.code_actions.shellcheck,
     -- WARN: broken on neovim-head because of `nvim.treesitter.get_node_at_pos` being deprecated
     -- nls.builtins.code_actions.gomodifytags,

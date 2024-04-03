@@ -184,7 +184,7 @@ end
 --   "tsserver",
 --   "yamlls",
 -- })
-require("user.null_ls").config()
+-- require("user.null_ls").config()
 
 -- Additional Plugins
 -- =========================================
@@ -240,6 +240,7 @@ require("user.autocommands").config()
 
 -- Additional Keybindings
 -- =========================================
-require("user.keybindings").config()
+-- require("user.keybindings").config()
 
 reload "options"
+reload "keymaps"

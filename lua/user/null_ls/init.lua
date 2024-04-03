@@ -108,9 +108,9 @@ M.config = function()
     },
     nls.builtins.diagnostics.revive.with {
       condition = function(utils)
-        return utils.root_has_file "revive.toml" or revive_conf
+        return utils.root_has_file "revive.toml"
       end,
-      args = revive_args,
+      -- args = revive_args,
       diagnostics_postprocess = function(d)
         d.severity = vim.diagnostic.severity.INFO
         d.end_col = d.col

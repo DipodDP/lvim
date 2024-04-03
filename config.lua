@@ -103,9 +103,9 @@ lvim.builtin.dap.active = true
 lvim.keys.term_mode = { ["<C-l>"] = false }
 
 
--- lvim.builtin.cmp.formatting = {
---     format = require("tailwindcss-colorizer-cmp").formatter
--- }
+lvim.builtin.cmp.formatting = {
+    format = require("tailwindcss-colorizer-cmp").formatter
+}
 -- vim.g.netrw_browse_split = 0
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_winsize = 25
@@ -114,8 +114,8 @@ lvim.keys.term_mode = { ["<C-l>"] = false }
 -- =========================================
 lvim.leader = " "
 -- lvim.colorscheme = "onedark"
--- lvim.colorscheme = "darkplus"
-lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
+lvim.colorscheme = "darkplus"
+-- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
 -- lvim.colorscheme = "primer_dark"
 -- lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = true -- enable/disable transparency
@@ -138,7 +138,7 @@ lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy status
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
 -- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
--- lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
+lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 -- lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
@@ -170,7 +170,7 @@ lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim 
 lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
 lvim.builtin.legendary = { active = false } -- enable/disable legendary plugin ( ctrl-p command )
--- lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
+lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 -- lvim.builtin.lir.active = false
 -- lvim.builtin.breadcrumbs.active = false
 -- lvim.builtin.illuminate.active = false
@@ -209,10 +209,10 @@ reload "keymaps"
 --   lvim.builtin.bufferline.active = false
 --   lvim.builtin.breadcrumbs.active = true
 -- end
--- if lvim.builtin.breadcrumbs.active and lvim.builtin.noice.active then
---   table.insert(lvim.builtin.breadcrumbs.winbar_filetype_exclude, "vim")
--- end
--- lvim.builtin.nvimtree.active = lvim.builtin.tree_provider == "nvimtree"
+if lvim.builtin.breadcrumbs.active and lvim.builtin.noice.active then
+  table.insert(lvim.builtin.breadcrumbs.winbar_filetype_exclude, "vim")
+end
+lvim.builtin.nvimtree.active = lvim.builtin.tree_provider == "nvimtree"
 lvim.builtin.latex = {
   view_method = "skim", -- change to zathura if you are on linux
   preview_exec = "/Applications/Skim.app/Contents/SharedSupport/displayline", -- change this to zathura as well
@@ -223,13 +223,13 @@ if lvim.builtin.cursorline.active then
   lvim.lsp.document_highlight = false
 end
 
--- -- StatusLine
--- -- Additional Plugins
--- -- =========================================
--- if lvim.builtin.fancy_statusline.active then
---   require("user.lualine").config()
--- end
--- -- reload "plugins"
+-- StatusLine
+-- Additional Plugins
+-- =========================================
+if lvim.builtin.fancy_statusline.active then
+  require("user.lualine").config()
+end
+-- reload "plugins"
 
 -- -- Debugging
 -- -- =========================================
@@ -270,12 +270,12 @@ end
 
 -- -- require 'lspconfig'.csharp_ls.setup {}
 
--- require("swagger-preview").setup({
---   -- The port to run the preview server on
---   port = 8000,
---   -- The host to run the preview server on
---   host = "localhost",
--- })
+require("swagger-preview").setup({
+  -- The port to run the preview server on
+  port = 8000,
+  -- The host to run the preview server on
+  host = "localhost",
+})
 -- require("user.null_ls").config()
 
 -- Additional Plugins

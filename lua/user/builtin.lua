@@ -372,15 +372,15 @@ M.config = function()
   -- Treesitter
   -- =========================================
   lvim.builtin.treesitter.context_commentstring.enable = true
-  local languages = vim.tbl_flatten {
-    { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
-    -- { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
-    -- { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
-    { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
-    { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
-    -- { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
-    { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
-  }
+  -- local languages = vim.tbl_flatten {
+  --   { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
+  --   { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
+  --   { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
+  --   { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
+  --   { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
+  --   { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
+  --   { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
+  -- }
   -- lvim.builtin.treesitter.ensure_installed = languages
   lvim.builtin.treesitter.highlight.disable = { "org" }
   lvim.builtin.treesitter.highlight.aditional_vim_regex_highlighting = { "org" }

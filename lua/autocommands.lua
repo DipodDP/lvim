@@ -1,11 +1,11 @@
--- vim.api.nvim_create_autocmd({ "User" }, {
---   pattern = { "AlphaReady" },
---   callback = function()
---     vim.cmd [[
---       set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
---     ]]
---   end,
--- })
+vim.api.nvim_create_autocmd({ "User" }, {
+  pattern = { "AlphaReady" },
+  callback = function()
+    vim.cmd [[
+      set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
+    ]]
+  end,
+})
 
 -- vim.api.nvim_create_autocmd({"FileType"},{
 --   pattern = {
@@ -206,12 +206,12 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 --   end,
 -- })
 
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---   pattern = { "*.ts" },
---   callback = function()
---     vim.lsp.buf.format { async = true }
---   end,
--- })
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*.ts" },
+  callback = function()
+    vim.lsp.buf.format { async = true }
+  end,
+})
 
 -- do things when lsp attaches
 vim.api.nvim_create_autocmd("LspAttach", {

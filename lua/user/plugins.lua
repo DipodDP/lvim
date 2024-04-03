@@ -6,7 +6,67 @@ M.config = function()
     neoclip_req = {}
   end
   lvim.plugins = {
-    -- {
+      "lunarvim/darkplus.nvim",
+    -- "rebelot/kanagawa.nvim",
+    {
+      "ellisonleao/gruvbox.nvim",
+      config = function()
+        require("gruvbox").setup({
+          terminal_colors = true, -- add neovim terminal colors
+          undercurl = true,
+          underline = true,
+          bold = true,
+          italic = {
+            strings = true,
+            emphasis = true,
+            comments = true,
+            operators = false,
+            folds = true,
+          },
+          strikethrough = true,
+          invert_selection = false,
+          invert_signs = false,
+          invert_tabline = false,
+          invert_intend_guides = false,
+          inverse = true, -- invert background for search, diffs, statuslines and errors
+          contrast = "", -- can be "hard", "soft" or empty string
+          palette_overrides = {},
+          overrides = {
+            CursorLine = {
+              blend = vim.o.pumblend,
+              bg = "NONE",
+            },
+            CursorLineNr = {
+              blend = vim.o.pumblend,
+              bg = "NONE",
+            },
+            lualine_c_replace = {
+              -- guibg = "NONE",
+            },
+            lualine_c_visual = {
+              -- guibg = "NONE",
+            },
+            lualine_c_normal = {
+              -- guibg = "NONE",
+            },
+            lualine_c_insert = {
+              -- guibg = "NONE",
+            },
+            Pmenu = {
+              blend = 0,
+              bg = "NONE"
+            }
+          },
+          dim_inactive = false,
+          transparent_mode = true,
+        })
+      end
+    },
+    {
+      "vinnymeller/swagger-preview.nvim",
+      build = "npm install -g swagger-ui-watcher",
+    },
+  -- {
     --   "folke/tokyonight.nvim",
     --   config = function()
     --     require("user.theme").tokyonight()
@@ -53,6 +113,10 @@ M.config = function()
           and lvim.builtin.time_based_themes
       end,
     },
+    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
+    { url = "git@github.com:LunarVim/primer.nvim.git" },
+    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
+    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -279,29 +343,29 @@ M.config = function()
       event = "VeryLazy",
       enabled = lvim.builtin.latex.active,
     },
-    -- {
-    --   "nvim-neotest/neotest",
-    --   config = function()
-    --     require("user.ntest").config()
-    --   end,
-    --   dependencies = {
-    --     { "nvim-neotest/neotest-plenary" },
-    --   },
-    --   event = { "BufReadPost", "BufNew" },
-    --   enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "neotest"),
-    -- },
-    -- { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
-    -- { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
-    -- { "rouge8/neotest-rust", event = { "BufEnter *.rs" } },
-    -- {
-    --   "rcarriga/vim-ultest",
-    --   cmd = { "Ultest", "UltestSummary", "UltestNearest" },
-    --   dependencies = { "vim-test/vim-test" },
-    --   build = ":UpdateRemotePlugins",
-    --   lazy = true,
-    --   event = { "BufEnter *_test.*,*_spec.*,*est_*.*" },
-    --   enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
-    -- },
+    {
+      "nvim-neotest/neotest",
+      config = function()
+        require("user.ntest").config()
+      end,
+      dependencies = {
+        { "nvim-neotest/neotest-plenary" },
+      },
+      event = { "BufReadPost", "BufNew" },
+      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "neotest"),
+    },
+    { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
+    { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
+    { "rouge8/neotest-rust", event = { "BufEnter *.rs" } },
+    {
+      "rcarriga/vim-ultest",
+      cmd = { "Ultest", "UltestSummary", "UltestNearest" },
+      dependencies = { "vim-test/vim-test" },
+      build = ":UpdateRemotePlugins",
+      lazy = true,
+      event = { "BufEnter *_test.*,*_spec.*,*est_*.*" },
+      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
+    },
     -- {
     --   "akinsho/flutter-tools.nvim",
     --   dependencies = "nvim-lua/plenary.nvim",
@@ -402,14 +466,14 @@ M.config = function()
     --   end,
     --   enabled = lvim.builtin.sell_your_soul_to_devil.prada,
     -- },
-    -- {
-    --   "ThePrimeagen/harpoon",
-    --   dependencies = {
-    --     { "nvim-lua/plenary.nvim" },
-    --     { "nvim-lua/popup.nvim" },
-    --   },
-    --   enabled = lvim.builtin.harpoon.active,
-    -- },
+    {
+      "ThePrimeagen/harpoon",
+      dependencies = {
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-lua/popup.nvim" },
+      },
+      enabled = lvim.builtin.harpoon.active,
+    },
     {
       "sindrets/diffview.nvim",
       lazy = true,
@@ -436,13 +500,13 @@ M.config = function()
     --   end,
     --   enabled = lvim.builtin.remote_dev.active,
     -- },
-    -- {
-    --   "abzcoding/nvim-mini-file-icons",
-    --   config = function()
-    --     require("nvim-web-devicons").setup()
-    --   end,
-    --   enabled = lvim.builtin.custom_web_devicons or not lvim.use_icons,
-    -- },
+    {
+      "abzcoding/nvim-mini-file-icons",
+      config = function()
+        require("nvim-web-devicons").setup()
+      end,
+      enabled = lvim.builtin.custom_web_devicons or not lvim.use_icons,
+    },
     { "mtdl9/vim-log-highlighting", ft = { "text", "log" } },
     {
       "yamatsum/nvim-cursorline",
@@ -508,10 +572,10 @@ M.config = function()
     --   event = "BufRead",
     --   enabled = lvim.builtin.collaborative_editing.active,
     -- },
-    -- {
-    --   "nvim-telescope/telescope-file-browser.nvim",
-    --   enabled = lvim.builtin.file_browser.active,
-    -- },
+    {
+      "nvim-telescope/telescope-file-browser.nvim",
+      enabled = lvim.builtin.file_browser.active,
+    },
     -- {
     --   "j-hui/fidget.nvim",
     --   branch = "legacy",
@@ -716,18 +780,18 @@ M.config = function()
     --   end,
     --   enabled = lvim.builtin.noice.active,
     -- },
-    -- {
-    --   "m-demare/hlargs.nvim",
-    --   lazy = true,
-    --   event = "VeryLazy",
-    --   config = function()
-    --     require("hlargs").setup {
-    --       excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
-    --     }
-    --   end,
-    --   dependencies = { "nvim-treesitter/nvim-treesitter" },
-    --   enabled = lvim.builtin.colored_args,
-    -- },
+    {
+      "m-demare/hlargs.nvim",
+      lazy = true,
+      event = "VeryLazy",
+      config = function()
+        require("hlargs").setup {
+          excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
+        }
+      end,
+      dependencies = { "nvim-treesitter/nvim-treesitter" },
+      enabled = lvim.builtin.colored_args,
+    },
     -- {
     --   "cshuaimin/ssr.nvim",
     --   lazy = true,
@@ -988,7 +1052,6 @@ M.config = function()
     -- "folke/noice.nvim",
     -- "rcarriga/nvim-notify",
 
-    -- https://github.com/jose-elias-alvarez/typescript.nvim
     -- "rmagatti/auto-session",
     -- "rmagatti/session-lens",
     -- "christianchiarulli/nvim-ts-rainbow",

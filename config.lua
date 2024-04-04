@@ -75,6 +75,11 @@ lvim.builtin.cpp_programming = { active = false }                            -- 
 lvim.builtin.cmp.cmdline.enable = false
 lvim.builtin.borderless_cmp = false
 lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
+lvim.builtin.colored_args = true -- if true then sets up hlargs.nvim
+lvim.builtin.bigfile.active = true
+lvim.builtin.indentlines.active = true
+lvim.builtin.indentlines.mine = false -- NOTE: using v3 till fixed upstream in lunarvim
+lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
 
 -- Custom User Config
 -- =========================================
@@ -106,11 +111,6 @@ lvim.builtin.latex = {
 if lvim.builtin.cursorline.active then
   lvim.lsp.document_highlight = false
 end
-lvim.builtin.colored_args = true -- if true then sets up hlargs.nvim
--- lvim.builtin.bigfile.active = true
--- lvim.builtin.indentlines.active = false
-lvim.builtin.indentlines.mine = true                          -- NOTE: using v3 till fixed upstream in lunarvim
-lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
 
 -- Override Lunarvim defaults
 -- =========================================
@@ -230,7 +230,7 @@ reload "user.smoothie"
 -- reload "user.zen-mode"
 -- reload "user.inlay-hints"
 -- reload "user.telescope"
--- reload "user.bqf"
+reload "user.bqf"
 -- reload "user.dial"
 -- reload "user.numb"
 -- reload "user.treesitter"
@@ -254,6 +254,16 @@ reload "user.yanky"
 -- reload "user.image"
 -- reload "user.neorg"
 
+-- Autocommands
+-- =========================================
+-- require("user.autocommands").config()
+-- reload "autocommands"
+
+-- -- Additional Keybindings
+-- -- =========================================
+-- require("user.keybindings").config()
+-- reload "keymaps"
+
 -- require("transparent").setup({ -- Optional, you don't have to run setup.
 --   groups = {                   -- table: default groups
 --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
@@ -267,29 +277,6 @@ reload "user.yanky"
 --   extra_groups = {},   -- table: additional groups that should be cleared
 --   exclude_groups = {}, -- table: groups you don't want to clear
 -- })
-
--- Autocommands
--- =========================================
--- require("user.autocommands").config()
--- reload "autocommands"
-
--- -- Additional Keybindings
--- -- =========================================
--- require("user.keybindings").config()
--- reload "keymaps"
--- -- require("transparent").setup({ -- Optional, you don't have to run setup.
--- --   groups = {                   -- table: default groups
--- --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
--- --     'Float', 'NormalFloat',
--- --     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
--- --     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
--- --     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
--- --     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
--- --     'EndOfBuffer',
--- --   },
--- --   extra_groups = {},   -- table: additional groups that should be cleared
--- --   exclude_groups = {}, -- table: groups you don't want to clear
--- -- })
 
 -- Default options:
 require("gruvbox").setup({

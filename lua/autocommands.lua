@@ -1,11 +1,11 @@
-vim.api.nvim_create_autocmd({ "User" }, {
-  pattern = { "AlphaReady" },
-  callback = function()
-    vim.cmd [[
-      set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
-    ]]
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "User" }, {
+--   pattern = { "AlphaReady" },
+--   callback = function()
+--     vim.cmd [[
+--       set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
+--     ]]
+--   end,
+-- })
 
 -- vim.api.nvim_create_autocmd({"FileType"},{
 --   pattern = {
@@ -85,26 +85,18 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
-vim.cmd [[
-" autocmd FileType toggleterm nnoremap <buffer> <CR> :startinsert<CR>
-  autocmd BufEnter * if &filetype ==# 'toggleterm' | startinsert! | endif
-]]
+-- vim.cmd [[
+-- " autocmd FileType toggleterm nnoremap <buffer> <CR> :startinsert<CR>
+--   autocmd BufEnter * if &filetype ==# 'toggleterm' | startinsert! | endif
+-- ]]
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = { "term://*" },
-  callback = function()
-    vim.cmd "startinsert"
-    -- vim.cmd "set cmdheight=1"
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.txt", "*.md", "*.tex" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+--   pattern = { "term://*" },
+--   callback = function()
+--     vim.cmd "startinsert"
+--     -- vim.cmd "set cmdheight=1"
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown", "norg" },
@@ -206,12 +198,12 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 --   end,
 -- })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.ts" },
-  callback = function()
-    vim.lsp.buf.format { async = true }
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--   pattern = { "*.ts" },
+--   callback = function()
+--     vim.lsp.buf.format { async = true }
+--   end,
+-- })
 
 -- do things when lsp attaches
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -221,23 +213,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- client.server_capabilities.semanticTokensProvider = nil
     -- print(vim.inspect(client))
   end,
-})
-
--- perform osc52 yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    if vim.v.event.operator == 'y' or vim.v.event.operator == 'c' then
-      require('osc52').copy_register('+')
-    end
-  end
-})
-
--- prevent overwriting yank by delete
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    if vim.v.event.operator == 'd' then
-      vim.fn.setreg('"', vim.fn.getreg('0'))
-    end
-  end
 })
 

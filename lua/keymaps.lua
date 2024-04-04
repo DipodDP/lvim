@@ -7,7 +7,7 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
 keymap("n", "<C-Space>", "<cmd>WhichKey \\<space><cr>", opts)
--- keymap("n", "<C-i>", "<C-i>", opts)
+keymap("n", "<C-i>", "<C-i>", opts)
 
 -- Normal --
 -- Better window navigation
@@ -16,14 +16,6 @@ keymap("n", "<m-j>", "<C-w>j", opts)
 keymap("n", "<m-k>", "<C-w>k", opts)
 keymap("n", "<m-l>", "<C-w>l", opts)
 keymap("n", "<m-tab>", "<c-6>", opts)
-
-keymap("n", "<Down>", "<cmd>BookmarkNext<cr>", opts)
-keymap("n", "<Up>", "<cmd>BookmarkPrev<cr>", opts)
-keymap("n", "<Right>", "<cmd>FilemarkNext<cr>", opts)
-keymap("n", "<Left>", "<cmd>FilemarkPrev<cr>", opts)
-
-keymap("n", "[b", "<cmd>bprevious<cr>", opts)
-keymap("n", "]b", "<cmd>bnext<cr>", opts)
 
 function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, "t", "<m-h>", [[<C-\><C-n><C-W>h]], opts)
@@ -36,6 +28,7 @@ vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
 
 -- Tabs --
 -- keymap("n", "\\", ":tabnew %<cr>", opts)
+-- keymap("n", "\\", ":tabnew %<cr>", opts)
 -- keymap("n", "<s-\\>", ":tabclose<cr>", opts)
 -- keymap("n", "<s-\\>", ":tabonly<cr>", opts)
 
@@ -45,9 +38,9 @@ keymap("n", "<M-Down>", ":resize +2<CR>", opts)
 keymap("n", "<M-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<M-Right>", ":vertical resize +2<CR>", opts)
 
--- keymap("n", "<c-j>", "<c-d>", opts)
--- keymap("n", "<c-k>", "<c-u>", opts)
-keymap("n", "<c-c>", "<s-m>", opts)
+keymap("n", "<c-j>", "<c-d>", opts)
+keymap("n", "<c-k>", "<c-u>", opts)
+keymap("n", "<c-m>", "<s-m>", opts)
 
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
@@ -64,13 +57,6 @@ keymap("v", ">", ">gv", opts)
 keymap("x", "p", [["_dP]])
 -- keymap("v", "p", '"_dp', opts)
 -- keymap("v", "P", '"_dP', opts)
-
--- Cut selected
-keymap("v", "x", "ygvx")
-keymap("v", "c", "ygvc")
-
--- Delete in blackhole register
-keymap("v", "DD", '"_d')
 
 keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
 
@@ -96,24 +82,6 @@ vim.api.nvim_set_keymap(
   opts
 )
 
--- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
--- vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
--- vim.keymap.set('n', 'K', vim.lsp.buf.hover)
--- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
--- vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help)
-keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder)
-keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder)
-keymap('n', '<space>wl', function()
-  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end)
-keymap('n', '<space>D', vim.lsp.buf.type_definition)
-keymap('n', '<space>rn', vim.lsp.buf.rename)
-keymap({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action)
-keymap('n', 'gr', vim.lsp.buf.references)
-keymap('n', '<space>f', function()
-  vim.lsp.buf.format { async = true }
-end)
-
 vim.cmd [[
   function! QuickFixToggle()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
@@ -138,6 +106,6 @@ M.show_documentation = function()
     vim.lsp.buf.hover()
   end
 end
--- vim.api.nvim_set_keymap("n", "K", ":lua require('keymaps').show_documentation()<CR>", opts)
+vim.api.nvim_set_keymap("n", "K", ":lua require('user.keymaps').show_documentation()<CR>", opts)
 
 return M

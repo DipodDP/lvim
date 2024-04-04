@@ -90,10 +90,10 @@ lvim.builtin.cmp.cmdline.enable = false
 lvim.builtin.borderless_cmp = false
 lvim.builtin.colored_args = false -- if true then sets up hlargs.nvim
 lvim.builtin.bigfile.active = true
-lvim.builtin.indentlines.active = false
-lvim.builtin.indentlines.mine = true -- NOTE: using v3 till fixed upstream in lunarvim
+lvim.builtin.indentlines.active = true
+lvim.builtin.indentlines.mine = false -- NOTE: using v3 till fixed upstream in lunarvim
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
-lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
+lvim.builtin.symbols_usage = { active = true } -- enable/disable symbols-usage.nvim
 
 -- Custom User Config
 -- =========================================
@@ -172,14 +172,8 @@ end
 -- --
 -- --================================-> END <-===================================--
 
--- -- require 'lspconfig'.csharp_ls.setup {}
+-- require 'lspconfig'.csharp_ls.setup {}
 
-require("swagger-preview").setup({
-  -- The port to run the preview server on
-  port = 8000,
-  -- The host to run the preview server on
-  host = "localhost",
-})
 -- require("user.null_ls").config()
 
 -- Additional Plugins
@@ -244,6 +238,14 @@ reload "options"
 -- -- =========================================
 -- require("user.keybindings").config()
 reload "keymaps"
+
+require("swagger-preview").setup({
+  -- The port to run the preview server on
+  port = 8000,
+  -- The host to run the preview server on
+  host = "localhost",
+})
+
 -- -- require("transparent").setup({ -- Optional, you don't have to run setup.
 -- --   groups = {                   -- table: default groups
 -- --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',

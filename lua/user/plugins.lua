@@ -888,12 +888,12 @@ M.config = function()
     --   event = "VeryLazy",
     --   enabled = lvim.builtin.sell_your_soul_to_devil.openai,
     -- },
-    -- {
-    --   "lukas-reineke/indent-blankline.nvim",
-    --   name = "new-indent",
-    --   main = "ibl",
-    --   enabled = lvim.builtin.indentlines.mine,
-    -- },
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      name = "new-indent",
+      main = "ibl",
+      enabled = lvim.builtin.indentlines.mine,
+    },
     -- {
     --   "Wansmer/symbol-usage.nvim",
     --   event = "LspAttach",
@@ -938,28 +938,6 @@ M.config = function()
         require("auto-save").setup()
       end,
     },
-    {
-      "lukas-reineke/indent-blankline.nvim",
-      name = "new-indent",
-      main = "ibl",
-      enabled = lvim.builtin.indentlines.mine,
-    },
-    -- {
-    --   "Wansmer/symbol-usage.nvim",
-    --   event = "LspAttach",
-    --   enabled = lvim.builtin.symbols_usage.active,
-    --   config = function()
-    --     require("user.symbol_use").config()
-    --   end,
-    -- },
-    -- {
-    --   "hedyhli/outline.nvim",
-    --   config = function()
-    --     require("user.outline").config()
-    --   end,
-    --   event = "BufReadPost",
-    --   enabled = lvim.builtin.tag_provider == "outline",
-    -- },
     {
       "mawkler/modicator.nvim",
       event = "ColorScheme",

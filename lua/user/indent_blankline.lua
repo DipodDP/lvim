@@ -7,7 +7,7 @@ M.setup = function()
   end
   ibl.setup {
     indent = {
-      char = { "", "┊", "┆", "¦", "|", "¦", "┆", "┊", "" },
+      -- char = { "", "┊", "┆", "¦", "|", "¦", "┆", "┊", "" },
     },
     exclude = {
       buftypes = { "terminal", "nofile" },
@@ -97,7 +97,7 @@ M.config = function()
       "", -- for all buffers without a file type
     },
     -- char = "▏",
-    char_list = { "", "┊", "┆", "¦", "|", "¦", "┆", "┊", "" },
+    -- char_list = { "", "┊", "┆", "¦", "|", "¦", "┆", "┊", "" },
     char_highlight_list = {
       "IndentBlanklineIndent1",
       "IndentBlanklineIndent1",

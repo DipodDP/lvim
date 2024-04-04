@@ -1,30 +1,14 @@
--- Common options
---****************************************************************************--
---*                               [init.lua]                                 *--
---*                           [NVIM LAUNCH POINT]                            *--
---*                     [Author/Credit - Tanweer Ashif]                      *--
---* [LinkedIn/tanweerashif | GitHub/HacksPloiter | https://tanweerashif.com] *--
---****************************************************************************--
-
-
---================================-> START <-=================================--
---                               File Imports                                 --
---------------------------------------------------------------------------------
--- require('keyconfig')        -- NVIM keymaps congis
--- require('optconfig')        -- NVIM options configs
--- require('themeplugtable')   -- NVIM Lazy configs
--- require('themeplugconfig')  -- Installed theme and plugin configs
-
 -- Neovim
 -- =========================================
 lvim.leader = " "
+-- lvim.colorscheme = "tokyonight" -- set to a custom theme
 -- lvim.colorscheme = "onedark" -- set to a custom theme
 -- lvim.colorscheme = "darkplus" -- set to a custom theme
 -- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
 lvim.colorscheme = "primer_dark"
--- lvim.transparent_window = true -- enable/disable transparency
-lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.debug = true
+-- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
+lvim.transparent_window = false -- enable/disable transparency
 vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
@@ -90,10 +74,10 @@ lvim.builtin.cmp.cmdline.enable = false
 lvim.builtin.borderless_cmp = false
 lvim.builtin.colored_args = false -- if true then sets up hlargs.nvim
 lvim.builtin.bigfile.active = true
-lvim.builtin.indentlines.active = true
-lvim.builtin.indentlines.mine = false -- NOTE: using v3 till fixed upstream in lunarvim
+lvim.builtin.indentlines.active = false
+lvim.builtin.indentlines.mine = true -- NOTE: using v3 till fixed upstream in lunarvim
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
-lvim.builtin.symbols_usage = { active = true } -- enable/disable symbols-usage.nvim
+lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
 
 -- Custom User Config
 -- =========================================
@@ -142,8 +126,8 @@ if lvim.builtin.dap.active then
   require("user.dap").config()
 end
 
--- -- Language Specific
--- -- =========================================
+-- Language Specific
+-- =========================================
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 --   "clangd",
 --   "dockerls",
@@ -154,23 +138,9 @@ end
 --   "rust_analyzer",
 --   "taplo",
 --   "texlab",
---   -- "tsserver",
+--   "tsserver",
 --   "yamlls",
 -- })
--- --================================-> START <-=================================--
--- --                        BACKUP INFO - WHAT TO BACKUP                        --
--- --------------------------------------------------------------------------------
--- -- $HOME/.config/nvim
--- --     |
--- --     |-- init.lua (✓)
--- --     |
--- --     |-- lua ---------
--- --                     |------ keyconfig.lua (✓)
--- --                     |------ optconfig.lua (✓)
--- --                     |------ lazyconfig.lua (✓)
--- --                     |------ themeplugconfig.lua (✓)
--- --
--- --================================-> END <-===================================--
 
 -- require 'lspconfig'.csharp_ls.setup {}
 

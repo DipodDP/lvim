@@ -554,7 +554,7 @@ M.config = function()
       ["<c-t>"] = user_telescope.multi_selection_open_tab,
       ["<c-j>"] = actions.move_selection_next,
       ["<c-k>"] = actions.move_selection_previous,
-      -- ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     },
     n = {
       ["<esc>"] = actions.close,
@@ -568,7 +568,7 @@ M.config = function()
       ["<c-k>"] = actions.move_selection_previous,
       ["<c-n>"] = actions.cycle_history_next,
       ["<c-p>"] = actions.cycle_history_prev,
-      -- ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
       ["dd"] = require("telescope.actions").delete_buffer,
     },
   }

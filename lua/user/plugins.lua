@@ -7,7 +7,6 @@ M.config = function()
   end
   lvim.plugins = {
       "lunarvim/darkplus.nvim",
-    -- "rebelot/kanagawa.nvim",
     {
       "ellisonleao/gruvbox.nvim",
       config = function()
@@ -66,7 +65,7 @@ M.config = function()
       "vinnymeller/swagger-preview.nvim",
       build = "npm install -g swagger-ui-watcher",
     },
-  -- {
+    -- {
     --   "folke/tokyonight.nvim",
     --   config = function()
     --     require("user.theme").tokyonight()
@@ -108,9 +107,10 @@ M.config = function()
         lvim.colorscheme = "kanagawa"
       end,
       cond = function()
-        local _time = os.date "*t"
-        return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
-          and lvim.builtin.time_based_themes
+        -- local _time = os.date "*t"
+        -- return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
+        --   and lvim.builtin.time_based_themes
+          return true
       end,
     },
     { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
@@ -153,30 +153,30 @@ M.config = function()
       event = "VeryLazy",
       cmd = "Trouble",
     },
-    -- {
-    --   "ggandor/leap.nvim",
-    --   config = function()
-    --     require("user.leap").config()
-    --   end,
-    --   enabled = lvim.builtin.motion_provider == "leap",
-    -- },
-    -- {
-    --   "phaazon/hop.nvim",
-    --   event = "VeryLazy",
-    --   cmd = { "HopChar1CurrentLineAC", "HopChar1CurrentLineBC", "HopChar2MW", "HopWordMW" },
-    --   config = function()
-    --     require("user.hop").config()
-    --   end,
-    --   enabled = lvim.builtin.motion_provider == "hop",
-    -- },
-    -- {
-    --   "simrat39/symbols-outline.nvim",
-    --   config = function()
-    --     require("user.symbols_outline").config()
-    --   end,
-    --   event = "BufReadPost",
-    --   enabled = lvim.builtin.tag_provider == "symbols-outline",
-    -- },
+    {
+      "ggandor/leap.nvim",
+      config = function()
+        require("user.leap").config()
+      end,
+      enabled = lvim.builtin.motion_provider == "leap",
+    },
+    {
+      "phaazon/hop.nvim",
+      event = "VeryLazy",
+      cmd = { "HopChar1CurrentLineAC", "HopChar1CurrentLineBC", "HopChar2MW", "HopWordMW" },
+      config = function()
+        require("user.hop").config()
+      end,
+      enabled = lvim.builtin.motion_provider == "hop",
+    },
+    {
+      "simrat39/symbols-outline.nvim",
+      config = function()
+        require("user.symbols_outline").config()
+      end,
+      event = "BufReadPost",
+      enabled = lvim.builtin.tag_provider == "symbols-outline",
+    },
     {
       "tzachar/cmp-tabnine",
       build = "./install.sh",
@@ -193,30 +193,30 @@ M.config = function()
       event = "InsertEnter",
       enabled = lvim.builtin.tabnine.active,
     },
-    -- {
-    --   "folke/twilight.nvim",
-    --   lazy = true,
-    --   config = function()
-    --     require("user.twilight").config()
-    --   end,
-    -- },
-    -- {
-    --   "kevinhwang91/nvim-bqf",
-    --   event = "WinEnter",
-    --   config = function()
-    --     require("user.bqf").config()
-    --   end,
-    -- },
-    -- {
-    --   "andymass/vim-matchup",
-    --   event = "BufReadPost",
-    --   config = function()
-    --     vim.g.matchup_enabled = 1
-    --     vim.g.matchup_surround_enabled = 1
-    --     vim.g.matchup_matchparen_deferred = 1
-    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    --   end,
-    -- },
+    {
+      "folke/twilight.nvim",
+      lazy = true,
+      config = function()
+        require("user.twilight").config()
+      end,
+    },
+    {
+      "kevinhwang91/nvim-bqf",
+      event = "WinEnter",
+      config = function()
+        require("user.bqf").config()
+      end,
+    },
+    {
+      "andymass/vim-matchup",
+      event = "BufReadPost",
+      config = function()
+        vim.g.matchup_enabled = 1
+        vim.g.matchup_surround_enabled = 1
+        vim.g.matchup_matchparen_deferred = 1
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    },
     {
       "iamcco/markdown-preview.nvim",
       build = "cd app && npm install",
@@ -261,50 +261,50 @@ M.config = function()
       end,
       event = "BufReadPre",
     },
-    -- {
-    --   "olimorris/persisted.nvim",
-    --   event = "BufReadPre",
-    --   lazy = true,
-    --   config = function()
-    --     require("user.persist").config()
-    --   end,
-    --   enabled = lvim.builtin.persistence.active,
-    -- },
-    -- {
-    --   "andweeb/presence.nvim",
-    --   config = function()
-    --     require("user.presence").config()
-    --   end,
-    --   enabled = lvim.builtin.presence.active,
-    -- },
-    -- { "mfussenegger/nvim-jdtls", ft = "java" },
-    -- {
-    --   "kristijanhusak/orgmode.nvim",
-    --   keys = { "go", "gC" },
-    --   ft = { "org" },
-    --   config = function()
-    --     require("user.orgmode").setup()
-    --   end,
-    --   enabled = lvim.builtin.orgmode.active,
-    -- },
-    -- {
-    --   "danymat/neogen",
-    --   lazy = true,
-    --   config = function()
-    --     require("neogen").setup {
-    --       enabled = true,
-    --     }
-    --   end,
-    --   dependencies = "nvim-treesitter/nvim-treesitter",
-    -- },
-    -- {
-    --   "vim-test/vim-test",
-    --   cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" },
-    --   config = function()
-    --     require("user.vim_test").config()
-    --   end,
-    --   enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
-    -- },
+    {
+      "olimorris/persisted.nvim",
+      event = "BufReadPre",
+      lazy = true,
+      config = function()
+        require("user.persist").config()
+      end,
+      enabled = lvim.builtin.persistence.active,
+    },
+    {
+      "andweeb/presence.nvim",
+      config = function()
+        require("user.presence").config()
+      end,
+      enabled = lvim.builtin.presence.active,
+    },
+    { "mfussenegger/nvim-jdtls", ft = "java" },
+    {
+      "kristijanhusak/orgmode.nvim",
+      keys = { "go", "gC" },
+      ft = { "org" },
+      config = function()
+        require("user.orgmode").setup()
+      end,
+      enabled = lvim.builtin.orgmode.active,
+    },
+    {
+      "danymat/neogen",
+      lazy = true,
+      config = function()
+        require("neogen").setup {
+          enabled = true,
+        }
+      end,
+      dependencies = "nvim-treesitter/nvim-treesitter",
+    },
+    {
+      "vim-test/vim-test",
+      cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" },
+      config = function()
+        require("user.vim_test").config()
+      end,
+      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
+    },
     {
       -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
       "jose-elias-alvarez/typescript.nvim",
@@ -322,15 +322,15 @@ M.config = function()
       end,
       enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
     },
-    -- {
-    --   "vuki656/package-info.nvim",
-    --   config = function()
-    --     require("package-info").setup()
-    --   end,
-    --   lazy = true,
-    --   event = { "BufReadPre", "BufNew" },
-    --   enabled = lvim.builtin.web_programming.active,
-    -- },
+    {
+      "vuki656/package-info.nvim",
+      config = function()
+        require("package-info").setup()
+      end,
+      lazy = true,
+      event = { "BufReadPre", "BufNew" },
+      enabled = lvim.builtin.web_programming.active,
+    },
     {
       "lervag/vimtex",
       init = function()
@@ -484,22 +484,22 @@ M.config = function()
       end,
       enabled = lvim.builtin.fancy_diff.active,
     },
-    -- {
-    --   "chipsenkbeil/distant.nvim",
-    --   lazy = true,
-    --   build = { "DistantInstall" },
-    --   cmd = { "DistantLaunch", "DistantRun" },
-    --   config = function()
-    --     require("distant").setup {
-    --       ["*"] = vim.tbl_extend(
-    --         "force",
-    --         require("distant.settings").chip_default(),
-    --         { mode = "ssh" } -- use SSH mode by default
-    --       ),
-    --     }
-    --   end,
-    --   enabled = lvim.builtin.remote_dev.active,
-    -- },
+    {
+      "chipsenkbeil/distant.nvim",
+      lazy = true,
+      build = { "DistantInstall" },
+      cmd = { "DistantLaunch", "DistantRun" },
+      config = function()
+        require("distant").setup {
+          ["*"] = vim.tbl_extend(
+            "force",
+            require("distant.settings").chip_default(),
+            { mode = "ssh" } -- use SSH mode by default
+          ),
+        }
+      end,
+      enabled = lvim.builtin.remote_dev.active,
+    },
     {
       "abzcoding/nvim-mini-file-icons",
       config = function()
@@ -514,64 +514,64 @@ M.config = function()
       event = "BufWinEnter",
       enabled = lvim.builtin.cursorline.active,
     },
-    -- {
-    --   "abecodes/tabout.nvim",
-    --   config = function()
-    --     require("user.tabout").config()
-    --   end,
-    -- },
-    -- {
-    --   "kevinhwang91/nvim-hlslens",
-    --   config = function()
-    --     require("user.hlslens").config()
-    --   end,
-    --   event = "BufReadPost",
-    --   enabled = lvim.builtin.hlslens.active,
-    -- },
-    -- {
-    --   "chrisbra/csv.vim",
-    --   ft = { "csv" },
-    --   enabled = lvim.builtin.csv_support,
-    -- },
-    -- {
-    --   "nvim-treesitter/nvim-treesitter-textobjects",
-    --   lazy = true,
-    --   event = "BufReadPre",
-    --   dependencies = "nvim-treesitter",
-    -- },
-    -- {
-    --   "sidebar-nvim/sidebar.nvim",
-    --   config = function()
-    --     require("user.sidebar").config()
-    --   end,
-    --   -- event = "BufRead",
-    --   enabled = lvim.builtin.sidebar.active,
-    -- },
-    -- {
-    --   "skywind3000/asynctasks.vim",
-    --   dependencies = {
-    --     { "skywind3000/asyncrun.vim" },
-    --   },
-    --   init = function()
-    --     vim.cmd [[
-    --       let g:asyncrun_open = 8
-    --       let g:asynctask_template = '~/.config/lvim/task_template.ini'
-    --       let g:asynctasks_extra_config = ['~/.config/lvim/tasks.ini']
-    --     ]]
-    --   end,
-    --   event = { "BufRead", "BufNew" },
-    --   enabled = lvim.builtin.task_runner == "async_tasks",
-    -- },
-    -- {
-    --   "scalameta/nvim-metals",
-    --   dependencies = { "nvim-lua/plenary.nvim" },
-    --   enabled = lvim.builtin.metals.active,
-    -- },
-    -- {
-    --   "jbyuki/instant.nvim",
-    --   event = "BufRead",
-    --   enabled = lvim.builtin.collaborative_editing.active,
-    -- },
+    {
+      "abecodes/tabout.nvim",
+      config = function()
+        require("user.tabout").config()
+      end,
+    },
+    {
+      "kevinhwang91/nvim-hlslens",
+      config = function()
+        require("user.hlslens").config()
+      end,
+      event = "BufReadPost",
+      enabled = lvim.builtin.hlslens.active,
+    },
+    {
+      "chrisbra/csv.vim",
+      ft = { "csv" },
+      enabled = lvim.builtin.csv_support,
+    },
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      lazy = true,
+      event = "BufReadPre",
+      dependencies = "nvim-treesitter",
+    },
+    {
+      "sidebar-nvim/sidebar.nvim",
+      config = function()
+        require("user.sidebar").config()
+      end,
+      -- event = "BufRead",
+      enabled = lvim.builtin.sidebar.active,
+    },
+    {
+      "skywind3000/asynctasks.vim",
+      dependencies = {
+        { "skywind3000/asyncrun.vim" },
+      },
+      init = function()
+        vim.cmd [[
+          let g:asyncrun_open = 8
+          let g:asynctask_template = '~/.config/lvim/task_template.ini'
+          let g:asynctasks_extra_config = ['~/.config/lvim/tasks.ini']
+        ]]
+      end,
+      event = { "BufRead", "BufNew" },
+      enabled = lvim.builtin.task_runner == "async_tasks",
+    },
+    {
+      "scalameta/nvim-metals",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      enabled = lvim.builtin.metals.active,
+    },
+    {
+      "jbyuki/instant.nvim",
+      event = "BufRead",
+      enabled = lvim.builtin.collaborative_editing.active,
+    },
     {
       "nvim-telescope/telescope-file-browser.nvim",
       enabled = lvim.builtin.file_browser.active,
@@ -792,124 +792,192 @@ M.config = function()
       dependencies = { "nvim-treesitter/nvim-treesitter" },
       enabled = lvim.builtin.colored_args,
     },
-    -- {
-    --   "cshuaimin/ssr.nvim",
-    --   lazy = true,
-    --   config = function()
-    --     require("ssr").setup {
-    --       min_width = 50,
-    --       min_height = 5,
-    --       keymaps = {
-    --         close = "q",
-    --         next_match = "n",
-    --         prev_match = "N",
-    --         replace_all = "<leader><cr>",
-    --       },
-    --     }
-    --   end,
-    --   event = { "BufReadPost", "BufNew" },
-    -- },
-    -- {
-    --   "Civitasv/cmake-tools.nvim",
-    --   config = function()
-    --     require("user.cle").cmake_config()
-    --   end,
-    --   ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
-    --   enabled = lvim.builtin.cpp_programming.active,
-    -- },
-    -- {
-    --   "raimon49/requirements.txt.vim",
-    --   event = "VeryLazy",
-    --   enabled = lvim.builtin.python_programming.active,
-    -- },
-    -- {
-    --   "Selyss/mind.nvim",
-    --   dependencies = { "nvim-lua/plenary.nvim" },
-    --   config = function()
-    --     require("user.mind").config()
-    --   end,
-    --   event = "VeryLazy",
-    --   enabled = lvim.builtin.mind.active,
-    -- },
-    -- {
-    --   "ibhagwan/fzf-lua",
-    --   config = function()
-    --     -- calling `setup` is optional for customization
-    --     local ff = require "user.fzf"
-    --     require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
-    --   end,
-    --   enabled = not lvim.builtin.telescope.active,
-    -- },
-    -- {
-    --   "folke/flash.nvim",
-    --   event = "VeryLazy",
-    --   keys = require("user.flash").keys,
-    --   enabled = lvim.builtin.motion_provider == "flash",
-    -- },
-    -- {
-    --   "piersolenski/wtf.nvim",
-    --   dependencies = {
-    --     "MunifTanjim/nui.nvim",
-    --   },
-    --   event = "VeryLazy",
-    --   opts = {
-    --     popup_type = "vertical",
-    --   },
-    --   keys = {
-    --     {
-    --       "gw",
-    --       mode = { "n" },
-    --       function()
-    --         require("wtf").ai()
-    --       end,
-    --       desc = "Debug diagnostic with AI",
-    --     },
-    --     {
-    --       mode = { "n" },
-    --       "gW",
-    --       function()
-    --         require("wtf").search()
-    --       end,
-    --       desc = "Search diagnostic with Google",
-    --     },
-    --   },
-    --   enabled = lvim.builtin.sell_your_soul_to_devil.openai,
-    -- },
-    -- {
-    --   "james1236/backseat.nvim",
-    --   config = function()
-    --     require("backseat").setup {
-    --       highlight = {
-    --         icon = "󰳃 ",
-    --         group = "SpecialComment",
-    --       },
-    --     }
-    --   end,
-    --   event = "VeryLazy",
-    --   enabled = lvim.builtin.sell_your_soul_to_devil.openai,
-    -- },
+    {
+      "leoluz/nvim-dap-go",
+      config = function()
+        require("dap-go").setup()
+      end,
+      ft = { "go", "gomod" },
+      event = { "BufRead", "BufNew" },
+      enabled = lvim.builtin.go_programming.active,
+    },
+    {
+      "AckslD/swenv.nvim",
+      enabled = lvim.builtin.python_programming.active,
+      ft = "python",
+      event = { "BufRead", "BufNew" },
+    },
+    {
+      "mfussenegger/nvim-dap-python",
+      config = function()
+        local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+        require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+        require("dap-python").test_runner = "pytest"
+      end,
+      ft = "python",
+      event = { "BufRead", "BufNew" },
+      enabled = lvim.builtin.python_programming.active,
+    },
+    {
+      "mxsdev/nvim-dap-vscode-js",
+      ft = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+      lazy = true,
+      event = { "BufReadPre", "BufNew" },
+      config = function()
+        require("dap-vscode-js").setup {
+          debugger_path = vim.fn.stdpath "data" .. "/mason/packages/js-debug-adapter",
+          debugger_cmd = { "js-debug-adapter" },
+          adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+        }
+      end,
+      enabled = lvim.builtin.web_programming.active,
+    },
+    {
+      "smjonas/inc-rename.nvim",
+      lazy = true,
+      cmd = "IncRename",
+      config = function()
+        require("inc_rename").setup()
+      end,
+      enabled = lvim.builtin.noice.active,
+    },
+    {
+      "m-demare/hlargs.nvim",
+      lazy = true,
+      event = "VeryLazy",
+      config = function()
+        require("hlargs").setup {
+          excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
+        }
+      end,
+      dependencies = { "nvim-treesitter/nvim-treesitter" },
+      enabled = lvim.builtin.colored_args,
+    },
+    {
+      "cshuaimin/ssr.nvim",
+      lazy = true,
+      config = function()
+        require("ssr").setup {
+          min_width = 50,
+          min_height = 5,
+          keymaps = {
+            close = "q",
+            next_match = "n",
+            prev_match = "N",
+            replace_all = "<leader><cr>",
+          },
+        }
+      end,
+      event = { "BufReadPost", "BufNew" },
+    },
+    {
+      "Civitasv/cmake-tools.nvim",
+      config = function()
+        require("user.cle").cmake_config()
+      end,
+      ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
+      enabled = lvim.builtin.cpp_programming.active,
+    },
+    {
+      "raimon49/requirements.txt.vim",
+      event = "VeryLazy",
+      enabled = lvim.builtin.python_programming.active,
+    },
+    {
+      "Selyss/mind.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("user.mind").config()
+      end,
+      event = "VeryLazy",
+      enabled = lvim.builtin.mind.active,
+    },
+    {
+      "ibhagwan/fzf-lua",
+      config = function()
+        -- calling `setup` is optional for customization
+        local ff = require "user.fzf"
+        require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
+      end,
+      enabled = not lvim.builtin.telescope.active,
+    },
+    {
+      "folke/flash.nvim",
+      event = "VeryLazy",
+      keys = require("user.flash").keys,
+      enabled = lvim.builtin.motion_provider == "flash",
+    },
+    {
+      "piersolenski/wtf.nvim",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+      },
+      event = "VeryLazy",
+      opts = {
+        popup_type = "vertical",
+      },
+      keys = {
+        {
+          "gw",
+          mode = { "n" },
+          function()
+            require("wtf").ai()
+          end,
+          desc = "Debug diagnostic with AI",
+        },
+        {
+          mode = { "n" },
+          "gW",
+          function()
+            require("wtf").search()
+          end,
+          desc = "Search diagnostic with Google",
+        },
+      },
+      enabled = lvim.builtin.sell_your_soul_to_devil.openai,
+    },
+    {
+      "james1236/backseat.nvim",
+      config = function()
+        require("backseat").setup {
+          highlight = {
+            icon = "󰳃 ",
+            group = "SpecialComment",
+          },
+        }
+      end,
+      event = "VeryLazy",
+      enabled = lvim.builtin.sell_your_soul_to_devil.openai,
+    },
     {
       "lukas-reineke/indent-blankline.nvim",
       name = "new-indent",
       main = "ibl",
       enabled = lvim.builtin.indentlines.mine,
     },
-    -- {
-    --   "Wansmer/symbol-usage.nvim",
-    --   event = "LspAttach",
-    --   enabled = lvim.builtin.symbols_usage.active,
-    --   config = function()
-    --     require("user.symbol_use").config()
-    --   end,
-    -- },
-    -- {
-    --   "hedyhli/outline.nvim",
-    --   config = function()
-    --     require("user.outline").config()
-    --   end,
-    --   event = "BufReadPost",
-    --   enabled = lvim.builtin.tag_provider == "outline",
-    -- },
+    {
+      "Wansmer/symbol-usage.nvim",
+      event = "LspAttach",
+      enabled = lvim.builtin.symbols_usage.active,
+      config = function()
+        require("user.symbol_use").config()
+      end,
+    },
+    {
+      "hedyhli/outline.nvim",
+      config = function()
+        require("user.outline").config()
+      end,
+      event = "BufReadPost",
+      enabled = lvim.builtin.tag_provider == "outline",
+    },
     {
       "pmizio/typescript-tools.nvim",
       ft = {
@@ -926,125 +994,9 @@ M.config = function()
       end,
       enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
     },
-    -- {
-    --   "nvim-neotest/nvim-nio",
-    --   enabled = lvim.builtin.dap.active,
-    -- },
-
-
     {
-      "Pocco81/auto-save.nvim",
-      config = function()
-        require("auto-save").setup()
-      end,
-    },
-    {
-      "mawkler/modicator.nvim",
-      event = "ColorScheme",
-      dependencies = { url = "git@github.com:LunarVim/primer.nvim.git" }, -- Add your colorscheme plugin here
-      init = function()
-        -- These are required for Modicator to work
-        vim.o.cursorline = true
-        vim.o.number = true
-        vim.o.termguicolors = true
-      end,
-      opts = {
-        show_warnings = false,
-        highlights = {
-          -- Default options for bold/italic
-          defaults = {
-            bold = true,
-            italic = false,
-          },
-        },
-        integration = {
-          lualine = {
-            enabled = true,
-            -- Letter of lualine section to use (if `nil`, gets detected automatically)
-            mode_section = nil,
-            -- Whether to use lualine's mode highlight's foreground or background
-            highlight = 'bg',
-          },
-        },
-      },
-    },
-
-    "HiPhish/nvim-ts-rainbow2",
-    -- {
-    --   dir = "/Users/chris/Repos/bookmark.nvim",
-    -- },
-    -- "lunarvim/synthwave84.nvim",
-    -- {
-    --   "kndndrj/nvim-dbee",
-    --   build = function()
-    --     require("dbee").install()
-    --   end,
-    -- },
-    -- "kkharji/sqlite.lua",
-    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
-    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
-    { url = "git@github.com:LunarVim/primer.nvim.git" },
-    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
-    -- "stevearc/dressing.nvim",
-    -- "AckslD/swenv.nvim",
-    "roobert/tailwindcss-colorizer-cmp.nvim",
-    "nvim-treesitter/playground",
-    "mfussenegger/nvim-jdtls",
-    "opalmay/vim-smoothie",
-    -- "j-hui/fidget.nvim",
-    {
-      "windwp/nvim-ts-autotag",
-      config = function()
-        require("nvim-ts-autotag").setup({
-          filetypes = { "tsx", "typescriptreact" },
-        })
-      end,
-    },
-    {
-      "kylechui/nvim-surround",
-      event = "BufRead",
-    },
-    -- "christianchiarulli/harpoon",
-    -- "MattesGroeger/vim-bookmarks",
-    -- "NvChad/nvim-colorizer.lua",
-    -- "moll/vim-bbye",
-    {
-      "folke/todo-comments.nvim",
-      event = "BufRead",
-    },
-    -- "f-person/git-blame.nvim",
-    -- "ruifm/gitlinker.nvim",
-    -- "mattn/vim-gist",
-    -- "mattn/webapi-vim",
-    -- "mfussenegger/nvim-dap-python",
-    -- "andy-bell101/neotest-java",
-    -- "nvim-neotest/neotest-go",
-    -- "nvim-neotest/neotest-python",
-    -- "rouge8/neotest-rust",
-    -- "haydenmeade/neotest-jest",
-    {
-      "hrsh7th/cmp-emoji",
-      event = "BufRead",
-    },
-    -- "ThePrimeagen/vim-be-good",
-    -- "folke/noice.nvim",
-    -- "rcarriga/nvim-notify",
-
-    -- "rmagatti/auto-session",
-    -- "rmagatti/session-lens",
-    -- "christianchiarulli/nvim-ts-rainbow",
-    -- "karb94/neoscroll.nvim",
-    {
-      "max397574/better-escape.nvim",
-      event = "BufRead",
-    },
-    {
-      "ojroques/nvim-osc52",
-      event = "BufRead",
-    },
-    {
-      "gbprod/yanky.nvim",
-      event = "BufRead",
+      "nvim-neotest/nvim-nio",
+      enabled = lvim.builtin.dap.active,
     },
     {
       "mireq/large_file",

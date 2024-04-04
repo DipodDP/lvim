@@ -85,6 +85,7 @@ M.config = function()
       end,
       prefer_local = "node_modules/.bin",
     },
+    nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
         return utils.root_has_file ".semgrepignore" and use_semgrep
@@ -106,19 +107,19 @@ M.config = function()
       filetypes = { "markdown" },
       extra_args = { "--config", vale_config },
     },
-    nls.builtins.diagnostics.revive.with {
-      condition = function(utils)
-        return utils.root_has_file "revive.toml"
-      end,
-      -- args = revive_args,
-      diagnostics_postprocess = function(d)
-        d.severity = vim.diagnostic.severity.INFO
-        d.end_col = d.col
-        d.end_row = d.row
-        d.end_lnum = d.lnum
-      end,
-    },
     nls.builtins.code_actions.shellcheck,
+    -- nls.builtins.diagnostics.revive.with {
+    --   condition = function(utils)
+    --     return utils.root_has_file "revive.toml" or revive_conf
+    --   end,
+    --   args = revive_args,
+    --   diagnostics_postprocess = function(d)
+    --     d.severity = vim.diagnostic.severity.INFO
+    --     d.end_col = d.col
+    --     d.end_row = d.row
+    --     d.end_lnum = d.lnum
+    --   end,
+    -- },
     -- WARN: broken on neovim-head because of `nvim.treesitter.get_node_at_pos` being deprecated
     -- nls.builtins.code_actions.gomodifytags,
     nls.builtins.code_actions.eslint_d.with {

@@ -2,14 +2,14 @@
 -- =========================================
 lvim.leader = " "
 lvim.colorscheme = "tokyonight" -- set to a custom theme
-lvim.builtin.time_based_themes = true -- set false to use your own configured theme
+-- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 lvim.transparent_window = false -- enable/disable transparency
 lvim.debug = false
 vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
-lvim.lsp.installer.setup.automatic_installation = false
+-- lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
 -- =========================================
@@ -124,20 +124,20 @@ end
 
 -- Language Specific
 -- =========================================
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
-  "clangd",
-  "dockerls",
-  "gopls",
-  "golangci_lint_ls",
-  "jdtls",
-  "pyright",
-  "rust_analyzer",
-  "taplo",
-  "texlab",
-  "tsserver",
-  "yamlls",
-})
-require("user.null_ls").config()
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
+--   "clangd",
+--   "dockerls",
+--   "gopls",
+--   "golangci_lint_ls",
+--   "jdtls",
+--   "pyright",
+--   "rust_analyzer",
+--   "taplo",
+--   "texlab",
+--   "tsserver",
+--   "yamlls",
+-- })
+-- require("user.null_ls").config()
 
 -- Additional Plugins
 -- =========================================

@@ -445,7 +445,8 @@ M.colors = {
   },
 }
 M.current_colors = function()
-  local colors = M.colors.tokyonight_colors
+  -- local colors = M.colors.tokyonight_colors
+  local colors = M.colors.kanagawa_colors
   if not lvim.builtin.time_based_themes then
     return colors
   end

@@ -45,8 +45,8 @@ keymap("n", "<M-Down>", ":resize +2<CR>", opts)
 keymap("n", "<M-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<M-Right>", ":vertical resize +2<CR>", opts)
 
-keymap("n", "<c-j>", "<c-d>", opts)
-keymap("n", "<c-k>", "<c-u>", opts)
+-- keymap("n", "<c-j>", "<c-d>", opts)
+-- keymap("n", "<c-k>", "<c-u>", opts)
 keymap("n", "<c-c>", "<s-m>", opts)
 
 keymap("n", "n", "nzz", opts)

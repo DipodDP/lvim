@@ -293,9 +293,9 @@ M.config = function()
     "CodeLens Action",
   }
   lvim.lsp.buffer_mappings.normal_mode["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" }
-  lvim.lsp.buffer_mappings.normal_mode["gr"] = { "<cmd>Trouble lsp_references<CR>", "Goto References" }
-  lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Trouble lsp_definitions<CR>", "Goto Definition" }
-  lvim.lsp.buffer_mappings.normal_mode["gI"] = { "<cmd>Trouble lsp_implementations<CR>", "Goto Implementation" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gr"] = { "<cmd>Trouble lsp_references<CR>", "Goto References" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Trouble lsp_definitions<CR>", "Goto Definition" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gI"] = { "<cmd>Trouble lsp_implementations<CR>", "Goto Implementation" }
   lvim.lsp.buffer_mappings.normal_mode["gp"] = {
     function()
       require("user.peek").Peek "definition"
@@ -553,7 +553,7 @@ M.config = function()
       ["<c-t>"] = user_telescope.multi_selection_open_tab,
       ["<c-j>"] = actions.move_selection_next,
       ["<c-k>"] = actions.move_selection_previous,
-      ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      -- ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     },
     n = {
       ["<esc>"] = actions.close,
@@ -567,7 +567,7 @@ M.config = function()
       ["<c-k>"] = actions.move_selection_previous,
       ["<c-n>"] = actions.cycle_history_next,
       ["<c-p>"] = actions.cycle_history_prev,
-      ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      -- ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
       ["dd"] = require("telescope.actions").delete_buffer,
     },
   }

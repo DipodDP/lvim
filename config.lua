@@ -19,9 +19,9 @@
 -- =========================================
 lvim.leader = " "
 -- lvim.colorscheme = "onedark" -- set to a custom theme
-lvim.colorscheme = "darkplus" -- set to a custom theme
+-- lvim.colorscheme = "darkplus" -- set to a custom theme
 -- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
--- lvim.colorscheme = "primer_dark"
+lvim.colorscheme = "primer_dark"
 -- lvim.transparent_window = true -- enable/disable transparency
 lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.debug = true
@@ -128,7 +128,7 @@ end
 
 -- Override Lunarvim defaults
 -- =========================================
--- require("user.builtin").config()
+require("user.builtin").config()
 
 -- StatusLine
 -- =========================================
@@ -243,7 +243,7 @@ reload "options"
 -- -- Additional Keybindings
 -- -- =========================================
 -- require("user.keybindings").config()
--- reload "keymaps"
+reload "keymaps"
 -- -- require("transparent").setup({ -- Optional, you don't have to run setup.
 -- --   groups = {                   -- table: default groups
 -- --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',

@@ -20,10 +20,11 @@
 lvim.leader = " "
 -- lvim.colorscheme = "onedark" -- set to a custom theme
 lvim.colorscheme = "darkplus" -- set to a custom theme
+-- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
 -- lvim.colorscheme = "primer_dark"
--- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 -- lvim.transparent_window = true -- enable/disable transparency
--- lvim.debug = false
+lvim.builtin.time_based_themes = false -- set false to use your own configured theme
+lvim.debug = true
 vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
@@ -33,7 +34,7 @@ lvim.lsp.code_lens_refresh = true
 -- Customization
 -- =========================================
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
-lvim.builtin.lastplace = { active = false } -- change to false if you are jumping to future
+lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
 lvim.builtin.presence = { active = false } -- change to true if you want discord presence
@@ -48,12 +49,12 @@ lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
-lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
+-- lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
 lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
 lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
 lvim.builtin.remote_dev = { active = false } -- enable/disable remote development
 lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
-lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
+-- lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
 lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
 lvim.builtin.csv_support = false -- enable/disable csv support
 lvim.builtin.sidebar = { active = false } -- enable/disable sidebar
@@ -94,20 +95,6 @@ lvim.builtin.indentlines.mine = true -- NOTE: using v3 till fixed upstream in lu
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
 lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
 
--- lvim.builtin.alpha.active = true
-lvim.reload_config_on_save = true
--- lvim.builtin.bufferline.active = false
--- lvim.builtin.terminal.persist_mode = false
--- lvim.builtin.lir.active = false
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.dap.active = true
-lvim.keys.term_mode = { ["<C-l>"] = false }
-
-
-lvim.builtin.cmp.formatting = {
-    format = require("tailwindcss-colorizer-cmp").formatter
-}
-
 -- Custom User Config
 -- =========================================
 -- local user = vim.env.USER
@@ -141,7 +128,7 @@ end
 
 -- Override Lunarvim defaults
 -- =========================================
-require("user.builtin").config()
+-- require("user.builtin").config()
 
 -- StatusLine
 -- =========================================
@@ -154,6 +141,22 @@ end
 if lvim.builtin.dap.active then
   require("user.dap").config()
 end
+
+-- -- Language Specific
+-- -- =========================================
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
+--   "clangd",
+--   "dockerls",
+--   "gopls",
+--   "golangci_lint_ls",
+--   "jdtls",
+--   "pyright",
+--   "rust_analyzer",
+--   "taplo",
+--   "texlab",
+--   -- "tsserver",
+--   "yamlls",
+-- })
 -- --================================-> START <-=================================--
 -- --                        BACKUP INFO - WHAT TO BACKUP                        --
 -- --------------------------------------------------------------------------------
@@ -169,60 +172,53 @@ end
 -- --
 -- --================================-> END <-===================================--
 
--- Language Specific
--- =========================================
--- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
---   "clangd",
---   "dockerls",
---   "gopls",
---   "golangci_lint_ls",
---   "jdtls",
---   "pyright",
---   "rust_analyzer",
---   "taplo",
---   "texlab",
---   "tsserver",
---   "yamlls",
--- })
+-- -- require 'lspconfig'.csharp_ls.setup {}
+
+require("swagger-preview").setup({
+  -- The port to run the preview server on
+  port = 8000,
+  -- The host to run the preview server on
+  host = "localhost",
+})
 -- require("user.null_ls").config()
 
 -- Additional Plugins
 -- =========================================
 require("user.plugins").config()
 reload "user.dap"
-reload "user.nvimtree"
+-- reload "user.nvimtree"
 reload "user.lualine"
 reload "user.modicator"
-reload "user.lsp"
+-- reload "user.lsp"
 reload "user.smoothie"
-reload "user.harpoon"
+-- reload "user.harpoon"
 reload "user.webdev-icons"
 reload "user.cybu"
 reload "user.neotest"
 reload "user.surround"
 -- reload "user.bookmark"
-reload "user.bookmarks"
+-- reload "user.bookmarks"
 reload "user.todo-comments"
 -- reload "user.jaq"
 -- reload "user.fidget"
 -- reload "user.lab"
 reload "user.git"
 reload "user.zen-mode"
-reload "user.inlay-hints"
-reload "user.telescope"
+-- reload "user.inlay-hints"
+-- reload "user.telescope"
 -- reload "user.bqf"
 -- reload "user.dial"
 -- reload "user.numb"
 reload "user.treesitter"
-reload "user.neogit"
-reload "user.colorizer"
+-- reload "user.neogit"
+-- reload "user.colorizer"
 -- reload "user.neoscroll"
-reload "user.dotenv"
+-- reload "user.dotenv"
 -- -- reload "user.tabnine"
 -- -- reload "user.copilot"
 -- -- reload "user.chatgpt"
 -- -- reload "user.neoai"
-reload "user.whichkey"
+-- reload "user.whichkey"
 -- reload "user.cmp"
 -- reload "nostr"
 -- reload "user.astro-tools"
@@ -233,14 +229,31 @@ reload "user.yanky"
 -- reload "user.metals"
 -- reload "user.image"
 -- reload "user.neorg"
+-- reload"plugins"
 
 -- Autocommands
 -- =========================================
 require("user.autocommands").config()
+reload "autocommands"
 
--- Additional Keybindings
+-- Options
 -- =========================================
--- require("user.keybindings").config()
-
 reload "options"
-reload "keymaps"
+
+-- -- Additional Keybindings
+-- -- =========================================
+-- require("user.keybindings").config()
+-- reload "keymaps"
+-- -- require("transparent").setup({ -- Optional, you don't have to run setup.
+-- --   groups = {                   -- table: default groups
+-- --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
+-- --     'Float', 'NormalFloat',
+-- --     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+-- --     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+-- --     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+-- --     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+-- --     'EndOfBuffer',
+-- --   },
+-- --   extra_groups = {},   -- table: additional groups that should be cleared
+-- --   exclude_groups = {}, -- table: groups you don't want to clear
+-- -- })

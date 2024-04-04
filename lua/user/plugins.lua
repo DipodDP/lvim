@@ -1068,6 +1068,13 @@ M.config = function()
       "gbprod/yanky.nvim",
       event = "BufRead",
     },
+    {
+      "mireq/large_file",
+      config = function()
+        require("large_file").setup()
+      end,
+      enabled = not lvim.builtin.bigfile.active,
+    },
   }
 end
 

@@ -293,9 +293,9 @@ M.config = function()
     "CodeLens Action",
   }
   lvim.lsp.buffer_mappings.normal_mode["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" }
-  lvim.lsp.buffer_mappings.normal_mode["gr"] = { "<cmd>Trouble lsp_references<CR>", "Goto References" }
-  lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Trouble lsp_definitions<CR>", "Goto Definition" }
-  lvim.lsp.buffer_mappings.normal_mode["gI"] = { "<cmd>Trouble lsp_implementations<CR>", "Goto Implementation" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gr"] = { "<cmd>Trouble lsp_references<CR>", "Goto References" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Trouble lsp_definitions<CR>", "Goto Definition" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gI"] = { "<cmd>Trouble lsp_implementations<CR>", "Goto Implementation" }
   lvim.lsp.buffer_mappings.normal_mode["gp"] = {
     function()
       require("user.peek").Peek "definition"
@@ -553,7 +553,7 @@ M.config = function()
       ["<c-t>"] = user_telescope.multi_selection_open_tab,
       ["<c-j>"] = actions.move_selection_next,
       ["<c-k>"] = actions.move_selection_previous,
-      ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      -- ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     },
     n = {
       ["<esc>"] = actions.close,
@@ -567,7 +567,7 @@ M.config = function()
       ["<c-k>"] = actions.move_selection_previous,
       ["<c-n>"] = actions.cycle_history_next,
       ["<c-p>"] = actions.cycle_history_prev,
-      ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+      -- ["<c-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
       ["dd"] = require("telescope.actions").delete_buffer,
     },
   }
@@ -920,29 +920,29 @@ M.enhanced_float_handler = function(handler)
     vim.wo[win].concealcursor = "n"
 
     -- Extra highlights.
-    for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
-      for pattern, hl_group in pairs {
-        ["|%S-|"] = "@text.reference",
-        ["@%S+"] = "@parameter",
-        ["^%s*(Parameters:)"] = "@text.title",
-        ["^%s*(Return:)"] = "@text.title",
-        ["^%s*(See also:)"] = "@text.title",
-        ["{%S-}"] = "@parameter",
-      } do
-        local from = 1 ---@type integer?
-        while from do
-          local to
-          from, to = line:find(pattern, from)
-          if from then
-            vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
-              end_col = to,
-              hl_group = hl_group,
-            })
-          end
-          from = to and to + 1 or nil
-        end
-      end
-    end
+    -- for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
+    --   for pattern, hl_group in pairs {
+    --     ["|%S-|"] = "@text.reference",
+    --     ["@%S+"] = "@parameter",
+    --     ["^%s*(Parameters:)"] = "@text.title",
+    --     ["^%s*(Return:)"] = "@text.title",
+    --     ["^%s*(See also:)"] = "@text.title",
+    --     ["{%S-}"] = "@parameter",
+    --   } do
+    --     local from = 1 ---@type integer?
+    --     while from do
+    --       local to
+    --       from, to = line:find(pattern, from)
+    --       if from then
+    --         vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
+    --           end_col = to,
+    --           hl_group = hl_group,
+    --         })
+    --       end
+    --       from = to and to + 1 or nil
+    --     end
+    --   end
+    -- end
 
     -- Add keymaps for opening links.
     if not vim.b[buf].markdown_keys then

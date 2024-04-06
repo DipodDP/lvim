@@ -2,10 +2,11 @@
 -- =========================================
 lvim.leader = " "
 -- lvim.colorscheme = "tokyonight" -- set to a custom theme
--- lvim.colorscheme = "onedark" -- set to a custom theme
 -- lvim.colorscheme = "darkplus" -- set to a custom theme
 -- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
-lvim.colorscheme = "primer_dark"
+-- lvim.colorscheme = "onedark" -- set to a custom theme
+-- lvim.colorscheme = "primer_dark"
+lvim.colorscheme = "kanagawa"
 lvim.debug = true
 -- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 lvim.transparent_window = false -- enable/disable transparency
@@ -152,7 +153,7 @@ require("user.plugins").config()
 reload "user.dap"
 -- reload "user.nvimtree"
 reload "user.lualine"
-reload "user.modicator"
+-- reload "user.modicator"
 -- reload "user.lsp"
 reload "user.smoothie"
 -- reload "user.harpoon"
@@ -178,11 +179,11 @@ reload "user.treesitter"
 -- reload "user.colorizer"
 -- reload "user.neoscroll"
 -- reload "user.dotenv"
--- -- reload "user.tabnine"
--- -- reload "user.copilot"
--- -- reload "user.chatgpt"
--- -- reload "user.neoai"
--- reload "user.whichkey"
+-- reload "user.tabnine"
+-- reload "user.copilot"
+-- reload "user.chatgpt"
+-- reload "user.neoai"
+reload "user.whichkey"
 -- reload "user.cmp"
 -- reload "nostr"
 -- reload "user.astro-tools"
@@ -208,6 +209,7 @@ reload "options"
 -- -- =========================================
 -- require("user.keybindings").config()
 reload "keymaps"
+-- reload "user.keymaps"
 
 require("swagger-preview").setup({
   -- The port to run the preview server on

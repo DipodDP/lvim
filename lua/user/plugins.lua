@@ -6,61 +6,61 @@ M.config = function()
     neoclip_req = {}
   end
   lvim.plugins = {
-      "lunarvim/darkplus.nvim",
-    {
-      "ellisonleao/gruvbox.nvim",
-      config = function()
-        require("gruvbox").setup({
-          terminal_colors = true, -- add neovim terminal colors
-          undercurl = true,
-          underline = true,
-          bold = true,
-          italic = {
-            strings = true,
-            emphasis = true,
-            comments = true,
-            operators = false,
-            folds = true,
-          },
-          strikethrough = true,
-          invert_selection = false,
-          invert_signs = false,
-          invert_tabline = false,
-          invert_intend_guides = false,
-          inverse = true, -- invert background for search, diffs, statuslines and errors
-          contrast = "", -- can be "hard", "soft" or empty string
-          palette_overrides = {},
-          overrides = {
-            CursorLine = {
-              blend = vim.o.pumblend,
-              bg = "NONE",
-            },
-            CursorLineNr = {
-              blend = vim.o.pumblend,
-              bg = "NONE",
-            },
-            lualine_c_replace = {
-              -- guibg = "NONE",
-            },
-            lualine_c_visual = {
-              -- guibg = "NONE",
-            },
-            lualine_c_normal = {
-              -- guibg = "NONE",
-            },
-            lualine_c_insert = {
-              -- guibg = "NONE",
-            },
-            Pmenu = {
-              blend = 0,
-              bg = "NONE"
-            }
-          },
-          dim_inactive = false,
-          transparent_mode = true,
-        })
-      end
-    },
+    -- "lunarvim/darkplus.nvim",
+    -- {
+    --   "ellisonleao/gruvbox.nvim",
+    --   config = function()
+    --     require("gruvbox").setup({
+    --       terminal_colors = true, -- add neovim terminal colors
+    --       undercurl = true,
+    --       underline = true,
+    --       bold = true,
+    --       italic = {
+    --         strings = true,
+    --         emphasis = true,
+    --         comments = true,
+    --         operators = false,
+    --         folds = true,
+    --       },
+    --       strikethrough = true,
+    --       invert_selection = false,
+    --       invert_signs = false,
+    --       invert_tabline = false,
+    --       invert_intend_guides = false,
+    --       inverse = true, -- invert background for search, diffs, statuslines and errors
+    --       contrast = "", -- can be "hard", "soft" or empty string
+    --       palette_overrides = {},
+    --       overrides = {
+    --         CursorLine = {
+    --           blend = vim.o.pumblend,
+    --           bg = "NONE",
+    --         },
+    --         CursorLineNr = {
+    --           blend = vim.o.pumblend,
+    --           bg = "NONE",
+    --         },
+    --         lualine_c_replace = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_visual = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_normal = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_insert = {
+    --           -- guibg = "NONE",
+    --         },
+    --         Pmenu = {
+    --           blend = 0,
+    --           bg = "NONE"
+    --         }
+    --       },
+    --       dim_inactive = false,
+    --       transparent_mode = true,
+    --     })
+    --   end
+    -- },
     {
       "vinnymeller/swagger-preview.nvim",
       build = "npm install -g swagger-ui-watcher",
@@ -76,47 +76,42 @@ M.config = function()
     --     return (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes
     --   end,
     -- },
-    {
-      "rose-pine/neovim",
-      name = "rose-pine",
-      config = function()
-        require("user.theme").rose_pine()
-        lvim.colorscheme = "rose-pine"
-      end,
-      cond = function()
-        local _time = os.date "*t"
-        return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
-        -- return false
-      end,
-    },
-    {
-      "catppuccin/nvim",
-      name = "catppuccin",
-      config = function()
-        require("user.theme").catppuccin()
-        local _time = os.date "*t"
-        if (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes then
-          lvim.colorscheme = "catppuccin-mocha"
-        end
-      end,
-    },
+    -- {
+    --   "rose-pine/neovim",
+    --   name = "rose-pine",
+    --   config = function()
+    --     require("user.theme").rose_pine()
+    --     lvim.colorscheme = "rose-pine"
+    --   end,
+    --   cond = function()
+    --     local _time = os.date "*t"
+    --     return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
+    --   end,
+    -- },
+    -- {
+    --   "catppuccin/nvim",
+    --   name = "catppuccin",
+    --   config = function()
+    --     require("user.theme").catppuccin()
+    --     local _time = os.date "*t"
+    --     if (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes then
+    --       lvim.colorscheme = "catppuccin-mocha"
+    --     end
+    --   end,
+    -- },
     {
       "rebelot/kanagawa.nvim",
       config = function()
         require("user.theme").kanagawa()
         lvim.colorscheme = "kanagawa"
       end,
-      cond = function()
-        -- local _time = os.date "*t"
-        -- return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
-        --   and lvim.builtin.time_based_themes
-          return true
-      end,
+      -- cond = function()
+      --   local _time = os.date "*t"
+      --   return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
+      --     and lvim.builtin.time_based_themes
+      --   return true
+      -- end,
     },
-    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
-    { url = "git@github.com:LunarVim/primer.nvim.git" },
-    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
-    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -739,74 +734,6 @@ M.config = function()
     --   ft = "python",
     --   event = { "BufRead", "BufNew" },
     -- },
-    -- {
-    --   "mfussenegger/nvim-dap-python",
-    --   config = function()
-    --     local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
-    --     require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
-    --     require("dap-python").test_runner = "pytest"
-    --   end,
-    --   ft = "python",
-    --   event = { "BufRead", "BufNew" },
-    --   enabled = lvim.builtin.python_programming.active,
-    -- },
-    -- {
-    --   "mxsdev/nvim-dap-vscode-js",
-    --   ft = {
-    --     "javascript",
-    --     "javascriptreact",
-    --     "javascript.jsx",
-    --     "typescript",
-    --     "typescriptreact",
-    --     "typescript.tsx",
-    --   },
-    --   lazy = true,
-    --   event = { "BufReadPre", "BufNew" },
-    --   config = function()
-    --     require("dap-vscode-js").setup {
-    --       debugger_path = vim.fn.stdpath "data" .. "/mason/packages/js-debug-adapter",
-    --       debugger_cmd = { "js-debug-adapter" },
-    --       adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
-    --     }
-    --   end,
-    --   enabled = lvim.builtin.web_programming.active,
-    -- },
-    -- {
-    --   "smjonas/inc-rename.nvim",
-    --   lazy = true,
-    --   cmd = "IncRename",
-    --   config = function()
-    --     require("inc_rename").setup()
-    --   end,
-    --   enabled = lvim.builtin.noice.active,
-    -- },
-    {
-      "m-demare/hlargs.nvim",
-      lazy = true,
-      event = "VeryLazy",
-      config = function()
-        require("hlargs").setup {
-          excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
-        }
-      end,
-      dependencies = { "nvim-treesitter/nvim-treesitter" },
-      enabled = lvim.builtin.colored_args,
-    },
-    {
-      "leoluz/nvim-dap-go",
-      config = function()
-        require("dap-go").setup()
-      end,
-      ft = { "go", "gomod" },
-      event = { "BufRead", "BufNew" },
-      enabled = lvim.builtin.go_programming.active,
-    },
-    {
-      "AckslD/swenv.nvim",
-      enabled = lvim.builtin.python_programming.active,
-      ft = "python",
-      event = { "BufRead", "BufNew" },
-    },
     {
       "mfussenegger/nvim-dap-python",
       config = function()
@@ -839,15 +766,15 @@ M.config = function()
       end,
       enabled = lvim.builtin.web_programming.active,
     },
-    {
-      "smjonas/inc-rename.nvim",
-      lazy = true,
-      cmd = "IncRename",
-      config = function()
-        require("inc_rename").setup()
-      end,
-      enabled = lvim.builtin.noice.active,
-    },
+    -- {
+    --   "smjonas/inc-rename.nvim",
+    --   lazy = true,
+    --   cmd = "IncRename",
+    --   config = function()
+    --     require("inc_rename").setup()
+    --   end,
+    --   enabled = lvim.builtin.noice.active,
+    -- },
     {
       "m-demare/hlargs.nvim",
       lazy = true,
@@ -1005,36 +932,36 @@ M.config = function()
         require("auto-save").setup()
       end,
     },
-    {
-      "mawkler/modicator.nvim",
-      event = "ColorScheme",
-      dependencies = { url = "git@github.com:LunarVim/primer.nvim.git" }, -- Add your colorscheme plugin here
-      init = function()
-        -- These are required for Modicator to work
-        vim.o.cursorline = true
-        vim.o.number = true
-        vim.o.termguicolors = true
-      end,
-      opts = {
-        show_warnings = false,
-        highlights = {
-          -- Default options for bold/italic
-          defaults = {
-            bold = true,
-            italic = false,
-          },
-        },
-        integration = {
-          lualine = {
-            enabled = true,
-            -- Letter of lualine section to use (if `nil`, gets detected automatically)
-            mode_section = nil,
-            -- Whether to use lualine's mode highlight's foreground or background
-            highlight = 'bg',
-          },
-        },
-      },
-    },
+    -- {
+    --   "mawkler/modicator.nvim",
+    --   event = "ColorScheme",
+    --   dependencies = { url = "git@github.com:LunarVim/primer.nvim.git" }, -- Add your colorscheme plugin here
+    --   init = function()
+    --     -- These are required for Modicator to work
+    --     vim.o.cursorline = true
+    --     vim.o.number = true
+    --     vim.o.termguicolors = true
+    --   end,
+    --   opts = {
+    --     show_warnings = false,
+    --     highlights = {
+    --       -- Default options for bold/italic
+    --       defaults = {
+    --         bold = true,
+    --         italic = false,
+    --       },
+    --     },
+    --     integration = {
+    --       lualine = {
+    --         enabled = true,
+    --         -- Letter of lualine section to use (if `nil`, gets detected automatically)
+    --         mode_section = nil,
+    --         -- Whether to use lualine's mode highlight's foreground or background
+    --         highlight = 'bg',
+    --       },
+    --     },
+    --   },
+    -- },
 
     "HiPhish/nvim-ts-rainbow2",
     -- {
@@ -1049,8 +976,9 @@ M.config = function()
     -- },
     -- "kkharji/sqlite.lua",
     -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
-    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
+    -- { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
     { url = "git@github.com:LunarVim/primer.nvim.git" },
+    { url = "git@github.com:rebelot/kanagawa.nvim.git" },
     { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     -- "stevearc/dressing.nvim",
     -- "AckslD/swenv.nvim",
@@ -1071,8 +999,7 @@ M.config = function()
       "kylechui/nvim-surround",
       event = "BufRead",
     },
-    -- "christianchiarulli/harpoon",
-    -- "MattesGroeger/vim-bookmarks",
+    "MattesGroeger/vim-bookmarks",
     -- "NvChad/nvim-colorizer.lua",
     -- "moll/vim-bbye",
     {

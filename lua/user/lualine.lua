@@ -30,48 +30,49 @@ local function testing()
 end
 
 local mode = function()
-  -- local mod = vim.fn.mode()
+  local mod = vim.fn.mode()
   -- local _time = os.date "*t"
-
   -- local selector = math.floor(_time.hour / 8) + 1
-  -- local normal_icons = {
-  --   " 󰊠 ",
-  --   "  ",
-  --   "  ",
-  -- }
-  -- if mod == "n" or mod == "no" or mod == "nov" then
-  --   return normal_icons[selector]
-  -- elseif mod == "i" or mod == "ic" or mod == "ix" then
-  --   local insert_icons = {
-  --     "  ",
-  --     "  ",
-  --     "  ",
-  --   }
-  --   return insert_icons[selector]
-  -- elseif mod == "V" or mod == "v" or mod == "vs" or mod == "Vs" or mod == "cv" then
-  --   local verbose_icons = {
-  --     "  ",
-  --     "  ",
-  --     "  ",
-  --   }
-  --   return verbose_icons[selector]
-  -- elseif mod == "c" or mod == "ce" then
-  --   local command_icons = {
-  --     " 󰏒 ",
-  --     "  ",
-  --     "  ",
-  --   }
 
-  --   return command_icons[selector]
-  -- elseif mod == "r" or mod == "rm" or mod == "r?" or mod == "R" or mod == "Rc" or mod == "Rv" or mod == "Rv" then
-  --   local replace_icons = {
-  --     "  ",
-  --     "  ",
-  --     "  ",
-  --   }
-  --   return replace_icons[selector]
-  -- end
-  -- return normal_icons[selector]
+  local selector = 1
+  local normal_icons = {
+    " 󰊠 ",
+    "  ",
+    "  ",
+  }
+  if mod == "n" or mod == "no" or mod == "nov" then
+    return normal_icons[selector]
+  elseif mod == "i" or mod == "ic" or mod == "ix" then
+    local insert_icons = {
+      "  ",
+      "  ",
+      "  ",
+    }
+    return insert_icons[selector]
+  elseif mod == "V" or mod == "v" or mod == "vs" or mod == "Vs" or mod == "cv" then
+    local verbose_icons = {
+      "  ",
+      "  ",
+      "  ",
+    }
+    return verbose_icons[selector]
+  elseif mod == "c" or mod == "ce" then
+    local command_icons = {
+      " 󰏒 ",
+      "  ",
+      "  ",
+    }
+
+    return command_icons[selector]
+  elseif mod == "r" or mod == "rm" or mod == "r?" or mod == "R" or mod == "Rc" or mod == "Rv" or mod == "Rv" then
+    local replace_icons = {
+      "  ",
+      "  ",
+      "  ",
+    }
+    return replace_icons[selector]
+  end
+  return normal_icons[selector]
 end
 
 local file_icon_colors = {
@@ -252,14 +253,14 @@ M.config = function()
     table.insert(config.sections.lualine_x, component)
   end
 
-  -- table.insert(config.sections.lualine_a, {
-  --   function()
-  --     return mode()
-  --   end,
-  --   color = function()
-  --     return { bg = mode_color[vim.fn.mode()], fg = colors.bg }
-  --   end,
-  -- })
+  table.insert(config.sections.lualine_a, {
+    function()
+      return mode()
+    end,
+    color = function()
+      return { bg = mode_color[vim.fn.mode()], fg = colors.bg }
+    end,
+  })
   table.insert(config.sections.lualine_b, {
     "b:gitsigns_head",
     icon = " ",

@@ -713,7 +713,7 @@ vim.api.nvim_set_keymap(
 -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 -- vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
--- vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help)
+vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help)
 keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder)
 keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder)
 keymap('n', '<space>wl', function()

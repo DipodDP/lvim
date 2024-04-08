@@ -2,9 +2,9 @@
 -- =========================================
 lvim.leader = " "
 -- lvim.colorscheme = "tokyonight" -- set to a custom theme
+-- lvim.colorscheme = "onedark" -- set to a custom theme
 -- lvim.colorscheme = "darkplus" -- set to a custom theme
 -- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
--- lvim.colorscheme = "onedark" -- set to a custom theme
 -- lvim.colorscheme = "primer_dark"
 lvim.colorscheme = "kanagawa"
 lvim.debug = true
@@ -19,6 +19,7 @@ lvim.lsp.code_lens_refresh = true
 -- Customization
 -- =========================================
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
+-- lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
@@ -153,7 +154,7 @@ require("user.plugins").config()
 reload "user.dap"
 -- reload "user.nvimtree"
 reload "user.lualine"
--- reload "user.modicator"
+reload "user.modicator"
 -- reload "user.lsp"
 reload "user.smoothie"
 -- reload "user.harpoon"
@@ -179,15 +180,16 @@ reload "user.treesitter"
 -- reload "user.colorizer"
 -- reload "user.neoscroll"
 -- reload "user.dotenv"
--- reload "user.tabnine"
--- reload "user.copilot"
--- reload "user.chatgpt"
--- reload "user.neoai"
-reload "user.whichkey"
+-- -- reload "user.tabnine"
+-- -- reload "user.copilot"
+-- -- reload "user.chatgpt"
+-- -- reload "user.neoai"
+-- reload "user.whichkey"
 -- reload "user.cmp"
 -- reload "nostr"
 -- reload "user.astro-tools"
 -- reload "user.matchup"
+reload "user.swagger-preview"
 reload "user.betterescape"
 reload "user.yanky"
 -- reload "user.rest"
@@ -209,25 +211,18 @@ reload "options"
 -- -- =========================================
 -- require("user.keybindings").config()
 reload "keymaps"
--- reload "user.keymaps"
 
-require("swagger-preview").setup({
-  -- The port to run the preview server on
-  port = 8000,
-  -- The host to run the preview server on
-  host = "localhost",
-})
 
--- -- require("transparent").setup({ -- Optional, you don't have to run setup.
--- --   groups = {                   -- table: default groups
--- --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
--- --     'Float', 'NormalFloat',
--- --     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
--- --     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
--- --     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
--- --     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
--- --     'EndOfBuffer',
--- --   },
--- --   extra_groups = {},   -- table: additional groups that should be cleared
--- --   exclude_groups = {}, -- table: groups you don't want to clear
--- -- })
+-- require("transparent").setup({ -- Optional, you don't have to run setup.
+--   groups = {                   -- table: default groups
+--     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
+--     'Float', 'NormalFloat',
+--     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+--     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+--     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+--     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+--     'EndOfBuffer',
+--   },
+--   extra_groups = {},   -- table: additional groups that should be cleared
+--   exclude_groups = {}, -- table: groups you don't want to clear
+-- })

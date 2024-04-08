@@ -978,7 +978,6 @@ M.config = function()
     -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
     -- { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
     { url = "git@github.com:LunarVim/primer.nvim.git" },
-    { url = "git@github.com:rebelot/kanagawa.nvim.git" },
     { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     -- "stevearc/dressing.nvim",
     -- "AckslD/swenv.nvim",

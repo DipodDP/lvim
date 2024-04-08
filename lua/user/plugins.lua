@@ -642,98 +642,98 @@ M.config = function()
       end,
       enabled = lvim.builtin.refactoring.active,
     },
-    -- {
-    --   "b0o/incline.nvim",
-    --   config = function()
-    --     require("user.incline").config()
-    --   end,
-    --   enabled = lvim.builtin.winbar_provider == "filename",
-    -- },
-    -- {
-    --   "fgheng/winbar.nvim",
-    --   config = function()
-    --     require("user.winb").config()
-    --   end,
-    --   event = { "InsertEnter", "CursorHoldI" },
-    --   enabled = lvim.builtin.winbar_provider == "treesitter",
-    -- },
-    -- {
-    --   "SmiteshP/nvim-gps",
-    --   module_pattern = { "gps", "nvim-gps" },
-    --   config = function()
-    --     require("user.gps").config()
-    --   end,
-    --   dependencies = "nvim-treesitter/nvim-treesitter",
-    --   event = { "InsertEnter", "CursorHoldI" },
-    --   enabled = lvim.builtin.winbar_provider == "treesitter",
-    -- },
-    -- {
-    --   "vimpostor/vim-tpipeline",
-    --   enabled = lvim.builtin.tmux_lualine,
-    -- },
-    -- {
-    --   "stevearc/overseer.nvim",
-    --   config = function()
-    --     require("user.ovs").config()
-    --   end,
-    --   enabled = lvim.builtin.task_runner == "overseer",
-    -- },
-    -- {
-    --   "nvim-neo-tree/neo-tree.nvim",
-    --   branch = "v2.x",
-    --   cmd = "Neotree",
-    --   dependencies = {
-    --     "MunifTanjim/nui.nvim",
-    --   },
-    --   config = function()
-    --     require("user.neotree").config()
-    --   end,
-    --   enabled = lvim.builtin.tree_provider == "neo-tree",
-    -- },
-    -- { "MunifTanjim/nui.nvim" },
-    -- {
-    --   "folke/noice.nvim",
-    --   event = "VeryLazy",
-    --   config = function()
-    --     require("user.noice").config()
-    --   end,
-    --   dependencies = {
-    --     "rcarriga/nvim-notify",
-    --   },
-    --   enabled = lvim.builtin.noice.active,
-    -- },
-    -- {
-    --   "olexsmir/gopher.nvim",
-    --   config = function()
-    --     require("gopher").setup {
-    --       commands = {
-    --         go = "go",
-    --         gomodifytags = "gomodifytags",
-    --         gotests = "gotests",
-    --         impl = "impl",
-    --         iferr = "iferr",
-    --       },
-    --     }
-    --   end,
-    --   ft = { "go", "gomod" },
-    --   event = { "BufRead", "BufNew" },
-    --   enabled = lvim.builtin.go_programming.active,
-    -- },
-    -- {
-    --   "leoluz/nvim-dap-go",
-    --   config = function()
-    --     require("dap-go").setup()
-    --   end,
-    --   ft = { "go", "gomod" },
-    --   event = { "BufRead", "BufNew" },
-    --   enabled = lvim.builtin.go_programming.active,
-    -- },
-    -- {
-    --   "AckslD/swenv.nvim",
-    --   enabled = lvim.builtin.python_programming.active,
-    --   ft = "python",
-    --   event = { "BufRead", "BufNew" },
-    -- },
+    {
+      "b0o/incline.nvim",
+      config = function()
+        require("user.incline").config()
+      end,
+      enabled = lvim.builtin.winbar_provider == "filename",
+    },
+    {
+      "fgheng/winbar.nvim",
+      config = function()
+        require("user.winb").config()
+      end,
+      event = { "InsertEnter", "CursorHoldI" },
+      enabled = lvim.builtin.winbar_provider == "treesitter",
+    },
+    {
+      "SmiteshP/nvim-gps",
+      module_pattern = { "gps", "nvim-gps" },
+      config = function()
+        require("user.gps").config()
+      end,
+      dependencies = "nvim-treesitter/nvim-treesitter",
+      event = { "InsertEnter", "CursorHoldI" },
+      enabled = lvim.builtin.winbar_provider == "treesitter",
+    },
+    {
+      "vimpostor/vim-tpipeline",
+      enabled = lvim.builtin.tmux_lualine,
+    },
+    {
+      "stevearc/overseer.nvim",
+      config = function()
+        require("user.ovs").config()
+      end,
+      enabled = lvim.builtin.task_runner == "overseer",
+    },
+    {
+      "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
+      cmd = "Neotree",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+      },
+      config = function()
+        require("user.neotree").config()
+      end,
+      enabled = lvim.builtin.tree_provider == "neo-tree",
+    },
+    { "MunifTanjim/nui.nvim" },
+    {
+      "folke/noice.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("user.noice").config()
+      end,
+      dependencies = {
+        "rcarriga/nvim-notify",
+      },
+      enabled = lvim.builtin.noice.active,
+    },
+    {
+      "olexsmir/gopher.nvim",
+      config = function()
+        require("gopher").setup {
+          commands = {
+            go = "go",
+            gomodifytags = "gomodifytags",
+            gotests = "gotests",
+            impl = "impl",
+            iferr = "iferr",
+          },
+        }
+      end,
+      ft = { "go", "gomod" },
+      event = { "BufRead", "BufNew" },
+      enabled = lvim.builtin.go_programming.active,
+    },
+    {
+      "leoluz/nvim-dap-go",
+      config = function()
+        require("dap-go").setup()
+      end,
+      ft = { "go", "gomod" },
+      event = { "BufRead", "BufNew" },
+      enabled = lvim.builtin.go_programming.active,
+    },
+    {
+      "AckslD/swenv.nvim",
+      enabled = lvim.builtin.python_programming.active,
+      ft = "python",
+      event = { "BufRead", "BufNew" },
+    },
     {
       "mfussenegger/nvim-dap-python",
       config = function()
@@ -766,15 +766,15 @@ M.config = function()
       end,
       enabled = lvim.builtin.web_programming.active,
     },
-    -- {
-    --   "smjonas/inc-rename.nvim",
-    --   lazy = true,
-    --   cmd = "IncRename",
-    --   config = function()
-    --     require("inc_rename").setup()
-    --   end,
-    --   enabled = lvim.builtin.noice.active,
-    -- },
+    {
+      "smjonas/inc-rename.nvim",
+      lazy = true,
+      cmd = "IncRename",
+      config = function()
+        require("inc_rename").setup()
+      end,
+      enabled = lvim.builtin.noice.active,
+    },
     {
       "m-demare/hlargs.nvim",
       lazy = true,

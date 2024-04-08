@@ -96,6 +96,7 @@ M.config = function()
       "lspinfo",
       "", -- for all buffers without a file type
     },
+    char = "",
     -- char = "▏",
     -- char_list = { "", "┊", "┆", "¦", "|", "¦", "┆", "┊", "" },
     char_highlight_list = {

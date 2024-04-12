@@ -85,18 +85,18 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
--- vim.cmd [[
--- " autocmd FileType toggleterm nnoremap <buffer> <CR> :startinsert<CR>
---   autocmd BufEnter * if &filetype ==# 'toggleterm' | startinsert! | endif
--- ]]
+vim.cmd [[
+" autocmd FileType toggleterm nnoremap <buffer> <CR> :startinsert<CR>
+  autocmd BufEnter * if &filetype ==# 'toggleterm' | startinsert! | endif
+]]
 
--- vim.api.nvim_create_autocmd({ "BufEnter" }, {
---   pattern = { "term://*" },
---   callback = function()
---     vim.cmd "startinsert"
---     -- vim.cmd "set cmdheight=1"
---   end,
--- })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = { "term://*" },
+  callback = function()
+    vim.cmd "startinsert"
+    -- vim.cmd "set cmdheight=1"
+  end,
+})
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.txt", "*.md", "*.tex" },
@@ -240,4 +240,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end
   end
 })
-

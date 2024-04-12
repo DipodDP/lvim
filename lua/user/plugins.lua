@@ -66,7 +66,7 @@ M.config = function()
       "vinnymeller/swagger-preview.nvim",
       build = "npm install -g swagger-ui-watcher",
     },
-  -- {
+    -- {
     --   "folke/tokyonight.nvim",
     --   config = function()
     --     require("user.theme").tokyonight()
@@ -77,41 +77,41 @@ M.config = function()
     --     return (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes
     --   end,
     -- },
-    {
-      "rose-pine/neovim",
-      name = "rose-pine",
-      config = function()
-        require("user.theme").rose_pine()
-        lvim.colorscheme = "rose-pine"
-      end,
-      cond = function()
-        local _time = os.date "*t"
-        return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
-        -- return false
-      end,
-    },
-    {
-      "catppuccin/nvim",
-      name = "catppuccin",
-      config = function()
-        require("user.theme").catppuccin()
-        local _time = os.date "*t"
-        if (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes then
-          lvim.colorscheme = "catppuccin-mocha"
-        end
-      end,
-    },
+    -- {
+    --   "rose-pine/neovim",
+    --   name = "rose-pine",
+    --   config = function()
+    --     require("user.theme").rose_pine()
+    --     lvim.colorscheme = "rose-pine"
+    --   end,
+    --   cond = function()
+    --     local _time = os.date "*t"
+    --     return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
+    --   end,
+    -- },
+    -- {
+    --   "catppuccin/nvim",
+    --   name = "catppuccin",
+    --   config = function()
+    --     require("user.theme").catppuccin()
+    --     local _time = os.date "*t"
+    --     if (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes then
+    --       lvim.colorscheme = "catppuccin-mocha"
+    --     end
+    --   end,
+    -- },
     {
       "rebelot/kanagawa.nvim",
       config = function()
         require("user.theme").kanagawa()
         lvim.colorscheme = "kanagawa"
       end,
-      cond = function()
-        local _time = os.date "*t"
-        return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
-          and lvim.builtin.time_based_themes
-      end,
+      -- cond = function()
+      --   local _time = os.date "*t"
+      --   return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
+      --     and lvim.builtin.time_based_themes
+      --   return true
+      -- end,
     },
     { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
     { url = "git@github.com:LunarVim/primer.nvim.git" },
@@ -1067,6 +1067,127 @@ M.config = function()
     {
       "gbprod/yanky.nvim",
       event = "BufRead",
+    },
+
+    {
+      "Pocco81/auto-save.nvim",
+      config = function()
+        require("auto-save").setup()
+      end,
+    },
+    -- {
+    --   "mawkler/modicator.nvim",
+    --   event = "ColorScheme",
+    --   dependencies = { url = "git@github.com:LunarVim/primer.nvim.git" }, -- Add your colorscheme plugin here
+    --   init = function()
+    --     -- These are required for Modicator to work
+    --     vim.o.cursorline = true
+    --     vim.o.number = true
+    --     vim.o.termguicolors = true
+    --   end,
+    --   opts = {
+    --     show_warnings = false,
+    --     highlights = {
+    --       -- Default options for bold/italic
+    --       defaults = {
+    --         bold = true,
+    --         italic = false,
+    --       },
+    --     },
+    --     integration = {
+    --       lualine = {
+    --         enabled = true,
+    --         -- Letter of lualine section to use (if `nil`, gets detected automatically)
+    --         mode_section = nil,
+    --         -- Whether to use lualine's mode highlight's foreground or background
+    --         highlight = 'bg',
+    --       },
+    --     },
+    --   },
+    -- },
+
+    "HiPhish/nvim-ts-rainbow2",
+    -- {
+    --   dir = "/Users/chris/Repos/bookmark.nvim",
+    -- },
+    -- "lunarvim/synthwave84.nvim",
+    -- {
+    --   "kndndrj/nvim-dbee",
+    --   build = function()
+    --     require("dbee").install()
+    --   end,
+    -- },
+    -- "kkharji/sqlite.lua",
+    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
+    -- { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
+    { url = "git@github.com:LunarVim/primer.nvim.git" },
+    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
+    -- "stevearc/dressing.nvim",
+    -- "AckslD/swenv.nvim",
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+    "nvim-treesitter/playground",
+    "mfussenegger/nvim-jdtls",
+    "opalmay/vim-smoothie",
+    -- "j-hui/fidget.nvim",
+    {
+      "windwp/nvim-ts-autotag",
+      config = function()
+        require("nvim-ts-autotag").setup({
+          filetypes = { "tsx", "typescriptreact" },
+        })
+      end,
+    },
+    {
+      "kylechui/nvim-surround",
+      event = "BufRead",
+    },
+    "MattesGroeger/vim-bookmarks",
+    -- "NvChad/nvim-colorizer.lua",
+    -- "moll/vim-bbye",
+    {
+      "folke/todo-comments.nvim",
+      event = "BufRead",
+    },
+    -- "f-person/git-blame.nvim",
+    -- "ruifm/gitlinker.nvim",
+    -- "mattn/vim-gist",
+    -- "mattn/webapi-vim",
+    -- "mfussenegger/nvim-dap-python",
+    -- "andy-bell101/neotest-java",
+    -- "nvim-neotest/neotest-go",
+    -- "nvim-neotest/neotest-python",
+    -- "rouge8/neotest-rust",
+    -- "haydenmeade/neotest-jest",
+    {
+      "hrsh7th/cmp-emoji",
+      event = "BufRead",
+    },
+    -- "ThePrimeagen/vim-be-good",
+    -- "folke/noice.nvim",
+    -- "rcarriga/nvim-notify",
+
+    -- "rmagatti/auto-session",
+    -- "rmagatti/session-lens",
+    -- "christianchiarulli/nvim-ts-rainbow",
+    -- "karb94/neoscroll.nvim",
+    {
+      "max397574/better-escape.nvim",
+      event = "BufRead",
+    },
+    {
+      "ojroques/nvim-osc52",
+      event = "BufRead",
+    },
+    {
+      "gbprod/yanky.nvim",
+      event = "BufRead",
+    },
+    {
+      "mireq/large_file",
+      config = function()
+        require("large_file").setup()
+      end,
+      enabled = not lvim.builtin.bigfile.active,
     },
   }
 end

@@ -85,6 +85,7 @@ M.config = function()
       end,
       prefer_local = "node_modules/.bin",
     },
+    nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
         return utils.root_has_file ".semgrepignore" and use_semgrep

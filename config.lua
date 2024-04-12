@@ -124,10 +124,11 @@ vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
--- lvim.lsp.installer.setup.automatic_installation = true
+-- lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
+-- lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
@@ -165,7 +166,7 @@ lvim.builtin.file_browser = { active = false } -- enable/disable telescope file 
 lvim.builtin.sniprun = { active = false } -- enable/disable sniprun
 lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista or outline)
 lvim.builtin.global_statusline = false -- set true to use global statusline
-lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
+lvim.builtin.dressing = { active = true } -- enable to override vim.ui.input and vim.ui.select with telescope
 lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim code_actions
 lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
 lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
@@ -238,8 +239,8 @@ end
 -- end
 -- --================================-> END <-===================================--
 
--- -- Language Specific
--- -- =========================================
+-- Language Specific
+-- =========================================
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 --   "clangd",
 --   "dockerls",
@@ -250,32 +251,12 @@ end
 --   "rust_analyzer",
 --   "taplo",
 --   "texlab",
---   -- "tsserver",
+--   "tsserver",
 --   "yamlls",
 -- })
--- --================================-> START <-=================================--
--- --                        BACKUP INFO - WHAT TO BACKUP                        --
--- --------------------------------------------------------------------------------
--- -- $HOME/.config/nvim
--- --     |
--- --     |-- init.lua (✓)
--- --     |
--- --     |-- lua ---------
--- --                     |------ keyconfig.lua (✓)
--- --                     |------ optconfig.lua (✓)
--- --                     |------ lazyconfig.lua (✓)
--- --                     |------ themeplugconfig.lua (✓)
--- --
--- --================================-> END <-===================================--
 
--- -- require 'lspconfig'.csharp_ls.setup {}
+-- require 'lspconfig'.csharp_ls.setup {}
 
-require("swagger-preview").setup({
-  -- The port to run the preview server on
-  port = 8000,
-  -- The host to run the preview server on
-  host = "localhost",
-})
 -- require("user.null_ls").config()
 
 -- Additional Plugins
@@ -319,6 +300,7 @@ reload "user.treesitter"
 -- reload "nostr"
 -- reload "user.astro-tools"
 -- reload "user.matchup"
+reload "user.swagger-preview"
 reload "user.betterescape"
 reload "user.yanky"
 -- reload "user.rest"
@@ -327,29 +309,31 @@ reload "user.yanky"
 -- reload "user.neorg"
 -- reload"plugins"
 
--- -- Override Lunarvim defaults
--- -- =========================================
--- require("user.builtin").config()
-
 -- Autocommands
 -- =========================================
--- require("user.autocommands").config()
-
+require("user.autocommands").config()
 reload "autocommands"
+
+-- Options
+-- =========================================
+reload "options"
 
 -- -- Additional Keybindings
 -- -- =========================================
 -- require("user.keybindings").config()
--- -- require("transparent").setup({ -- Optional, you don't have to run setup.
--- --   groups = {                   -- table: default groups
--- --     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
--- --     'Float', 'NormalFloat',
--- --     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
--- --     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
--- --     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
--- --     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
--- --     'EndOfBuffer',
--- --   },
--- --   extra_groups = {},   -- table: additional groups that should be cleared
--- --   exclude_groups = {}, -- table: groups you don't want to clear
--- -- })
+reload "keymaps"
+
+
+-- require("transparent").setup({ -- Optional, you don't have to run setup.
+--   groups = {                   -- table: default groups
+--     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
+--     'Float', 'NormalFloat',
+--     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+--     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+--     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+--     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+--     'EndOfBuffer',
+--   },
+--   extra_groups = {},   -- table: additional groups that should be cleared
+--   exclude_groups = {}, -- table: groups you don't want to clear
+-- })

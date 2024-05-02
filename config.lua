@@ -154,7 +154,7 @@ require("user.plugins").config()
 reload "user.dap"
 -- reload "user.nvimtree"
 reload "user.lualine"
-reload "user.modicator"
+-- reload "user.modicator"
 -- reload "user.lsp"
 reload "user.smoothie"
 -- reload "user.harpoon"

@@ -739,20 +739,20 @@ vim.cmd [[
 
 keymap("n", "<m-q>", ":call QuickFixToggle()<cr>", opts)
 
--- M.show_documentation = function()
---   local filetype = vim.bo.filetype
---   if vim.tbl_contains({ "vim", "help" }, filetype) then
---     vim.cmd("h " .. vim.fn.expand "<cword>")
---   elseif vim.tbl_contains({ "man" }, filetype) then
---     vim.cmd("Man " .. vim.fn.expand "<cword>")
---   elseif vim.fn.expand "%:t" == "Cargo.toml" then
---     require("crates").show_popup()
---   else
---     vim.lsp.buf.hover()
---   end
--- end
+M.show_documentation = function()
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains({ "vim", "help" }, filetype) then
+    vim.cmd("h " .. vim.fn.expand "<cword>")
+  elseif vim.tbl_contains({ "man" }, filetype) then
+    vim.cmd("Man " .. vim.fn.expand "<cword>")
+  elseif vim.fn.expand "%:t" == "Cargo.toml" then
+    require("crates").show_popup()
+  else
+    vim.lsp.buf.hover()
+  end
+end
 
--- vim.api.nvim_set_keymap("n", "K", ":lua require('user.keybindings').show_documentation()<CR>", opts)
+vim.api.nvim_set_keymap("n", "K", ":lua require('user.keybindings').show_documentation()<CR>", opts)
 
 vim.api.nvim_set_keymap("i", "<C-q>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})

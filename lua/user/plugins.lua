@@ -99,40 +99,36 @@ M.config = function()
     --     end
     --   end,
     -- },
-    -- {
-    --   "rebelot/kanagawa.nvim",
-    --   config = function()
-    --     require("user.theme").kanagawa()
-    --     -- lvim.colorscheme = "kanagawa"
-    --   end,
+    {
+      "rebelot/kanagawa.nvim",
+      config = function()
+        require("user.theme").kanagawa()
+        lvim.colorscheme = "kanagawa"
+      end,
       -- cond = function()
       --   local _time = os.date "*t"
       --   return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
       --     and lvim.builtin.time_based_themes
       --   return true
       -- end,
-    -- },
-    -- {
-    --   "ray-x/lsp_signature.nvim",
-    --   config = function()
-    --     require("user/lsp_signature").config()
-    --   end,
-    --   event = { "BufRead", "BufNew" },
-    -- },
-    -- {
-    --   "vladdoster/remember.nvim",
-    --   config = function()
-    --     require("remember").setup {}
-    --   end,
-    --   enabled = lvim.builtin.lastplace.active,
-    -- },
+    },
+    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
+    { url = "git@github.com:LunarVim/primer.nvim.git" },
+    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
+    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     {
-      "folke/todo-comments.nvim",
-      dependencies = "nvim-lua/plenary.nvim",
+      "ray-x/lsp_signature.nvim",
       config = function()
-        require("user.todo_comments").config()
+        require("user/lsp_signature").config()
       end,
-      event = "BufRead",
+      event = { "BufRead", "BufNew" },
+    },
+    {
+      "vladdoster/remember.nvim",
+      config = function()
+        require("remember").setup {}
+      end,
+      enabled = lvim.builtin.lastplace.active,
     },
     -- {
     --   "folke/trouble.nvim",
@@ -172,7 +168,6 @@ M.config = function()
     --   event = "BufReadPost",
     --   enabled = lvim.builtin.tag_provider == "symbols-outline",
     -- },
-    -- {
     --   "tzachar/cmp-tabnine",
     --   build = "./install.sh",
     --   dependencies = "hrsh7th/nvim-cmp",
@@ -202,30 +197,30 @@ M.config = function()
     --     require("user.bqf").config()
     --   end,
     -- },
+    {
+      "andymass/vim-matchup",
+      event = "BufReadPost",
+      config = function()
+        vim.g.matchup_enabled = 1
+        vim.g.matchup_surround_enabled = 1
+        vim.g.matchup_matchparen_deferred = 1
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    },
+    {
+      "iamcco/markdown-preview.nvim",
+      build = "cd app && npm install",
+      ft = "markdown",
+    },
     -- {
-    --   "andymass/vim-matchup",
-    --   event = "BufReadPost",
-    --   config = function()
-    --     vim.g.matchup_enabled = 1
-    --     vim.g.matchup_surround_enabled = 1
-    --     vim.g.matchup_matchparen_deferred = 1
-    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    --   "mrcjkb/rustaceanvim",
+    --   version = "^3",
+    --   init = function()
+    --     require("user.rust_tools").config()
     --   end,
+    --   ft = { "rust", "rs" },
+    --   enabled = lvim.builtin.rust_programming.active,
     -- },
-    -- {
-    --   "iamcco/markdown-preview.nvim",
-    --   build = "cd app && npm install",
-    --   ft = "markdown",
-    -- },
-    -- -- {
-    -- --   "mrcjkb/rustaceanvim",
-    -- --   version = "^3",
-    -- --   init = function()
-    -- --     require("user.rust_tools").config()
-    -- --   end,
-    -- --   ft = { "rust", "rs" },
-    -- --   enabled = lvim.builtin.rust_programming.active,
-    -- -- },
     -- {
     --   "abzcoding/lsp_lines.nvim",
     --   lazy = true,
@@ -326,159 +321,159 @@ M.config = function()
     --   event = { "BufReadPre", "BufNew" },
     --   enabled = lvim.builtin.web_programming.active,
     -- },
+    {
+      "lervag/vimtex",
+      init = function()
+        require("user.tex").init()
+      end,
+      config = function()
+        vim.cmd "call vimtex#init()"
+      end,
+      ft = "tex",
+      event = "VeryLazy",
+      enabled = lvim.builtin.latex.active,
+    },
+    {
+      "nvim-neotest/neotest",
+      config = function()
+        require("user.ntest").config()
+      end,
+      dependencies = {
+        { "nvim-neotest/neotest-plenary" },
+      },
+      event = { "BufReadPost", "BufNew" },
+      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "neotest"),
+    },
+    { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
+    { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
+    { "rouge8/neotest-rust", event = { "BufEnter *.rs" } },
+    {
+      "rcarriga/vim-ultest",
+      cmd = { "Ultest", "UltestSummary", "UltestNearest" },
+      dependencies = { "vim-test/vim-test" },
+      build = ":UpdateRemotePlugins",
+      lazy = true,
+      event = { "BufEnter *_test.*,*_spec.*,*est_*.*" },
+      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
+    },
     -- {
-    --   "lervag/vimtex",
+    --   "akinsho/flutter-tools.nvim",
+    --   dependencies = "nvim-lua/plenary.nvim",
+    --   config = function()
+    --     require("user.flutter_tools").config()
+    --   end,
+    --   ft = "dart",
+    -- },
+    -- {
+    --   "RishabhRD/nvim-cheat.sh",
+    --   dependencies = "RishabhRD/popfix",
+    --   config = function()
+    --     vim.g.cheat_default_window_layout = "vertical_split"
+    --   end,
+    --   lazy = true,
+    --   cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
+    --   keys = "<leader>?",
+    --   enabled = lvim.builtin.cheat.active,
+    -- },
+    -- {
+    --   "AckslD/nvim-neoclip.lua",
+    --   config = function()
+    --     require("user.neoclip").config()
+    --   end,
+    --   lazy = true,
+    --   keys = "<leader>y",
+    --   dependencies = neoclip_req,
+    --   enabled = lvim.builtin.neoclip.active,
+    -- },
+    -- {
+    --   "kristijanhusak/vim-dadbod-completion",
+    --   enabled = lvim.builtin.sql_integration.active,
+    -- },
+    -- {
+    --   "kristijanhusak/vim-dadbod-ui",
+    --   cmd = {
+    --     "DBUIToggle",
+    --     "DBUIAddConnection",
+    --     "DBUI",
+    --     "DBUIFindBuffer",
+    --     "DBUIRenameBuffer",
+    --   },
     --   init = function()
-    --     require("user.tex").init()
-    --   end,
-    --   config = function()
-    --     vim.cmd "call vimtex#init()"
-    --   end,
-    --   ft = "tex",
-    --   event = "VeryLazy",
-    --   enabled = lvim.builtin.latex.active,
-    -- },
-    -- {
-    --   "nvim-neotest/neotest",
-    --   config = function()
-    --     require("user.ntest").config()
+    --     vim.g.db_ui_use_nerd_fonts = 1
+    --     vim.g.db_ui_show_database_icon = 1
     --   end,
     --   dependencies = {
-    --     { "nvim-neotest/neotest-plenary" },
+    --     {
+    --       "tpope/vim-dadbod",
+    --       lazy = true,
+    --     },
     --   },
-    --   event = { "BufReadPost", "BufNew" },
-    --   enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "neotest"),
-    -- },
-    -- { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
-    -- { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
-    -- { "rouge8/neotest-rust", event = { "BufEnter *.rs" } },
-    -- {
-    --   "rcarriga/vim-ultest",
-    --   cmd = { "Ultest", "UltestSummary", "UltestNearest" },
-    --   dependencies = { "vim-test/vim-test" },
-    --   build = ":UpdateRemotePlugins",
     --   lazy = true,
-    --   event = { "BufEnter *_test.*,*_spec.*,*est_*.*" },
-    --   enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
-    -- },
-    -- -- {
-    -- --   "akinsho/flutter-tools.nvim",
-    -- --   dependencies = "nvim-lua/plenary.nvim",
-    -- --   config = function()
-    -- --     require("user.flutter_tools").config()
-    -- --   end,
-    -- --   ft = "dart",
-    -- -- },
-    -- -- {
-    -- --   "RishabhRD/nvim-cheat.sh",
-    -- --   dependencies = "RishabhRD/popfix",
-    -- --   config = function()
-    -- --     vim.g.cheat_default_window_layout = "vertical_split"
-    -- --   end,
-    -- --   lazy = true,
-    -- --   cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
-    -- --   keys = "<leader>?",
-    -- --   enabled = lvim.builtin.cheat.active,
-    -- -- },
-    -- -- {
-    -- --   "AckslD/nvim-neoclip.lua",
-    -- --   config = function()
-    -- --     require("user.neoclip").config()
-    -- --   end,
-    -- --   lazy = true,
-    -- --   keys = "<leader>y",
-    -- --   dependencies = neoclip_req,
-    -- --   enabled = lvim.builtin.neoclip.active,
-    -- -- },
-    -- -- {
-    -- --   "kristijanhusak/vim-dadbod-completion",
-    -- --   enabled = lvim.builtin.sql_integration.active,
-    -- -- },
-    -- -- {
-    -- --   "kristijanhusak/vim-dadbod-ui",
-    -- --   cmd = {
-    -- --     "DBUIToggle",
-    -- --     "DBUIAddConnection",
-    -- --     "DBUI",
-    -- --     "DBUIFindBuffer",
-    -- --     "DBUIRenameBuffer",
-    -- --   },
-    -- --   init = function()
-    -- --     vim.g.db_ui_use_nerd_fonts = 1
-    -- --     vim.g.db_ui_show_database_icon = 1
-    -- --   end,
-    -- --   dependencies = {
-    -- --     {
-    -- --       "tpope/vim-dadbod",
-    -- --       lazy = true,
-    -- --     },
-    -- --   },
-    -- --   lazy = true,
-    -- --   enabled = lvim.builtin.sql_integration.active,
-    -- -- },
-    -- -- {
-    -- --   "karb94/neoscroll.nvim",
-    -- --   config = function()
-    -- --     require("neoscroll").setup {
-    -- --       easing_function = "quadratic",
-    -- --       hide_cursor = true,
-    -- --     }
-    -- --   end,
-    -- --   event = "BufRead",
-    -- --   enabled = lvim.builtin.smooth_scroll == "neoscroll",
-    -- -- },
-    -- -- {
-    -- --   "declancm/cinnamon.nvim",
-    -- --   config = function()
-    -- --     require("cinnamon").setup {
-    -- --       default_keymaps = true,
-    -- --       default_delay = 4,
-    -- --       extra_keymaps = true,
-    -- --       extended_keymaps = false,
-    -- --       centered = true,
-    -- --       scroll_limit = 100,
-    -- --     }
-    -- --   end,
-    -- --   event = "BufRead",
-    -- --   enabled = lvim.builtin.smooth_scroll == "cinnamon",
-    -- -- },
-    -- -- {
-    -- --   "github/copilot.vim",
-    -- --   config = function()
-    -- --     require("user.copilot").config()
-    -- --   end,
-    -- --   enabled = lvim.builtin.sell_your_soul_to_devil.active or lvim.builtin.sell_your_soul_to_devil.prada,
-    -- -- },
-    -- -- {
-    -- --   "zbirenbaum/copilot.lua",
-    -- --   dependencies = { "zbirenbaum/copilot-cmp", "nvim-cmp" },
-    -- --   config = function()
-    -- --     local cmp_source = { name = "copilot", group_index = 2 }
-    -- --     table.insert(lvim.builtin.cmp.sources, cmp_source)
-    -- --     vim.defer_fn(function()
-    -- --       require("copilot").setup()
-    -- --     end, 100)
-    -- --   end,
-    -- --   enabled = lvim.builtin.sell_your_soul_to_devil.prada,
-    -- -- },
-    -- {
-    --   "ThePrimeagen/harpoon",
-    --   dependencies = {
-    --     { "nvim-lua/plenary.nvim" },
-    --     { "nvim-lua/popup.nvim" },
-    --   },
-    --   enabled = lvim.builtin.harpoon.active,
+    --   enabled = lvim.builtin.sql_integration.active,
     -- },
     -- {
-    --   "sindrets/diffview.nvim",
-    --   lazy = true,
-    --   cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
-    --   keys = { "<leader>gd", "<leader>gh" },
+    --   "karb94/neoscroll.nvim",
     --   config = function()
-    --     require("user.diffview").config()
+    --     require("neoscroll").setup {
+    --       easing_function = "quadratic",
+    --       hide_cursor = true,
+    --     }
     --   end,
-    --   enabled = lvim.builtin.fancy_diff.active,
+    --   event = "BufRead",
+    --   enabled = lvim.builtin.smooth_scroll == "neoscroll",
     -- },
+    -- {
+    --   "declancm/cinnamon.nvim",
+    --   config = function()
+    --     require("cinnamon").setup {
+    --       default_keymaps = true,
+    --       default_delay = 4,
+    --       extra_keymaps = true,
+    --       extended_keymaps = false,
+    --       centered = true,
+    --       scroll_limit = 100,
+    --     }
+    --   end,
+    --   event = "BufRead",
+    --   enabled = lvim.builtin.smooth_scroll == "cinnamon",
+    -- },
+    -- {
+    --   "github/copilot.vim",
+    --   config = function()
+    --     require("user.copilot").config()
+    --   end,
+    --   enabled = lvim.builtin.sell_your_soul_to_devil.active or lvim.builtin.sell_your_soul_to_devil.prada,
+    -- },
+    -- {
+    --   "zbirenbaum/copilot.lua",
+    --   dependencies = { "zbirenbaum/copilot-cmp", "nvim-cmp" },
+    --   config = function()
+    --     local cmp_source = { name = "copilot", group_index = 2 }
+    --     table.insert(lvim.builtin.cmp.sources, cmp_source)
+    --     vim.defer_fn(function()
+    --       require("copilot").setup()
+    --     end, 100)
+    --   end,
+    --   enabled = lvim.builtin.sell_your_soul_to_devil.prada,
+    -- },
+    {
+      "ThePrimeagen/harpoon",
+      dependencies = {
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-lua/popup.nvim" },
+      },
+      enabled = lvim.builtin.harpoon.active,
+    },
+    {
+      "sindrets/diffview.nvim",
+      lazy = true,
+      cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
+      keys = { "<leader>gd", "<leader>gh" },
+      config = function()
+        require("user.diffview").config()
+      end,
+      enabled = lvim.builtin.fancy_diff.active,
+    },
     -- {
     --   "chipsenkbeil/distant.nvim",
     --   lazy = true,
@@ -495,20 +490,20 @@ M.config = function()
     --   end,
     --   enabled = lvim.builtin.remote_dev.active,
     -- },
-    -- {
-    --   "abzcoding/nvim-mini-file-icons",
-    --   config = function()
-    --     require("nvim-web-devicons").setup()
-    --   end,
-    --   enabled = lvim.builtin.custom_web_devicons or not lvim.use_icons,
-    -- },
-    -- { "mtdl9/vim-log-highlighting", ft = { "text", "log" } },
-    -- {
-    --   "yamatsum/nvim-cursorline",
-    --   lazy = true,
-    --   event = "BufWinEnter",
-    --   enabled = lvim.builtin.cursorline.active,
-    -- },
+    {
+      "abzcoding/nvim-mini-file-icons",
+      config = function()
+        require("nvim-web-devicons").setup()
+      end,
+      enabled = lvim.builtin.custom_web_devicons or not lvim.use_icons,
+    },
+    { "mtdl9/vim-log-highlighting", ft = { "text", "log" } },
+    {
+      "yamatsum/nvim-cursorline",
+      lazy = true,
+      event = "BufWinEnter",
+      enabled = lvim.builtin.cursorline.active,
+    },
     -- {
     --   "abecodes/tabout.nvim",
     --   config = function()
@@ -571,77 +566,77 @@ M.config = function()
       "nvim-telescope/telescope-file-browser.nvim",
       enabled = lvim.builtin.file_browser.active,
     },
-    -- -- {
-    -- --   "j-hui/fidget.nvim",
-    -- --   branch = "legacy",
-    -- --   config = function()
-    -- --     require("user.fidget_spinner").config()
-    -- --   end,
-    -- --   -- disable = lvim.builtin.noice.active,
-    -- -- },
-    -- -- {
-    -- --   "michaelb/sniprun",
-    -- --   build = "bash ./install.sh",
-    -- --   enabled = lvim.builtin.sniprun.active,
-    -- -- },
-    -- -- {
-    -- --   "liuchengxu/vista.vim",
-    -- --   init = function()
-    -- --     require("user.vista").config()
-    -- --   end,
-    -- --   event = "BufReadPost",
-    -- --   enabled = lvim.builtin.tag_provider == "vista",
-    -- -- },
     -- {
-    --   "p00f/clangd_extensions.nvim",
-    --   ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
-    --   enabled = lvim.builtin.cpp_programming.active,
-    -- },
-    -- {
-    --   "saecki/crates.nvim",
-    --   event = { "BufRead Cargo.toml" },
-    --   dependencies = { { "nvim-lua/plenary.nvim" } },
+    --   "j-hui/fidget.nvim",
+    --   branch = "legacy",
     --   config = function()
-    --     require("user.crates").config()
+    --     require("user.fidget_spinner").config()
     --   end,
-    --   enabled = lvim.builtin.rust_programming.active,
+    --   -- disable = lvim.builtin.noice.active,
     -- },
     -- {
-    --   "hrsh7th/cmp-cmdline",
-    --   enabled = lvim.builtin.fancy_wild_menu.active,
+    --   "michaelb/sniprun",
+    --   build = "bash ./install.sh",
+    --   enabled = lvim.builtin.sniprun.active,
     -- },
     -- {
-    --   "mrjones2014/legendary.nvim",
-    --   config = function()
-    --     require("user.legendary").config()
+    --   "liuchengxu/vista.vim",
+    --   init = function()
+    --     require("user.vista").config()
     --   end,
-    --   event = "VimEnter",
-    --   enabled = lvim.builtin.legendary.active,
-    -- },
-    -- {
-    --   "stevearc/dressing.nvim",
-    --   lazy = true,
-    --   config = function()
-    --     require("user.dress").config()
-    --   end,
-    --   enabled = lvim.builtin.dressing.active,
-    --   event = "BufWinEnter",
-    -- },
-    -- {
-    --   "kdheepak/cmp-latex-symbols",
-    --   dependencies = "hrsh7th/nvim-cmp",
-    --   ft = "tex",
-    -- },
-    -- {
-    --   "ThePrimeagen/refactoring.nvim",
-    --   lazy = true,
-    --   ft = { "typescript", "javascript", "lua", "c", "cpp", "go", "python", "java", "php" },
     --   event = "BufReadPost",
-    --   config = function()
-    --     require("refactoring").setup {}
-    --   end,
-    --   enabled = lvim.builtin.refactoring.active,
+    --   enabled = lvim.builtin.tag_provider == "vista",
     -- },
+    {
+      "p00f/clangd_extensions.nvim",
+      ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
+      enabled = lvim.builtin.cpp_programming.active,
+    },
+    {
+      "saecki/crates.nvim",
+      event = { "BufRead Cargo.toml" },
+      dependencies = { { "nvim-lua/plenary.nvim" } },
+      config = function()
+        require("user.crates").config()
+      end,
+      enabled = lvim.builtin.rust_programming.active,
+    },
+    {
+      "hrsh7th/cmp-cmdline",
+      enabled = lvim.builtin.fancy_wild_menu.active,
+    },
+    {
+      "mrjones2014/legendary.nvim",
+      config = function()
+        require("user.legendary").config()
+      end,
+      event = "VimEnter",
+      enabled = lvim.builtin.legendary.active,
+    },
+    {
+      "stevearc/dressing.nvim",
+      lazy = true,
+      config = function()
+        require("user.dress").config()
+      end,
+      enabled = lvim.builtin.dressing.active,
+      event = "BufWinEnter",
+    },
+    {
+      "kdheepak/cmp-latex-symbols",
+      dependencies = "hrsh7th/nvim-cmp",
+      ft = "tex",
+    },
+    {
+      "ThePrimeagen/refactoring.nvim",
+      lazy = true,
+      ft = { "typescript", "javascript", "lua", "c", "cpp", "go", "python", "java", "php" },
+      event = "BufReadPost",
+      config = function()
+        require("refactoring").setup {}
+      end,
+      enabled = lvim.builtin.refactoring.active,
+    },
     -- {
     --   "b0o/incline.nvim",
     --   config = function()
@@ -775,18 +770,18 @@ M.config = function()
     --   end,
     --   enabled = lvim.builtin.noice.active,
     -- },
-    -- {
-    --   "m-demare/hlargs.nvim",
-    --   lazy = true,
-    --   event = "VeryLazy",
-    --   config = function()
-    --     require("hlargs").setup {
-    --       excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
-    --     }
-    --   end,
-    --   dependencies = { "nvim-treesitter/nvim-treesitter" },
-    --   enabled = lvim.builtin.colored_args,
-    -- },
+    {
+      "m-demare/hlargs.nvim",
+      lazy = true,
+      event = "VeryLazy",
+      config = function()
+        require("hlargs").setup {
+          excluded_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
+        }
+      end,
+      dependencies = { "nvim-treesitter/nvim-treesitter" },
+      enabled = lvim.builtin.colored_args,
+    },
     -- {
     --   "cshuaimin/ssr.nvim",
     --   lazy = true,
@@ -826,15 +821,15 @@ M.config = function()
     --   event = "VeryLazy",
     --   enabled = lvim.builtin.mind.active,
     -- },
-    {
-      "ibhagwan/fzf-lua",
-      config = function()
-        -- calling `setup` is optional for customization
-        local ff = require "user.fzf"
-        require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
-      end,
-      enabled = not lvim.builtin.telescope.active,
-    },
+    -- {
+    --   "ibhagwan/fzf-lua",
+    --   config = function()
+    --     -- calling `setup` is optional for customization
+    --     local ff = require "user.fzf"
+    --     require("fzf-lua").setup(vim.tbl_deep_extend("keep", vim.deepcopy(ff.active_profile), ff.default_opts))
+    --   end,
+    --   enabled = not lvim.builtin.telescope.active,
+    -- },
     -- {
     --   "folke/flash.nvim",
     --   event = "VeryLazy",
@@ -905,26 +900,27 @@ M.config = function()
     --   event = "BufReadPost",
     --   enabled = lvim.builtin.tag_provider == "outline",
     -- },
-    -- {
-    --   "pmizio/typescript-tools.nvim",
-    --   ft = {
-    --     "javascript",
-    --     "javascriptreact",
-    --     "javascript.jsx",
-    --     "typescript",
-    --     "typescriptreact",
-    --     "typescript.tsx",
-    --   },
-    --   lazy = true,
-    --   config = function()
-    --     require("user.typtools").config()
-    --   end,
-    --   enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
-    -- },
+    {
+      "pmizio/typescript-tools.nvim",
+      ft = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+      lazy = true,
+      config = function()
+        require("user.typtools").config()
+      end,
+      enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
+    },
     -- {
     --   "nvim-neotest/nvim-nio",
     --   enabled = lvim.builtin.dap.active,
     -- },
+
 
     {
       "Pocco81/auto-save.nvim",
@@ -983,24 +979,29 @@ M.config = function()
     -- "AckslD/swenv.nvim",
     -- "roobert/tailwindcss-colorizer-cmp.nvim",
     -- "nvim-treesitter/playground",
-    -- "mfussenegger/nvim-jdtls",
+    "mfussenegger/nvim-jdtls",
     "opalmay/vim-smoothie",
     -- "j-hui/fidget.nvim",
-    -- {
-    --   "windwp/nvim-ts-autotag",
-    --   config = function()
-    --     require("nvim-ts-autotag").setup({
-    --       filetypes = { "tsx", "typescriptreact" },
-    --     })
-    --   end,
-    -- },
-    -- {
-    --   "kylechui/nvim-surround",
-    --   event = "BufRead",
-    -- },
-    -- "MattesGroeger/vim-bookmarks",
+
+    {
+      "windwp/nvim-ts-autotag",
+      config = function()
+        require("nvim-ts-autotag").setup({
+          filetypes = { "tsx", "typescriptreact" },
+        })
+      end,
+    },
+    {
+      "kylechui/nvim-surround",
+      event = "BufRead",
+    },
+    "MattesGroeger/vim-bookmarks",
     -- "NvChad/nvim-colorizer.lua",
     -- "moll/vim-bbye",
+    {
+      "folke/todo-comments.nvim",
+      event = "BufRead",
+    },
     -- "f-person/git-blame.nvim",
     -- "ruifm/gitlinker.nvim",
     -- "mattn/vim-gist",
@@ -1011,10 +1012,10 @@ M.config = function()
     -- "nvim-neotest/neotest-python",
     -- "rouge8/neotest-rust",
     -- "haydenmeade/neotest-jest",
-    -- {
-    --   "hrsh7th/cmp-emoji",
-    --   event = "BufRead",
-    -- },
+    {
+      "hrsh7th/cmp-emoji",
+      event = "BufRead",
+    },
     -- "ThePrimeagen/vim-be-good",
     -- "folke/noice.nvim",
     -- "rcarriga/nvim-notify",

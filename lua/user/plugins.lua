@@ -6,62 +6,62 @@ M.config = function()
     neoclip_req = {}
   end
   lvim.plugins = {
-      "lunarvim/darkplus.nvim",
+    -- "lunarvim/darkplus.nvim",
     -- "rebelot/kanagawa.nvim",
-    {
-      "ellisonleao/gruvbox.nvim",
-      config = function()
-        require("gruvbox").setup({
-          terminal_colors = true, -- add neovim terminal colors
-          undercurl = true,
-          underline = true,
-          bold = true,
-          italic = {
-            strings = true,
-            emphasis = true,
-            comments = true,
-            operators = false,
-            folds = true,
-          },
-          strikethrough = true,
-          invert_selection = false,
-          invert_signs = false,
-          invert_tabline = false,
-          invert_intend_guides = false,
-          inverse = true, -- invert background for search, diffs, statuslines and errors
-          contrast = "", -- can be "hard", "soft" or empty string
-          palette_overrides = {},
-          overrides = {
-            CursorLine = {
-              blend = vim.o.pumblend,
-              bg = "NONE",
-            },
-            CursorLineNr = {
-              blend = vim.o.pumblend,
-              bg = "NONE",
-            },
-            lualine_c_replace = {
-              -- guibg = "NONE",
-            },
-            lualine_c_visual = {
-              -- guibg = "NONE",
-            },
-            lualine_c_normal = {
-              -- guibg = "NONE",
-            },
-            lualine_c_insert = {
-              -- guibg = "NONE",
-            },
-            Pmenu = {
-              blend = 0,
-              bg = "NONE"
-            }
-          },
-          dim_inactive = false,
-          transparent_mode = true,
-        })
-      end
-    },
+    -- {
+    --   "ellisonleao/gruvbox.nvim",
+    --   config = function()
+    --     require("gruvbox").setup({
+    --       terminal_colors = true, -- add neovim terminal colors
+    --       undercurl = true,
+    --       underline = true,
+    --       bold = true,
+    --       italic = {
+    --         strings = true,
+    --         emphasis = true,
+    --         comments = true,
+    --         operators = false,
+    --         folds = true,
+    --       },
+    --       strikethrough = true,
+    --       invert_selection = false,
+    --       invert_signs = false,
+    --       invert_tabline = false,
+    --       invert_intend_guides = false,
+    --       inverse = true, -- invert background for search, diffs, statuslines and errors
+    --       contrast = "", -- can be "hard", "soft" or empty string
+    --       palette_overrides = {},
+    --       overrides = {
+    --         CursorLine = {
+    --           blend = vim.o.pumblend,
+    --           bg = "NONE",
+    --         },
+    --         CursorLineNr = {
+    --           blend = vim.o.pumblend,
+    --           bg = "NONE",
+    --         },
+    --         lualine_c_replace = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_visual = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_normal = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_insert = {
+    --           -- guibg = "NONE",
+    --         },
+    --         Pmenu = {
+    --           blend = 0,
+    --           bg = "NONE"
+    --         }
+    --       },
+    --       dim_inactive = false,
+    --       transparent_mode = true,
+    --     })
+    --   end
+    -- },
     {
       "vinnymeller/swagger-preview.nvim",
       build = "npm install -g swagger-ui-watcher",
@@ -207,16 +207,16 @@ M.config = function()
     --     require("user.bqf").config()
     --   end,
     -- },
-    -- {
-    --   "andymass/vim-matchup",
-    --   event = "BufReadPost",
-    --   config = function()
-    --     vim.g.matchup_enabled = 1
-    --     vim.g.matchup_surround_enabled = 1
-    --     vim.g.matchup_matchparen_deferred = 1
-    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    --   end,
-    -- },
+    {
+      "andymass/vim-matchup",
+      event = "BufReadPost",
+      config = function()
+        vim.g.matchup_enabled = 1
+        vim.g.matchup_surround_enabled = 1
+        vim.g.matchup_matchparen_deferred = 1
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    },
     {
       "iamcco/markdown-preview.nvim",
       build = "cd app && npm install",

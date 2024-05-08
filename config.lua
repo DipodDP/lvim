@@ -1,19 +1,3 @@
--- Common options
---****************************************************************************--
---*                               [init.lua]                                 *-- *                           [NVIM LAUNCH POINT]                            *--
---*                     [Author/Credit - Tanweer Ashif]                      *--
---* [LinkedIn/tanweerashif | GitHub/HacksPloiter | https://tanweerashif.com] *--
---****************************************************************************--
-
-
---================================-> START <-=================================--
---                               File Imports                                 --
---------------------------------------------------------------------------------
--- require('keyconfig')        -- NVIM keymaps congis
--- require('optconfig')        -- NVIM options configs
--- require('themeplugtable')   -- NVIM Lazy configs
--- require('themeplugconfig')  -- Installed theme and plugin configs
-
 -- Options
 -- =========================================
 local options = {
@@ -113,13 +97,15 @@ lvim.builtin.cmp.formatting = {
 -- Neovim
 -- =========================================
 lvim.leader = " "
--- lvim.colorscheme = "onedark"
-lvim.colorscheme = "darkplus"
+-- lvim.colorscheme = "tokyonight" -- set to a custom theme
+-- lvim.colorscheme = "onedark" -- set to a custom theme
+-- lvim.colorscheme = "darkplus" -- set to a custom theme
 -- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
 -- lvim.colorscheme = "primer_dark"
--- lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = true -- enable/disable transparency
 -- lvim.debug = true
+lvim.colorscheme = "kanagawa"
+-- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 require("user.neovim").config()
@@ -127,13 +113,14 @@ lvim.lsp.code_lens_refresh = true
 -- lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
+-- =========================================
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
 -- lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
 lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
--- lvim.builtin.presence = { active = false } -- change to true if you want discord presence
--- lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
+lvim.builtin.presence = { active = false } -- change to true if you want discord presence
+lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
 -- lvim.builtin.dap.active = false -- change this to enable/disable debugging
 lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
@@ -191,25 +178,22 @@ lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable 
 lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
 
 -- Custom User Config
--- Additional Keybindings
 -- =========================================
 -- local user = vim.env.USER
 -- if user and user == "abz" then
 --   lvim.reload_config_on_save = true
 --   require("user.custom_user").config()
 -- end
-reload "keymaps"
 
 -- Additional Actions Based on Custom User Config
--- Plugins Configuration
 -- =========================================
--- if lvim.builtin.winbar_provider == "navic" then
---   vim.opt.showtabline = 1
---   lvim.keys.normal_mode["<tab>"] =
---     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
---   lvim.builtin.bufferline.active = false
---   lvim.builtin.breadcrumbs.active = true
--- end
+if lvim.builtin.winbar_provider == "navic" then
+  vim.opt.showtabline = 1
+  lvim.keys.normal_mode["<tab>"] =
+    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
+  lvim.builtin.bufferline.active = false
+  lvim.builtin.breadcrumbs.active = true
+end
 if lvim.builtin.breadcrumbs.active and lvim.builtin.noice.active then
   table.insert(lvim.builtin.breadcrumbs.winbar_filetype_exclude, "vim")
 end
@@ -224,20 +208,21 @@ if lvim.builtin.cursorline.active then
   lvim.lsp.document_highlight = false
 end
 
+-- Override Lunarvim defaults
+-- =========================================
+require("user.builtin").config()
+
 -- StatusLine
--- Additional Plugins
 -- =========================================
 if lvim.builtin.fancy_statusline.active then
   require("user.lualine").config()
 end
--- reload "plugins"
 
--- -- Debugging
--- -- =========================================
--- if lvim.builtin.dap.active then
---   require("user.dap").config()
--- end
--- --================================-> END <-===================================--
+-- Debugging
+-- =========================================
+if lvim.builtin.dap.active then
+  require("user.dap").config()
+end
 
 -- Language Specific
 -- =========================================
@@ -265,7 +250,7 @@ require("user.plugins").config()
 reload "user.dap"
 -- reload "user.nvimtree"
 reload "user.lualine"
-reload "user.modicator"
+-- reload "user.modicator"
 -- reload "user.lsp"
 reload "user.smoothie"
 -- reload "user.harpoon"
@@ -318,8 +303,8 @@ reload "autocommands"
 -- =========================================
 reload "options"
 
--- -- Additional Keybindings
--- -- =========================================
+-- Additional Keybindings
+-- =========================================
 -- require("user.keybindings").config()
 reload "keymaps"
 

@@ -7,6 +7,7 @@ M.setup = function()
   end
   ibl.setup {
     indent = {
+      -- char = "▏",
       -- char = { "", "┊", "┆", "¦", "|", "¦", "┆", "┊", "" },
     },
     exclude = {
@@ -96,7 +97,9 @@ M.config = function()
       "lspinfo",
       "", -- for all buffers without a file type
     },
-    char = "",
+    char = "",
+    -- char = "┊",
+    -- char = "",
     -- char = "▏",
     -- char_list = { "", "┊", "┆", "¦", "|", "¦", "┆", "┊", "" },
     char_highlight_list = {
@@ -107,11 +110,11 @@ M.config = function()
       "IndentBlanklineIndent1",
       "IndentBlanklineIndent1",
     },
-    show_trailing_blankline_indent = false,
-    show_first_indent_level = false,
+    show_trailing_blankline_indent = true,
+    show_first_indent_level = true,
     space_char_blankline = " ",
     use_treesitter = true,
-    show_foldtext = false,
+    show_foldtext = true,
     show_current_context = true,
     show_current_context_start = false,
     context_patterns = {

@@ -30,7 +30,7 @@ M.default_diagnostic_config = {
       { name = "DiagnosticSignHint", text = kind.icons.hint },
     },
   },
-  virtual_text = false,
+  virtual_text = true,
   underline = true,
   severity_sort = true,
   float = {
@@ -269,15 +269,14 @@ M.config = function()
   lvim.builtin.gitsigns.opts._extmark_signs = true
   lvim.builtin.gitsigns.opts.current_line_blame_formatter = " <author>, <author_time> · <summary>"
   lvim.builtin.gitsigns.opts.attach_to_untracked = false
-  lvim.builtin.gitsigns.opts.yadm = nil
 
   -- IndentBlankline
   -- =========================================
-  if lvim.builtin.indentlines.mine then
-    require("user.indent_blankline").setup()
-  elseif lvim.builtin.indentlines.active then
-    require("user.indent_blankline").config()
-  end
+  -- if lvim.builtin.indentlines.mine then
+  --   require("user.indent_blankline").setup()
+  -- elseif lvim.builtin.indentlines.active then
+  --   require("user.indent_blankline").config()
+  -- end
 
   -- LSP
   -- =========================================

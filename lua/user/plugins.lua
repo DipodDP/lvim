@@ -912,7 +912,7 @@ M.config = function()
       },
       lazy = true,
       config = function()
-        require("user.typtools").config()
+        require("user.tss").config()
       end,
       enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
     },
@@ -977,7 +977,22 @@ M.config = function()
     -- { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     -- "stevearc/dressing.nvim",
     -- "AckslD/swenv.nvim",
-    -- "roobert/tailwindcss-colorizer-cmp.nvim",
+    {
+      "roobert/tailwindcss-colorizer-cmp.nvim",
+      ft = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+      lazy = true,
+      config = function()
+        -- require("user.tailwind").config()
+      end,
+
+    },
     -- "nvim-treesitter/playground",
     "mfussenegger/nvim-jdtls",
     "opalmay/vim-smoothie",

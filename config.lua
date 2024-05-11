@@ -14,7 +14,7 @@ lvim.lsp.code_lens_refresh = true
 -- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 -- lvim.transparent_window = false -- enable/disable transparency
 -- require("user.neovim").config()
--- lvim.lsp.installer.setup.automatic_installation = false
+lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
@@ -67,7 +67,7 @@ lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.noice = { active = false } -- enables noice.nvim and inc-rename.nvim
 lvim.builtin.go_programming = { active = false } -- gopher.nvim + nvim-dap-go
 lvim.builtin.python_programming = { active = true } -- swenv.nvim + nvim-dap-python + requirements.txt.vim
-lvim.builtin.web_programming = { active = true, extra = "typescript.nvim" } -- (typescript.nvim or typescript-tools.nvim) + package-info.nvim
+lvim.builtin.web_programming = { active = true, extra = "typescript-tools.nvim" } -- (typescript.nvim or typescript-tools.nvim) + package-info.nvim
 lvim.builtin.rust_programming = { active = false } -- rustaceanvim + crates.nvim
 lvim.builtin.cpp_programming = { active = false } -- clangd_extensions.nvim + make-tools.nvim
 lvim.builtin.cmp.cmdline.enable = false
@@ -129,15 +129,15 @@ end
 -- Language Specific
 -- =========================================
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
-  "clangd",
-  "dockerls",
-  "gopls",
-  "golangci_lint_ls",
+  -- "clangd",
+  -- "dockerls",
+  -- "gopls",
+  -- "golangci_lint_ls",
   "jdtls",
   "pyright",
   "rust_analyzer",
-  "taplo",
-  "texlab",
+  -- "taplo",
+  -- "texlab",
   "tsserver",
   "yamlls",
 })
@@ -213,6 +213,10 @@ require("user.builtin").config()
 -- =========================================
 require("user.autocommands").config()
 reload "autocommands"
+
+-- Options
+-- =========================================
+reload "options"
 
 -- Additional Keybindings
 -- =========================================

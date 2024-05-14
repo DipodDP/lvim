@@ -30,7 +30,7 @@ M.default_diagnostic_config = {
       { name = "DiagnosticSignHint", text = kind.icons.hint },
     },
   },
-  virtual_text = false,
+  virtual_text = true,
   underline = true,
   severity_sort = true,
   float = {
@@ -63,23 +63,23 @@ M.default_diagnostic_config = {
 }
 
 M.config = function()
+  vim.diagnostic.config(M.default_diagnostic_config)
   if lvim.builtin.lsp_lines then
     M.default_diagnostic_config.virtual_text = false
   end
-  vim.diagnostic.config(M.default_diagnostic_config)
 
   -- Autopairs
   -- =========================================
-  -- lvim.builtin.autopairs.on_config_done = function(autopairs)
-  --   local Rule = require "nvim-autopairs.rule"
-  --   autopairs.add_rule(Rule("$$", "$$", "tex"))
-  -- end
+  lvim.builtin.autopairs.on_config_done = function(autopairs)
+    local Rule = require "nvim-autopairs.rule"
+    autopairs.add_rule(Rule("$$", "$$", "tex"))
+  end
 
   -- Bufferline
   -- =========================================
-  if lvim.builtin.bufferline.active then
-    require("user.bufferline").config()
-  end
+  -- if lvim.builtin.bufferline.active then
+  --   require("user.bufferline").config()
+  -- end
 
   -- CMP
   -- =========================================
@@ -273,11 +273,11 @@ M.config = function()
 
   -- IndentBlankline
   -- =========================================
-  if lvim.builtin.indentlines.mine then
-    require("user.indent_blankline").setup()
-  elseif lvim.builtin.indentlines.active then
-    require("user.indent_blankline").config()
-  end
+  -- if lvim.builtin.indentlines.mine then
+  --   require("user.indent_blankline").setup()
+  -- elseif lvim.builtin.indentlines.active then
+  --   require("user.indent_blankline").config()
+  -- end
 
   -- LSP
   -- =========================================
@@ -356,8 +356,8 @@ M.config = function()
 
   -- Theme
   -- =========================================
-  require("user.theme").tokyonight()
-  lvim.builtin.theme.name = "tokyonight"
+  -- require("user.theme").tokyonight()
+  -- lvim.builtin.theme.name = "tokyonight"
 
   -- Toggleterm
   -- =========================================
@@ -373,16 +373,16 @@ M.config = function()
   -- Treesitter
   -- =========================================
   lvim.builtin.treesitter.context_commentstring.enable = true
-  local languages = vim.tbl_flatten {
-    { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
-    { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
-    { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
-    { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
-    { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
-    { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
-    { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
-  }
-  lvim.builtin.treesitter.ensure_installed = languages
+  -- local languages = vim.tbl_flatten {
+  --   { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
+  --   { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
+  --   { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
+  --   { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
+  --   { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
+  --   { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
+  --   { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
+  -- }
+  -- lvim.builtin.treesitter.ensure_installed = languages
   lvim.builtin.treesitter.highlight.disable = { "org" }
   lvim.builtin.treesitter.highlight.aditional_vim_regex_highlighting = { "org" }
   lvim.builtin.treesitter.ignore_install = { "haskell", "norg" }

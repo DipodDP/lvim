@@ -121,9 +121,9 @@ M.config = function()
               require("cmp_tabnine.config"):setup { ignored_file_types = { "*" }, run_on_every_keystroke = false }
               lvim.builtin.cmp.sources = {
                 { name = "nvim_lsp" },
-                { name = "buffer", max_item_count = 5, keyword_length = 5 },
-                { name = "path", max_item_count = 5 },
-                { name = "luasnip", max_item_count = 3 },
+                { name = "buffer",       max_item_count = 5, keyword_length = 5 },
+                { name = "path",         max_item_count = 5 },
+                { name = "luasnip",      max_item_count = 3 },
                 { name = "nvim_lua" },
                 { name = "calc" },
                 { name = "emoji" },
@@ -186,8 +186,8 @@ M.make_run = function()
         "n",
         "<leader>r",
         "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='python "
-          .. vim.fn.expand "%"
-          .. ";read',count=2,direction='float'})<CR>"
+        .. vim.fn.expand "%"
+        .. ";read',count=2,direction='float'})<CR>"
       )
       vim.keymap.set(
         "n",

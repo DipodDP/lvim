@@ -147,7 +147,7 @@ local function on_attach(client, bufnr)
 end
 
 M.config = function()
-  local status_ok, ts = pcall(require, "typescript")
+  local status_ok, ts = pcall(require, "typescript-tools")
   if not status_ok then
     return
   end
@@ -177,7 +177,7 @@ M.config = function()
         javascript = {
           inlayHints = {
             includeInlayParameterNameHints = "all",
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
             includeInlayFunctionParameterTypeHints = true,
             includeInlayVariableTypeHints = true,
             includeInlayPropertyDeclarationTypeHints = true,

@@ -102,19 +102,15 @@ M.config = function()
       "rebelot/kanagawa.nvim",
       config = function()
         require("user.theme").kanagawa()
-        -- lvim.colorscheme = "kanagawa"
       end,
       -- cond = function()
       --   local _time = os.date "*t"
       --   return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
       --     and lvim.builtin.time_based_themes
       --   return true
+      -- end,
     },
-    -- end,
-    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
-    { url = "git@github.com:LunarVim/primer.nvim.git" },
     -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
-    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -129,20 +125,20 @@ M.config = function()
       end,
       enabled = lvim.builtin.lastplace.active,
     },
-    {
-      "folke/trouble.nvim",
-      config = function()
-        require("trouble").setup {
-          auto_open = false,
-          auto_close = true,
-          padding = false,
-          height = 10,
-          use_diagnostic_signs = true,
-        }
-      end,
-      event = "VeryLazy",
-      cmd = "Trouble",
-    },
+    -- {
+    --   "folke/trouble.nvim",
+    --   config = function()
+    --     require("trouble").setup {
+    --       auto_open = false,
+    --       auto_close = true,
+    --       padding = false,
+    --       height = 10,
+    --       use_diagnostic_signs = true,
+    --     }
+    --   end,
+    --   event = "VeryLazy",
+    --   cmd = "Trouble",
+    -- },
     -- {
     --   "ggandor/leap.nvim",
     --   config = function()
@@ -912,6 +908,7 @@ M.config = function()
       lazy = true,
       config = function()
         require("user.tss").config()
+        -- require("user.typtools").config()
       end,
       enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
     },
@@ -927,36 +924,36 @@ M.config = function()
         require("auto-save").setup()
       end,
     },
-    {
-      "mawkler/modicator.nvim",
-      event = "ColorScheme",
-      dependencies = { url = "git@github.com:LunarVim/primer.nvim.git" }, -- Add your colorscheme plugin here
-      init = function()
-        -- These are required for Modicator to work
-        vim.o.cursorline = true
-        vim.o.number = true
-        vim.o.termguicolors = true
-      end,
-      opts = {
-        show_warnings = false,
-        highlights = {
-          -- Default options for bold/italic
-          defaults = {
-            bold = true,
-            italic = false,
-          },
-        },
-        integration = {
-          lualine = {
-            enabled = true,
-            -- Letter of lualine section to use (if `nil`, gets detected automatically)
-            mode_section = nil,
-            -- Whether to use lualine's mode highlight's foreground or background
-            highlight = 'bg',
-          },
-        },
-      },
-    },
+    -- {
+    --   "mawkler/modicator.nvim",
+    --   event = "ColorScheme",
+    --   dependencies = { url = "git@github.com:LunarVim/primer.nvim.git" }, -- Add your colorscheme plugin here
+    --   init = function()
+    --     -- These are required for Modicator to work
+    --     vim.o.cursorline = true
+    --     vim.o.number = true
+    --     vim.o.termguicolors = true
+    --   end,
+    --   opts = {
+    --     show_warnings = false,
+    --     highlights = {
+    --       -- Default options for bold/italic
+    --       defaults = {
+    --         bold = true,
+    --         italic = false,
+    --       },
+    --     },
+    --     integration = {
+    --       lualine = {
+    --         enabled = true,
+    --         -- Letter of lualine section to use (if `nil`, gets detected automatically)
+    --         mode_section = nil,
+    --         -- Whether to use lualine's mode highlight's foreground or background
+    --         highlight = 'bg',
+    --       },
+    --     },
+    --   },
+    -- },
 
     "HiPhish/nvim-ts-rainbow2",
     -- {
@@ -994,7 +991,7 @@ M.config = function()
     },
     -- "nvim-treesitter/playground",
     "mfussenegger/nvim-jdtls",
-    "opalmay/vim-smoothie",
+    -- "opalmay/vim-smoothie",
     -- "j-hui/fidget.nvim",
 
     {
@@ -1036,7 +1033,7 @@ M.config = function()
 
     -- "rmagatti/auto-session",
     -- "rmagatti/session-lens",
-    -- "christianchiarulli/nvim-ts-rainbow",
+    "christianchiarulli/nvim-ts-rainbow",
     -- "karb94/neoscroll.nvim",
     {
       "max397574/better-escape.nvim",

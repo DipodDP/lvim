@@ -20,7 +20,7 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- Customization
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
-lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
+-- lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
 -- lvim.builtin.presence = { active = false } -- change to true if you want discord presence
 -- lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
@@ -28,7 +28,7 @@ lvim.builtin.dap.active = true -- change this to enable/disable debugging
 lvim.builtin.fancy_statusline = { active = false } -- enable/disable fancy statusline
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
--- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
+-- -- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
@@ -51,11 +51,11 @@ lvim.builtin.metals = {
   serverVersion = "1.0.1",
   bloopVersion = "1.5.11",
 }
-lvim.builtin.collaborative_editing = { active = false } -- enable/disable collaborative editing
-lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
+-- lvim.builtin.collaborative_editing = { active = false } -- enable/disable collaborative editing
+-- lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
 lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim code_actions
-lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
-lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
+-- lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
+-- lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
 lvim.builtin.file_browser = { active = true } -- enable/disable telescope file browser
 -- lvim.builtin.sniprun = { active = false } -- enable/disable sniprun
 -- lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista or outline)

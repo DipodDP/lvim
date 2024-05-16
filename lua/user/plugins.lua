@@ -1,10 +1,10 @@
 local M = {}
 
 M.config = function()
-  local neoclip_req = { "kkharji/sqlite.lua" }
-  if lvim.builtin.neoclip.enable_persistent_history == false then
-    neoclip_req = {}
-  end
+  -- local neoclip_req = { "kkharji/sqlite.lua" }
+  -- if lvim.builtin.neoclip.enable_persistent_history == false then
+  --   neoclip_req = {}
+  -- end
   lvim.plugins = {
     -- {
     --   "folke/tokyonight.nvim",
@@ -113,22 +113,22 @@ M.config = function()
       event = "BufReadPost",
       enabled = lvim.builtin.tag_provider == "symbols-outline",
     },
-    {
-      "tzachar/cmp-tabnine",
-      build = "./install.sh",
-      dependencies = "hrsh7th/nvim-cmp",
-      config = function()
-        local tabnine = require "cmp_tabnine.config"
-        tabnine:setup {
-          max_lines = 1000,
-          max_num_results = 10,
-          sort = true,
-        }
-      end,
-      lazy = true,
-      event = "InsertEnter",
-      enabled = lvim.builtin.tabnine.active,
-    },
+    -- {
+    --   "tzachar/cmp-tabnine",
+    --   build = "./install.sh",
+    --   dependencies = "hrsh7th/nvim-cmp",
+    --   config = function()
+    --     local tabnine = require "cmp_tabnine.config"
+    --     tabnine:setup {
+    --       max_lines = 1000,
+    --       max_num_results = 10,
+    --       sort = true,
+    --     }
+    --   end,
+    --   lazy = true,
+    --   event = "InsertEnter",
+    --   enabled = lvim.builtin.tabnine.active,
+    -- },
     {
       "folke/twilight.nvim",
       lazy = true,
@@ -206,23 +206,23 @@ M.config = function()
       end,
       enabled = lvim.builtin.persistence.active,
     },
-    {
-      "andweeb/presence.nvim",
-      config = function()
-        require("user.presence").config()
-      end,
-      enabled = lvim.builtin.presence.active,
-    },
+    -- {
+    --   "andweeb/presence.nvim",
+    --   config = function()
+    --     require("user.presence").config()
+    --   end,
+    --   enabled = lvim.builtin.presence.active,
+    -- },
     { "mfussenegger/nvim-jdtls", ft = "java" },
-    {
-      "kristijanhusak/orgmode.nvim",
-      keys = { "go", "gC" },
-      ft = { "org" },
-      config = function()
-        require("user.orgmode").setup()
-      end,
-      enabled = lvim.builtin.orgmode.active,
-    },
+    -- {
+    --   "kristijanhusak/orgmode.nvim",
+    --   keys = { "go", "gC" },
+    --   ft = { "org" },
+    --   config = function()
+    --     require("user.orgmode").setup()
+    --   end,
+    --   enabled = lvim.builtin.orgmode.active,
+    -- },
     {
       "danymat/neogen",
       lazy = true,
@@ -321,16 +321,16 @@ M.config = function()
       keys = "<leader>?",
       enabled = lvim.builtin.cheat.active,
     },
-    {
-      "AckslD/nvim-neoclip.lua",
-      config = function()
-        require("user.neoclip").config()
-      end,
-      lazy = true,
-      keys = "<leader>y",
-      dependencies = neoclip_req,
-      enabled = lvim.builtin.neoclip.active,
-    },
+    -- {
+    --   "AckslD/nvim-neoclip.lua",
+    --   config = function()
+    --     require("user.neoclip").config()
+    --   end,
+    --   lazy = true,
+    --   keys = "<leader>y",
+    --   dependencies = neoclip_req,
+    --   enabled = lvim.builtin.neoclip.active,
+    -- },
     {
       "kristijanhusak/vim-dadbod-completion",
       enabled = lvim.builtin.sql_integration.active,
@@ -420,22 +420,22 @@ M.config = function()
       end,
       enabled = lvim.builtin.fancy_diff.active,
     },
-    {
-      "chipsenkbeil/distant.nvim",
-      lazy = true,
-      build = { "DistantInstall" },
-      cmd = { "DistantLaunch", "DistantRun" },
-      config = function()
-        require("distant").setup {
-          ["*"] = vim.tbl_extend(
-            "force",
-            require("distant.settings").chip_default(),
-            { mode = "ssh" } -- use SSH mode by default
-          ),
-        }
-      end,
-      enabled = lvim.builtin.remote_dev.active,
-    },
+    -- {
+    --   "chipsenkbeil/distant.nvim",
+    --   lazy = true,
+    --   build = { "DistantInstall" },
+    --   cmd = { "DistantLaunch", "DistantRun" },
+    --   config = function()
+    --     require("distant").setup {
+    --       ["*"] = vim.tbl_extend(
+    --         "force",
+    --         require("distant.settings").chip_default(),
+    --         { mode = "ssh" } -- use SSH mode by default
+    --       ),
+    --     }
+    --   end,
+    --   enabled = lvim.builtin.remote_dev.active,
+    -- },
     {
       "abzcoding/nvim-mini-file-icons",
       config = function()
@@ -456,14 +456,14 @@ M.config = function()
         require("user.tabout").config()
       end,
     },
-    {
-      "kevinhwang91/nvim-hlslens",
-      config = function()
-        require("user.hlslens").config()
-      end,
-      event = "BufReadPost",
-      enabled = lvim.builtin.hlslens.active,
-    },
+    -- {
+    --   "kevinhwang91/nvim-hlslens",
+    --   config = function()
+    --     require("user.hlslens").config()
+    --   end,
+    --   event = "BufReadPost",
+    --   enabled = lvim.builtin.hlslens.active,
+    -- },
     {
       "chrisbra/csv.vim",
       ft = { "csv" },
@@ -503,11 +503,11 @@ M.config = function()
       dependencies = { "nvim-lua/plenary.nvim" },
       enabled = lvim.builtin.metals.active,
     },
-    {
-      "jbyuki/instant.nvim",
-      event = "BufRead",
-      enabled = lvim.builtin.collaborative_editing.active,
-    },
+    -- {
+    --   "jbyuki/instant.nvim",
+    --   event = "BufRead",
+    --   enabled = lvim.builtin.collaborative_editing.active,
+    -- },
     {
       "nvim-telescope/telescope-file-browser.nvim",
       enabled = lvim.builtin.file_browser.active,
@@ -525,14 +525,14 @@ M.config = function()
       build = "bash ./install.sh",
       enabled = lvim.builtin.sniprun.active,
     },
-    {
-      "liuchengxu/vista.vim",
-      init = function()
-        require("user.vista").config()
-      end,
-      event = "BufReadPost",
-      enabled = lvim.builtin.tag_provider == "vista",
-    },
+    -- {
+    --   "liuchengxu/vista.vim",
+    --   init = function()
+    --     require("user.vista").config()
+    --   end,
+    --   event = "BufReadPost",
+    --   enabled = lvim.builtin.tag_provider == "vista",
+    -- },
     {
       "p00f/clangd_extensions.nvim",
       ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
@@ -824,12 +824,12 @@ M.config = function()
       event = "VeryLazy",
       enabled = lvim.builtin.sell_your_soul_to_devil.openai,
     },
-    {
-      "lukas-reineke/indent-blankline.nvim",
-      name = "new-indent",
-      main = "ibl",
-      enabled = lvim.builtin.indentlines.mine,
-    },
+    -- {
+    --   "lukas-reineke/indent-blankline.nvim",
+    --   name = "new-indent",
+    --   main = "ibl",
+    --   enabled = lvim.builtin.indentlines.mine,
+    -- },
     {
       "Wansmer/symbol-usage.nvim",
       event = "LspAttach",

@@ -14,8 +14,8 @@ lvim.log.level = "warn"
 lvim.lsp.code_lens_refresh = true
 -- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 -- lvim.transparent_window = false -- enable/disable transparency
-require("user.neovim").config()
 -- lvim.lsp.installer.setup.automatic_installation = false
+-- require("user.neovim").config()
 
 -- Customization
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
@@ -28,11 +28,11 @@ lvim.builtin.dap.active = true -- change this to enable/disable debugging
 lvim.builtin.fancy_statusline = { active = false } -- enable/disable fancy statusline
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
--- -- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
+-- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
-lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
+-- lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 -- lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
 -- lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
 -- lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
@@ -42,7 +42,7 @@ lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
 -- lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
 -- lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
 -- lvim.builtin.csv_support = false -- enable/disable csv support
-lvim.builtin.sidebar = { active = false } -- enable/disable sidebar
+lvim.builtin.sidebar = { active = true } -- enable/disable sidebar
 -- lvim.builtin.task_runner = "" -- change this to use different task runners ( "async_tasks" or "overseer" or "")
 -- lvim.builtin.winbar_provider = "filename" -- can be "filename" or "treesitter" or "navic" or ""
 lvim.builtin.metals = {
@@ -139,9 +139,15 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 --   "rust_analyzer",
 --   "taplo",
 --   "texlab",
+  "markdown",
   "tsserver",
 --   "yamlls",
 })
+
+-- require("user.null_ls").config()
+
+-- require 'lspconfig'.csharp_ls.setup {}
+
 -- require("user.null_ls").config()
 
 -- Additional Plugins

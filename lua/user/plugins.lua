@@ -6,6 +6,65 @@ M.config = function()
   --   neoclip_req = {}
   -- end
   lvim.plugins = {
+    -- "lunarvim/darkplus.nvim",
+    -- {
+    --   "ellisonleao/gruvbox.nvim",
+    --   config = function()
+    --     require("gruvbox").setup({
+    --       terminal_colors = true, -- add neovim terminal colors
+    --       undercurl = true,
+    --       underline = true,
+    --       bold = true,
+    --       italic = {
+    --         strings = true,
+    --         emphasis = true,
+    --         comments = true,
+    --         operators = false,
+    --         folds = true,
+    --       },
+    --       strikethrough = true,
+    --       invert_selection = false,
+    --       invert_signs = false,
+    --       invert_tabline = false,
+    --       invert_intend_guides = false,
+    --       inverse = true, -- invert background for search, diffs, statuslines and errors
+    --       contrast = "", -- can be "hard", "soft" or empty string
+    --       palette_overrides = {},
+    --       overrides = {
+    --         CursorLine = {
+    --           blend = vim.o.pumblend,
+    --           bg = "NONE",
+    --         },
+    --         CursorLineNr = {
+    --           blend = vim.o.pumblend,
+    --           bg = "NONE",
+    --         },
+    --         lualine_c_replace = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_visual = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_normal = {
+    --           -- guibg = "NONE",
+    --         },
+    --         lualine_c_insert = {
+    --           -- guibg = "NONE",
+    --         },
+    --         Pmenu = {
+    --           blend = 0,
+    --           bg = "NONE"
+    --         }
+    --       },
+    --       dim_inactive = false,
+    --       transparent_mode = true,
+    --     })
+    --   end
+    -- },
+    {
+      "vinnymeller/swagger-preview.nvim",
+      build = "npm install -g swagger-ui-watcher",
+    },
     -- {
     --   "folke/tokyonight.nvim",
     --   config = function()
@@ -45,13 +104,13 @@ M.config = function()
       "rebelot/kanagawa.nvim",
       config = function()
         require("user.theme").kanagawa()
-        lvim.colorscheme = "kanagawa"
+        -- lvim.colorscheme = "kanagawa"
       end,
-      cond = function()
-        local _time = os.date "*t"
-        return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
-          and lvim.builtin.time_based_themes
-      end,
+      -- cond = function()
+      --   local _time = os.date "*t"
+      --   return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
+      --     and lvim.builtin.time_based_themes
+      -- end,
     },
     {
       "ray-x/lsp_signature.nvim",
@@ -143,16 +202,16 @@ M.config = function()
         require("user.bqf").config()
       end,
     },
-    {
-      "andymass/vim-matchup",
-      event = "BufReadPost",
-      config = function()
-        vim.g.matchup_enabled = 1
-        vim.g.matchup_surround_enabled = 1
-        vim.g.matchup_matchparen_deferred = 1
-        vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      end,
-    },
+    -- {
+    --   "andymass/vim-matchup",
+    --   event = "BufReadPost",
+    --   config = function()
+    --     vim.g.matchup_enabled = 1
+    --     vim.g.matchup_surround_enabled = 1
+    --     vim.g.matchup_matchparen_deferred = 1
+    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    --   end,
+    -- },
     {
       "iamcco/markdown-preview.nvim",
       build = "cd app && npm install",
@@ -475,14 +534,14 @@ M.config = function()
       event = "BufReadPre",
       dependencies = "nvim-treesitter",
     },
-    {
-      "sidebar-nvim/sidebar.nvim",
-      config = function()
-        require("user.sidebar").config()
-      end,
-      -- event = "BufRead",
-      enabled = lvim.builtin.sidebar.active,
-    },
+    -- {
+    --   "sidebar-nvim/sidebar.nvim",
+    --   config = function()
+    --     require("user.sidebar").config()
+    --   end,
+    --   -- event = "BufRead",
+    --   enabled = lvim.builtin.sidebar.active,
+    -- },
     {
       "skywind3000/asynctasks.vim",
       dependencies = {
@@ -865,6 +924,51 @@ M.config = function()
     {
       "nvim-neotest/nvim-nio",
       enabled = lvim.builtin.dap.active,
+    },
+    {
+      "kylechui/nvim-surround",
+      event = "BufRead",
+    },
+    "MattesGroeger/vim-bookmarks",
+    -- "NvChad/nvim-colorizer.lua",
+    -- "moll/vim-bbye",
+    {
+      "folke/todo-comments.nvim",
+      event = "BufRead",
+    },
+    -- "f-person/git-blame.nvim",
+    -- "ruifm/gitlinker.nvim",
+    -- "mattn/vim-gist",
+    -- "mattn/webapi-vim",
+    -- "mfussenegger/nvim-dap-python",
+    -- "andy-bell101/neotest-java",
+    -- "nvim-neotest/neotest-go",
+    -- "nvim-neotest/neotest-python",
+    -- "rouge8/neotest-rust",
+    -- "haydenmeade/neotest-jest",
+    {
+      "hrsh7th/cmp-emoji",
+      event = "BufRead",
+    },
+    -- "ThePrimeagen/vim-be-good",
+    -- "folke/noice.nvim",
+    -- "rcarriga/nvim-notify",
+
+    -- "rmagatti/auto-session",
+    -- "rmagatti/session-lens",
+    -- "christianchiarulli/nvim-ts-rainbow",
+    -- "karb94/neoscroll.nvim",
+    {
+      "max397574/better-escape.nvim",
+      event = "BufRead",
+    },
+    {
+      "ojroques/nvim-osc52",
+      event = "BufRead",
+    },
+    {
+      "gbprod/yanky.nvim",
+      event = "BufRead",
     },
     {
       "mireq/large_file",

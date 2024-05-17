@@ -63,10 +63,10 @@ M.default_diagnostic_config = {
 }
 
 M.config = function()
-  vim.diagnostic.config(M.default_diagnostic_config)
   if lvim.builtin.lsp_lines then
     M.default_diagnostic_config.virtual_text = false
   end
+  vim.diagnostic.config(M.default_diagnostic_config)
 
   -- Autopairs
   -- =========================================
@@ -294,9 +294,9 @@ M.config = function()
     "CodeLens Action",
   }
   lvim.lsp.buffer_mappings.normal_mode["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" }
-  lvim.lsp.buffer_mappings.normal_mode["gr"] = { "<cmd>Trouble lsp_references<CR>", "Goto References" }
-  lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Trouble lsp_definitions<CR>", "Goto Definition" }
-  lvim.lsp.buffer_mappings.normal_mode["gI"] = { "<cmd>Trouble lsp_implementations<CR>", "Goto Implementation" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gr"] = { "<cmd>Trouble lsp_references<CR>", "Goto References" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gd"] = { "<cmd>Trouble lsp_definitions<CR>", "Goto Definition" }
+  -- lvim.lsp.buffer_mappings.normal_mode["gI"] = { "<cmd>Trouble lsp_implementations<CR>", "Goto Implementation" }
   lvim.lsp.buffer_mappings.normal_mode["gp"] = {
     function()
       require("user.peek").Peek "definition"
@@ -356,8 +356,8 @@ M.config = function()
 
   -- Theme
   -- =========================================
-  -- require("user.theme").tokyonight()
-  -- lvim.builtin.theme.name = "tokyonight"
+  require("user.theme").tokyonight()
+  lvim.builtin.theme.name = "tokyonight"
 
   -- Toggleterm
   -- =========================================
@@ -922,29 +922,29 @@ M.enhanced_float_handler = function(handler)
     vim.wo[win].concealcursor = "n"
 
     -- Extra highlights.
-    for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
-      for pattern, hl_group in pairs {
-        ["|%S-|"] = "@text.reference",
-        ["@%S+"] = "@parameter",
-        ["^%s*(Parameters:)"] = "@text.title",
-        ["^%s*(Return:)"] = "@text.title",
-        ["^%s*(See also:)"] = "@text.title",
-        ["{%S-}"] = "@parameter",
-      } do
-        local from = 1 ---@type integer?
-        while from do
-          local to
-          from, to = line:find(pattern, from)
-          if from then
-            vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
-              end_col = to,
-              hl_group = hl_group,
-            })
-          end
-          from = to and to + 1 or nil
-        end
-      end
-    end
+    -- for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
+    --   for pattern, hl_group in pairs {
+    --     ["|%S-|"] = "@text.reference",
+    --     ["@%S+"] = "@parameter",
+    --     ["^%s*(Parameters:)"] = "@text.title",
+    --     ["^%s*(Return:)"] = "@text.title",
+    --     ["^%s*(See also:)"] = "@text.title",
+    --     ["{%S-}"] = "@parameter",
+    --   } do
+    --     local from = 1 ---@type integer?
+    --     while from do
+    --       local to
+    --       from, to = line:find(pattern, from)
+    --       if from then
+    --         vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
+    --           end_col = to,
+    --           hl_group = hl_group,
+    --         })
+    --       end
+    --       from = to and to + 1 or nil
+    --     end
+    --   end
+    -- end
 
     -- Add keymaps for opening links.
     if not vim.b[buf].markdown_keys then

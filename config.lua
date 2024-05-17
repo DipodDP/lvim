@@ -5,7 +5,7 @@ lvim.leader = " "
 -- lvim.colorscheme = "darkplus"
 -- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
 -- lvim.colorscheme = "primer_dark"
--- lvim.colorscheme = "kanagawa"
+lvim.colorscheme = "kanagawa"
 -- lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = true -- enable/disable transparency
 lvim.debug = true
@@ -42,7 +42,7 @@ lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
 -- lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
 -- lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
 -- lvim.builtin.csv_support = false -- enable/disable csv support
-lvim.builtin.sidebar = { active = true } -- enable/disable sidebar
+lvim.builtin.sidebar = { active = false } -- enable/disable sidebar
 -- lvim.builtin.task_runner = "" -- change this to use different task runners ( "async_tasks" or "overseer" or "")
 -- lvim.builtin.winbar_provider = "filename" -- can be "filename" or "treesitter" or "navic" or ""
 lvim.builtin.metals = {
@@ -148,6 +148,13 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 -- =========================================
 require("user.plugins").config()
 
+require("swagger-preview").setup({
+  -- The port to run the preview server on
+  port = 8000,
+  -- The host to run the preview server on
+  host = "localhost",
+})
+
 -- Autocommands
 -- =========================================
 require("user.autocommands").config()
@@ -156,3 +163,16 @@ require("user.autocommands").config()
 -- =========================================
 require("user.keybindings").config()
 
+-- require("transparent").setup({ -- Optional, you don't have to run setup.
+--   groups = {                   -- table: default groups
+--     'lualine_c_replace', 'lualine_c_visual', 'lualine_c_insert', 'lualine_c_normal',
+--     'Float', 'NormalFloat',
+--     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+--     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+--     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+--     'SignColumn', 'CursorLine', 'CursorLineNr', 'StatusLine', 'StatusLineNC',
+--     'EndOfBuffer',
+--   },
+--   extra_groups = {},   -- table: additional groups that should be cleared
+--   exclude_groups = {}, -- table: groups you don't want to clear
+-- })

@@ -111,10 +111,6 @@ M.config = function()
       --     and lvim.builtin.time_based_themes
       -- end,
     },
-    { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
-    { url = "git@github.com:LunarVim/primer.nvim.git" },
-    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
-    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -128,6 +124,14 @@ M.config = function()
         require("remember").setup {}
       end,
       enabled = lvim.builtin.lastplace.active,
+    },
+    {
+      "folke/todo-comments.nvim",
+      dependencies = "nvim-lua/plenary.nvim",
+      config = function()
+        require("user.todo_comments").config()
+      end,
+      event = "BufRead",
     },
     -- {
     --   "folke/trouble.nvim",
@@ -183,30 +187,51 @@ M.config = function()
     --   enabled = lvim.builtin.tabnine.active,
     -- },
     -- {
-    --   "folke/twilight.nvim",
-    --   lazy = true,
-    --   config = function()
-    --     require("user.twilight").config()
-    --   end,
-    -- },
-    -- {
     --   "kevinhwang91/nvim-bqf",
     --   event = "WinEnter",
     --   config = function()
     --     require("user.bqf").config()
     --   end,
     -- },
-    -- {
-    --   "andymass/vim-matchup",
-    --   event = "BufReadPost",
-    --   config = function()
-    --     reload "user.matchup"
-    --     vim.g.matchup_enabled = 1
-    --     vim.g.matchup_surround_enabled = 1
-    --     vim.g.matchup_matchparen_deferred = 1
-    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    --   end,
-    -- },
+    {
+      "folke/twilight.nvim",
+      lazy = true,
+      config = function()
+        require("user.twilight").config()
+      end,
+    },
+    {
+      "andymass/vim-matchup",
+      event = "BufReadPost",
+      config = function()
+        vim.g.matchup_enabled = 1
+        vim.g.matchup_surround_enabled = 1
+        vim.g.matchup_matchparen_deferred = 1
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    },
+    {
+      "iamcco/markdown-preview.nvim",
+      build = "cd app && npm install",
+      ft = "markdown",
+    },
+    {
+      "mrcjkb/rustaceanvim",
+      version = "^3",
+      init = function()
+        require("user.rust_tools").config()
+      end,
+      ft = { "rust", "rs" },
+      enabled = lvim.builtin.rust_programming.active,
+    },
+    {
+      "abzcoding/lsp_lines.nvim",
+      lazy = true,
+      config = function()
+        require("lsp_lines").setup()
+      end,
+      enabled = lvim.builtin.lsp_lines,
+    },
     {
       "folke/zen-mode.nvim",
       lazy = true,
@@ -222,13 +247,13 @@ M.config = function()
     --     require("user.spectre").config()
     --   end,
     -- },
-    -- {
-    --   "norcalli/nvim-colorizer.lua",
-    --   config = function()
-    --     require("user.colorizer").config()
-    --   end,
-    --   event = "BufReadPre",
-    -- },
+    {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("user.colorizer").config()
+      end,
+      event = "BufReadPre",
+    },
     {
       "olimorris/persisted.nvim",
       event = "BufReadPre",
@@ -255,26 +280,26 @@ M.config = function()
     --   end,
     --   enabled = lvim.builtin.orgmode.active,
     -- },
+    {
+      "danymat/neogen",
+      lazy = true,
+      config = function()
+        require("neogen").setup {
+          enabled = true,
+        }
+      end,
+      dependencies = "nvim-treesitter/nvim-treesitter",
+    },
+    {
+      "vim-test/vim-test",
+      cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" },
+      config = function()
+        require("user.vim_test").config()
+      end,
+      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
+    },
     -- {
-    --   "danymat/neogen",
-    --   lazy = true,
-    --   config = function()
-    --     require("neogen").setup {
-    --       enabled = true,
-    --     }
-    --   end,
-    --   dependencies = "nvim-treesitter/nvim-treesitter",
-    -- },
-    -- {
-    --   "vim-test/vim-test",
-    --   cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit" },
-    --   config = function()
-    --     require("user.vim_test").config()
-    --   end,
-    --   enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
-    -- },
-    -- {
-    --   -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
+      -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
     --   "jose-elias-alvarez/typescript.nvim",
     --   ft = {
     --     "javascript",
@@ -290,15 +315,15 @@ M.config = function()
     --   end,
     --   enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
     -- },
-    -- {
-    --   "vuki656/package-info.nvim",
-    --   config = function()
-    --     require("package-info").setup()
-    --   end,
-    --   lazy = true,
-    --   event = { "BufReadPre", "BufNew" },
-    --   enabled = lvim.builtin.web_programming.active,
-    -- },
+    {
+      "vuki656/package-info.nvim",
+      config = function()
+        require("package-info").setup()
+      end,
+      lazy = true,
+      event = { "BufReadPre", "BufNew" },
+      enabled = lvim.builtin.web_programming.active,
+    },
     {
       "lervag/vimtex",
       init = function()
@@ -342,17 +367,17 @@ M.config = function()
     --   end,
     --   ft = "dart",
     -- },
-    -- {
-    --   "RishabhRD/nvim-cheat.sh",
-    --   dependencies = "RishabhRD/popfix",
-    --   config = function()
-    --     vim.g.cheat_default_window_layout = "vertical_split"
-    --   end,
-    --   lazy = true,
-    --   cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
-    --   keys = "<leader>?",
-    --   enabled = lvim.builtin.cheat.active,
-    -- },
+    {
+      "RishabhRD/nvim-cheat.sh",
+      dependencies = "RishabhRD/popfix",
+      config = function()
+        vim.g.cheat_default_window_layout = "vertical_split"
+      end,
+      lazy = true,
+      cmd = { "Cheat", "CheatWithoutComments", "CheatList", "CheatListWithoutComments" },
+      keys = "<leader>?",
+      enabled = lvim.builtin.cheat.active,
+    },
     -- {
     --   "AckslD/nvim-neoclip.lua",
     --   config = function()
@@ -497,44 +522,44 @@ M.config = function()
     --   enabled = lvim.builtin.hlslens.active,
     -- },
     -- {
-    --   "chrisbra/csv.vim",
-    --   ft = { "csv" },
-    --   enabled = lvim.builtin.csv_support,
-    -- },
-    -- {
-    --   "nvim-treesitter/nvim-treesitter-textobjects",
-    --   lazy = true,
-    --   event = "BufReadPre",
-    --   dependencies = "nvim-treesitter",
-    -- },
-    -- {
-    --   "sidebar-nvim/sidebar.nvim",
-    --   config = function()
-    --     require("user.sidebar").config()
-    --   end,
-    --   -- event = "BufRead",
-    --   enabled = lvim.builtin.sidebar.active,
-    -- },
-    -- {
-    --   "skywind3000/asynctasks.vim",
-    --   dependencies = {
-    --     { "skywind3000/asyncrun.vim" },
-    --   },
-    --   init = function()
-    --     vim.cmd [[
-    --       let g:asyncrun_open = 8
-    --       let g:asynctask_template = '~/.config/lvim/task_template.ini'
-    --       let g:asynctasks_extra_config = ['~/.config/lvim/tasks.ini']
-    --     ]]
-    --   end,
-    --   event = { "BufRead", "BufNew" },
-    --   enabled = lvim.builtin.task_runner == "async_tasks",
-    -- },
-    -- {
     --   "scalameta/nvim-metals",
     --   dependencies = { "nvim-lua/plenary.nvim" },
     --   enabled = lvim.builtin.metals.active,
     -- },
+    {
+      "chrisbra/csv.vim",
+      ft = { "csv" },
+      enabled = lvim.builtin.csv_support,
+    },
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      lazy = true,
+      event = "BufReadPre",
+      dependencies = "nvim-treesitter",
+    },
+    {
+      "sidebar-nvim/sidebar.nvim",
+      config = function()
+        require("user.sidebar").config()
+      end,
+      -- event = "BufRead",
+      enabled = lvim.builtin.sidebar.active,
+    },
+    {
+      "skywind3000/asynctasks.vim",
+      dependencies = {
+        { "skywind3000/asyncrun.vim" },
+      },
+      init = function()
+        vim.cmd [[
+          let g:asyncrun_open = 8
+          let g:asynctask_template = '~/.config/lvim/task_template.ini'
+          let g:asynctasks_extra_config = ['~/.config/lvim/tasks.ini']
+        ]]
+      end,
+      event = { "BufRead", "BufNew" },
+      enabled = lvim.builtin.task_runner == "async_tasks",
+    },
     -- {
     --   "jbyuki/instant.nvim",
     --   event = "BufRead",
@@ -544,19 +569,19 @@ M.config = function()
       "nvim-telescope/telescope-file-browser.nvim",
       enabled = lvim.builtin.file_browser.active,
     },
-    -- {
-    --   "j-hui/fidget.nvim",
-    --   branch = "legacy",
-    --   config = function()
-    --     require("user.fidget_spinner").config()
-    --   end,
-    --   -- disable = lvim.builtin.noice.active,
-    -- },
-    -- {
-    --   "michaelb/sniprun",
-    --   build = "bash ./install.sh",
-    --   enabled = lvim.builtin.sniprun.active,
-    -- },
+    {
+      "j-hui/fidget.nvim",
+      branch = "legacy",
+      config = function()
+        require("user.fidget_spinner").config()
+      end,
+      -- disable = lvim.builtin.noice.active,
+    },
+    {
+      "michaelb/sniprun",
+      build = "bash ./install.sh",
+      enabled = lvim.builtin.sniprun.active,
+    },
     -- {
     --   "liuchengxu/vista.vim",
     --   init = function()
@@ -760,45 +785,45 @@ M.config = function()
       dependencies = { "nvim-treesitter/nvim-treesitter" },
       enabled = lvim.builtin.colored_args,
     },
-    -- {
-    --   "cshuaimin/ssr.nvim",
-    --   lazy = true,
-    --   config = function()
-    --     require("ssr").setup {
-    --       min_width = 50,
-    --       min_height = 5,
-    --       keymaps = {
-    --         close = "q",
-    --         next_match = "n",
-    --         prev_match = "N",
-    --         replace_all = "<leader><cr>",
-    --       },
-    --     }
-    --   end,
-    --   event = { "BufReadPost", "BufNew" },
-    -- },
-    -- {
-    --   "Civitasv/cmake-tools.nvim",
-    --   config = function()
-    --     require("user.cle").cmake_config()
-    --   end,
-    --   ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
-    --   enabled = lvim.builtin.cpp_programming.active,
-    -- },
-    -- {
-    --   "raimon49/requirements.txt.vim",
-    --   event = "VeryLazy",
-    --   enabled = lvim.builtin.python_programming.active,
-    -- },
-    -- {
-    --   "Selyss/mind.nvim",
-    --   dependencies = { "nvim-lua/plenary.nvim" },
-    --   config = function()
-    --     require("user.mind").config()
-    --   end,
-    --   event = "VeryLazy",
-    --   enabled = lvim.builtin.mind.active,
-    -- },
+    {
+      "cshuaimin/ssr.nvim",
+      lazy = true,
+      config = function()
+        require("ssr").setup {
+          min_width = 50,
+          min_height = 5,
+          keymaps = {
+            close = "q",
+            next_match = "n",
+            prev_match = "N",
+            replace_all = "<leader><cr>",
+          },
+        }
+      end,
+      event = { "BufReadPost", "BufNew" },
+    },
+    {
+      "Civitasv/cmake-tools.nvim",
+      config = function()
+        require("user.cle").cmake_config()
+      end,
+      ft = { "c", "cpp", "objc", "objcpp", "h", "hpp" },
+      enabled = lvim.builtin.cpp_programming.active,
+    },
+    {
+      "raimon49/requirements.txt.vim",
+      event = "VeryLazy",
+      enabled = lvim.builtin.python_programming.active,
+    },
+    {
+      "Selyss/mind.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      config = function()
+        require("user.mind").config()
+      end,
+      event = "VeryLazy",
+      enabled = lvim.builtin.mind.active,
+    },
     {
       "ibhagwan/fzf-lua",
       config = function()
@@ -874,57 +899,20 @@ M.config = function()
       "Wansmer/symbol-usage.nvim",
       event = "LspAttach",
       enabled = lvim.builtin.symbols_usage.active,
-    },
-    {
-      "pmizio/typescript-tools.nvim",
-      ft = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-      },
-      lazy = true,
       config = function()
         require("user.symbol_use").config()
-        require("user.tss").config()
       end,
-      enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
     },
-    -- {
-    --   "nvim-neotest/nvim-nio",
-    --   enabled = lvim.builtin.dap.active,
-    -- },
-
-
     {
       "Pocco81/auto-save.nvim",
       config = function()
         require("auto-save").setup()
       end,
     },
-
-    "HiPhish/nvim-ts-rainbow2",
-    -- {
-    --   dir = "/Users/chris/Repos/bookmark.nvim",
-    -- },
-    -- "lunarvim/synthwave84.nvim",
-    -- {
-    --   "kndndrj/nvim-dbee",
-    --   build = function()
-    --     require("dbee").install()
-    --   end,
-    -- },
-    -- "kkharji/sqlite.lua",
-    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
-    -- { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
-    { url = "git@github.com:LunarVim/primer.nvim.git" },
-    -- { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
-    -- "stevearc/dressing.nvim",
-    -- "AckslD/swenv.nvim",
     {
-      "roobert/tailwindcss-colorizer-cmp.nvim",
+      "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      opts = {},
       ft = {
         "javascript",
         "javascriptreact",

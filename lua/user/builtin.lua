@@ -934,12 +934,12 @@ M.enhanced_float_handler = function(handler)
         while from do
           local to
           from, to = line:find(pattern, from)
-          if from then
-            vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
-              end_col = to,
-              hl_group = hl_group,
-            })
-          end
+          -- if from then
+          --   vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
+          --     end_col = to,
+          --     hl_group = hl_group,
+          --   })
+          -- end
           from = to and to + 1 or nil
         end
       end

@@ -31,9 +31,20 @@ M.config = function()
       filetypes = { "solidity" },
       timeout = 10000,
     },
+    nls.builtins.formatting.ruff.with {
+      condition = function(utils)
+        return utils.root_has_file { "ruff.toml", ".ruff.toml" }
+      end,
+    },
     nls.builtins.formatting.prettierd.with {
       condition = function(utils)
         return not utils.root_has_file { ".eslintrc", ".eslintrc.js" }
+      end,
+      prefer_local = "node_modules/.bin",
+    },
+    nls.builtins.formatting.eslint_d.with {
+      condition = function(utils)
+        return utils.root_has_file { ".eslintrc", ".eslintrc.js" }
       end,
       prefer_local = "node_modules/.bin",
     },
@@ -61,7 +72,19 @@ M.config = function()
         return utils.root_has_file ".solhint.json"
       end,
     },
+    nls.builtins.diagnostics.ruff.with {
+      condition = function(utils)
+        return utils.root_has_file { "ruff.toml", ".ruff.toml" }
+      end,
+    },
     nls.builtins.diagnostics.hadolint,
+    -- nls.builtins.diagnostics.selene,
+    nls.builtins.diagnostics.eslint_d.with {
+      condition = function(utils)
+        return utils.root_has_file { ".eslintrc", ".eslintrc.js" }
+      end,
+      prefer_local = "node_modules/.bin",
+    },
     nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
@@ -69,7 +92,10 @@ M.config = function()
       end,
       extra_args = { "--metrics", "off", "--exclude", "vendor", "--config", semgrep_rule_folder },
     },
+    nls.builtins.diagnostics.shellcheck,
+    -- nls.builtins.diagnostics.luacheck,
     nls.builtins.diagnostics.vint,
+    nls.builtins.diagnostics.chktex,
     -- Support for nix files
     nls.builtins.diagnostics.deadnix,
     nls.builtins.diagnostics.statix,
@@ -81,20 +107,27 @@ M.config = function()
       filetypes = { "markdown" },
       extra_args = { "--config", vale_config },
     },
-    -- nls.builtins.diagnostics.revive.with {
-    --   condition = function(utils)
-    --     return utils.root_has_file "revive.toml" or revive_conf
-    --   end,
-    --   args = revive_args,
-    --   diagnostics_postprocess = function(d)
-    --     d.severity = vim.diagnostic.severity.INFO
-    --     d.end_col = d.col
-    --     d.end_row = d.row
-    --     d.end_lnum = d.lnum
-    --   end,
-    -- },
+    nls.builtins.diagnostics.revive.with {
+      condition = function(utils)
+        return utils.root_has_file "revive.toml"
+      end,
+      -- args = revive_args,
+      diagnostics_postprocess = function(d)
+        d.severity = vim.diagnostic.severity.INFO
+        d.end_col = d.col
+        d.end_row = d.row
+        d.end_lnum = d.lnum
+      end,
+    },
+    nls.builtins.code_actions.shellcheck,
     -- WARN: broken on neovim-head because of `nvim.treesitter.get_node_at_pos` being deprecated
     -- nls.builtins.code_actions.gomodifytags,
+    nls.builtins.code_actions.eslint_d.with {
+      condition = function(utils)
+        return utils.root_has_file { ".eslintrc", ".eslintrc.js" }
+      end,
+      prefer_local = "node_modules/.bin",
+    },
     -- TODO: try these later on
     -- nls.builtins.formatting.google_java_format,
     -- nls.builtins.code_actions.proselint,

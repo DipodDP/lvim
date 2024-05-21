@@ -28,30 +28,30 @@ M.config = function()
     )
   end
 
-  -- vim.cmd [[
-  -- " disable syntax highlighting in big files
-  -- function! DisableSyntaxTreesitter()
-  --     echo("Big file, disabling syntax, treesitter and folding")
-  --     if exists(':TSBufDisable')
-  --         exec 'TSBufDisable autotag'
-  --         exec 'TSBufDisable highlight'
-  --     endif
+  vim.cmd [[
+  " disable syntax highlighting in big files
+  function! DisableSyntaxTreesitter()
+      echo("Big file, disabling syntax, treesitter and folding")
+      if exists(':TSBufDisable')
+          exec 'TSBufDisable autotag'
+          exec 'TSBufDisable highlight'
+      endif
 
-  --     set foldmethod=manual
-  --     syntax clear
-  --     syntax off
-  --     filetype off
-  --     set noundofile
-  --     set noswapfile
-  --     set noloadplugins
-  --     set lazyredraw
-  -- endfunction
+      set foldmethod=manual
+      syntax clear
+      syntax off
+      filetype off
+      set noundofile
+      set noswapfile
+      set noloadplugins
+      set lazyredraw
+  endfunction
 
-  -- augroup BigFileDisable
-  --     autocmd!
-  --     autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 1024 * 1024 | exec DisableSyntaxTreesitter() | endif
-  -- augroup END
-  --   ]]
+  augroup BigFileDisable
+      autocmd!
+      autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 1024 * 1024 | exec DisableSyntaxTreesitter() | endif
+  augroup END
+    ]]
   create_aucmd("BufWinEnter", {
     group = "_lvim_user",
     pattern = "*.md",
@@ -121,9 +121,9 @@ M.config = function()
               require("cmp_tabnine.config"):setup { ignored_file_types = { "*" }, run_on_every_keystroke = false }
               lvim.builtin.cmp.sources = {
                 { name = "nvim_lsp" },
-                { name = "buffer",       max_item_count = 5, keyword_length = 5 },
-                { name = "path",         max_item_count = 5 },
-                { name = "luasnip",      max_item_count = 3 },
+                { name = "buffer", max_item_count = 5, keyword_length = 5 },
+                { name = "path", max_item_count = 5 },
+                { name = "luasnip", max_item_count = 3 },
                 { name = "nvim_lua" },
                 { name = "calc" },
                 { name = "emoji" },
@@ -186,8 +186,8 @@ M.make_run = function()
         "n",
         "<leader>r",
         "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='python "
-        .. vim.fn.expand "%"
-        .. ";read',count=2,direction='float'})<CR>"
+          .. vim.fn.expand "%"
+          .. ";read',count=2,direction='float'})<CR>"
       )
       vim.keymap.set(
         "n",

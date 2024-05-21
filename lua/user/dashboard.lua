@@ -3,14 +3,14 @@ local M = {}
 M.config = function()
   local kind = require "user.lsp_kind"
 
-  local header = {
-    type = "text",
-    val = require("user.banners").dashboard(),
-    opts = {
-      position = "center",
-      hl = "Comment",
-    },
-  }
+  -- local header = {
+  --   type = "text",
+  --   val = require("user.banners").dashboard(),
+  --   opts = {
+  --     position = "center",
+  --     hl = "Comment",
+  --   },
+  -- }
 
   local plugins = ""
   local date = os.date "%a %d %b"
@@ -118,7 +118,7 @@ M.config = function()
   }
 
   local section = {
-    header = header,
+    -- header = header,
     buttons = buttons,
     plugin_count = plugin_count,
     heading = heading,
@@ -127,8 +127,8 @@ M.config = function()
 
   local opts = {
     layout = {
-      { type = "padding", val = 1 },
-      section.header,
+      -- { type = "padding", val = 1 },
+      -- section.header,
       { type = "padding", val = 2 },
       section.heading,
       section.plugin_count,

@@ -4,22 +4,23 @@ lvim.leader = " "
 -- lvim.colorscheme = "onedark"
 -- lvim.colorscheme = "darkplus"
 -- lvim.colorscheme = "catppuccin-mocha" -- set to a custom theme
-lvim.colorscheme = "primer_dark"
+-- lvim.colorscheme = "primer_dark"
+lvim.colorscheme = "kanagawa"
 -- lvim.builtin.time_based_themes = false -- set false to use your own configured theme
 lvim.transparent_window = true -- enable/disable transparency
--- lvim.debug = true
+lvim.debug = true
 vim.lsp.set_log_level "error"
 lvim.log.level = "warn"
 lvim.lsp.code_lens_refresh = true
 -- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 -- lvim.transparent_window = false -- enable/disable transparency
 -- require("user.neovim").config()
-lvim.lsp.installer.setup.automatic_installation = false
+-- lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
 lvim.builtin.lastplace = { active = true } -- change to false if you are jumping to future
-lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
+-- lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
 lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
 -- lvim.builtin.presence = { active = false } -- change to true if you want discord presence
 -- lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
@@ -28,7 +29,7 @@ lvim.builtin.fancy_statusline = { active = false } -- enable/disable fancy statu
 lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
 lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
 -- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
-lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
+lvim.builtin.test_runner = { active = true, runner = "neotest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
 lvim.builtin.sql_integration = { active = false } -- use sql integration
 -- lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
@@ -50,15 +51,15 @@ lvim.builtin.metals = {
   serverVersion = "1.0.1",
   bloopVersion = "1.5.11",
 }
-lvim.builtin.collaborative_editing = { active = false } -- enable/disable collaborative editing
+lvim.builtin.global_statusline = false -- set true to use global statusline
+-- lvim.builtin.collaborative_editing = { active = false } -- enable/disable collaborative editing
 lvim.builtin.dressing = { active = false } -- enable to override vim.ui.input and vim.ui.select with telescope
 lvim.builtin.refactoring = { active = false } -- enable to use refactoring.nvim code_actions
-lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
-lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
+-- lvim.builtin.tmux_lualine = false -- use vim-tpipeline to integrate lualine and tmux
+-- lvim.builtin.lsp_lines = false -- enable/disable lsp_lines to display lsp virtual text below instead of behind
 lvim.builtin.file_browser = { active = true } -- enable/disable telescope file browser
--- lvim.builtin.sniprun = { active = false } -- enable/disable sniprun
--- lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista or outline)
--- lvim.builtin.global_statusline = false -- set true to use global statusline
+lvim.builtin.sniprun = { active = false } -- enable/disable sniprun
+lvim.builtin.tag_provider = "symbols-outline" -- change this to use different tag providers ( symbols-outline or vista or outline)
 lvim.builtin.legendary = { active = false } -- enable/disable legendary plugin ( ctrl-p command )
 lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 -- lvim.builtin.lir.active = false
@@ -129,17 +130,18 @@ end
 -- Language Specific
 -- =========================================
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
-  -- "clangd",
-  -- "dockerls",
-  -- "gopls",
-  -- "golangci_lint_ls",
-  "jdtls",
-  "pyright",
-  "rust_analyzer",
-  -- "taplo",
-  -- "texlab",
+--   "clangd",
+--   "dockerls",
+--   "gopls",
+--   "golangci_lint_ls",
+--   "jdtls",
+--   "pyright",
+--   "rust_analyzer",
+--   "taplo",
+--   "texlab",
+  "markdown",
   "tsserver",
-  "yamlls",
+--   "yamlls",
 })
 
 -- require("user.null_ls").config()
@@ -159,68 +161,16 @@ require("swagger-preview").setup({
   host = "localhost",
 })
 
-reload "user.dap"
--- reload "user.nvimtree"
--- reload "user.lualine"
--- reload "user.modicator"
--- reload "user.lsp"
-reload "user.smoothie"
--- reload "user.harpoon"
--- reload "user.webdev-icons"
--- reload "user.cybu"
--- reload "user.neotest"
-reload "user.surround"
--- reload "user.bookmark"
-reload "user.bookmarks"
-reload "user.todo-comments"
--- reload "user.jaq"
--- reload "user.fidget"
--- reload "user.lab"
--- reload "user.git"
-reload "user.zen-mode"
-reload "user.inlay-hints"
--- reload "user.telescope"
--- reload "user.bqf"
--- reload "user.dial"
--- reload "user.numb"
-reload "user.treesitter"
--- reload "user.neogit"
--- reload "user.colorizer"
--- reload "user.neoscroll"
--- reload "user.dotenv"
--- reload "user.tabnine"
--- reload "user.copilot"
--- reload "user.chatgpt"
--- reload "user.neoai"
-reload "user.whichkey"
--- reload "user.cmp"
--- reload "nostr"
-reload "user.astro-tools"
--- reload "user.matchup"
--- reload "user.swagger-preview"
-reload "user.betterescape"
-reload "user.yanky"
--- reload "user.rest"
--- reload "user.metals"
--- reload "user.image"
--- reload "user.neorg"
-
--- Override Lunarvim defaults
--- =========================================
-require("user.builtin").config()
-
 -- Autocommands
 -- =========================================
 require("user.autocommands").config()
-reload "autocommands"
-
 -- Options
 -- =========================================
 reload "options"
 
 -- Additional Keybindings
 -- =========================================
--- require("user.keybindings").config()
+require("user.keybindings").config()
 
 -- require("transparent").setup({ -- Optional, you don't have to run setup.
 --   groups = {                   -- table: default groups

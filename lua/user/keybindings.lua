@@ -220,10 +220,10 @@ end
 M.config = function()
   -- Additional keybindings
   -- =========================================
-  lvim.keys.normal_mode["<CR>"] = {
-    "<cmd>lua require('user.neovim').maximize_current_split()<CR>",
-    { noremap = true, silent = true, nowait = true },
-  }
+  -- lvim.keys.normal_mode["<CR>"] = {
+  --   "<cmd>lua require('user.neovim').maximize_current_split()<CR>",
+  --   { noremap = true, silent = true, nowait = true },
+  -- }
   lvim.keys.insert_mode["<A-a>"] = "<ESC>ggVG<CR>"
   lvim.keys.insert_mode["jk"] = "<ESC>:w<CR>"
   if lvim.builtin.noice.active then

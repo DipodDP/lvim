@@ -70,10 +70,10 @@ M.config = function()
 
   -- Autopairs
   -- =========================================
-  -- lvim.builtin.autopairs.on_config_done = function(autopairs)
-  --   local Rule = require "nvim-autopairs.rule"
-  --   autopairs.add_rule(Rule("$$", "$$", "tex"))
-  -- end
+  lvim.builtin.autopairs.on_config_done = function(autopairs)
+    local Rule = require "nvim-autopairs.rule"
+    autopairs.add_rule(Rule("$$", "$$", "tex"))
+  end
 
   -- Bufferline
   -- =========================================
@@ -269,6 +269,7 @@ M.config = function()
   lvim.builtin.gitsigns.opts._extmark_signs = true
   lvim.builtin.gitsigns.opts.current_line_blame_formatter = " <author>, <author_time> · <summary>"
   lvim.builtin.gitsigns.opts.attach_to_untracked = false
+  lvim.builtin.gitsigns.opts.yadm = nil
 
   -- IndentBlankline
   -- =========================================
@@ -355,8 +356,8 @@ M.config = function()
 
   -- Theme
   -- =========================================
-  require("user.theme").tokyonight()
-  lvim.builtin.theme.name = "tokyonight"
+  -- require("user.theme").tokyonight()
+  -- lvim.builtin.theme.name = "tokyonight"
 
   -- Toggleterm
   -- =========================================
@@ -920,29 +921,29 @@ M.enhanced_float_handler = function(handler)
     vim.wo[win].concealcursor = "n"
 
     -- Extra highlights.
-    -- for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
-    --   for pattern, hl_group in pairs {
-    --     ["|%S-|"] = "@text.reference",
-    --     ["@%S+"] = "@parameter",
-    --     ["^%s*(Parameters:)"] = "@text.title",
-    --     ["^%s*(Return:)"] = "@text.title",
-    --     ["^%s*(See also:)"] = "@text.title",
-    --     ["{%S-}"] = "@parameter",
-    --   } do
-    --     local from = 1 ---@type integer?
-    --     while from do
-    --       local to
-    --       from, to = line:find(pattern, from)
-    --       if from then
-    --         vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
-    --           end_col = to,
-    --           hl_group = hl_group,
-    --         })
-    --       end
-    --       from = to and to + 1 or nil
-    --     end
-    --   end
-    -- end
+    for l, line in ipairs(vim.api.nvim_buf_get_lines(buf, 0, -1, false)) do
+      for pattern, hl_group in pairs {
+        ["|%S-|"] = "@text.reference",
+        ["@%S+"] = "@parameter",
+        ["^%s*(Parameters:)"] = "@text.title",
+        ["^%s*(Return:)"] = "@text.title",
+        ["^%s*(See also:)"] = "@text.title",
+        ["{%S-}"] = "@parameter",
+      } do
+        local from = 1 ---@type integer?
+        while from do
+          local to
+          from, to = line:find(pattern, from)
+          -- if from then
+          --   vim.api.nvim_buf_set_extmark(buf, md_namespace, l - 1, from - 1, {
+          --     end_col = to,
+          --     hl_group = hl_group,
+          --   })
+          -- end
+          from = to and to + 1 or nil
+        end
+      end
+    end
 
     -- Add keymaps for opening links.
     if not vim.b[buf].markdown_keys then

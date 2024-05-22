@@ -908,7 +908,6 @@ M.config = function()
       end,
     },
     {
-      "roobert/tailwindcss-colorizer-cmp.nvim",
       "pmizio/typescript-tools.nvim",
       dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
       opts = {},
@@ -926,6 +925,19 @@ M.config = function()
       end,
       enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
 
+    },
+    {
+      "roobert/tailwindcss-colorizer-cmp.nvim",
+      opts = {},
+      ft = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+      lazy = true,
     },
     -- "nvim-treesitter/playground",
     "mfussenegger/nvim-jdtls",

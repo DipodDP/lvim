@@ -40,11 +40,11 @@ lvim.builtin.harpoon = { active = false } -- use the harpoon plugin
 -- lvim.builtin.remote_dev = { active = false } -- enable/disable remote development
 lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
 -- lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
--- lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
--- lvim.builtin.csv_support = false -- enable/disable csv support
-lvim.builtin.sidebar = { active = true } -- enable/disable sidebar
 -- lvim.builtin.task_runner = "" -- change this to use different task runners ( "async_tasks" or "overseer" or "")
 -- lvim.builtin.winbar_provider = "filename" -- can be "filename" or "treesitter" or "navic" or ""
+lvim.builtin.hlslens = { active = false } -- enable/disable hlslens
+lvim.builtin.csv_support = false -- enable/disable csv support
+lvim.builtin.sidebar = { active = false } -- enable/disable sidebar
 lvim.builtin.metals = {
   active = false, -- enable/disable nvim-metals for scala development
   fallbackScalaVersion = "3.2.0-RC3",
@@ -161,9 +161,18 @@ require("swagger-preview").setup({
   host = "localhost",
 })
 
+reload "user.webdev-icons"
+reload "user.neotest"
+reload "user.surround"
+reload "user.treesitter"
+reload "user.betterescape"
+reload "user.osc52"
+reload "user.yanky"
+
 -- Autocommands
 -- =========================================
 require("user.autocommands").config()
+reload "autocommands"
 -- Options
 -- =========================================
 reload "options"

@@ -1,4 +1,5 @@
 local M = {}
+
 M.config = function()
   -- local neoclip_req = { "kkharji/sqlite.lua" }
   -- if lvim.builtin.neoclip.enable_persistent_history == false then
@@ -199,16 +200,16 @@ M.config = function()
         require("user.twilight").config()
       end,
     },
-    {
-      "andymass/vim-matchup",
-      event = "BufReadPost",
-      config = function()
-        vim.g.matchup_enabled = 1
-        vim.g.matchup_surround_enabled = 1
-        vim.g.matchup_matchparen_deferred = 1
-        vim.g.matchup_matchparen_offscreen = { method = "popup" }
-      end,
-    },
+    -- {
+    --   "andymass/vim-matchup",
+    --   event = "BufReadPost",
+    --   config = function()
+    --     vim.g.matchup_enabled = 1
+    --     vim.g.matchup_surround_enabled = 1
+    --     vim.g.matchup_matchparen_deferred = 1
+    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    --   end,
+    -- },
     {
       "iamcco/markdown-preview.nvim",
       build = "cd app && npm install",
@@ -298,6 +299,7 @@ M.config = function()
     --   dependencies = "nvim-treesitter/nvim-treesitter",
     -- },
       -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
+    -- {
     --   "jose-elias-alvarez/typescript.nvim",
     --   ft = {
     --     "javascript",
@@ -559,6 +561,11 @@ M.config = function()
       enabled = lvim.builtin.task_runner == "async_tasks",
     },
     -- {
+    --   "scalameta/nvim-metals",
+    --   dependencies = { "nvim-lua/plenary.nvim" },
+    --   enabled = lvim.builtin.metals.active,
+    -- },
+    -- {
     --   "jbyuki/instant.nvim",
     --   event = "BufRead",
     --   enabled = lvim.builtin.collaborative_editing.active,
@@ -725,12 +732,6 @@ M.config = function()
     --   enabled = lvim.builtin.go_programming.active,
     -- },
     -- {
-    --   "AckslD/swenv.nvim",
-    --   enabled = lvim.builtin.python_programming.active,
-    --   ft = "python",
-    --   event = { "BufRead", "BufNew" },
-    -- },
-    -- {
     --   "mfussenegger/nvim-dap-python",
     --   config = function()
     --     local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
@@ -762,15 +763,21 @@ M.config = function()
     --   end,
     --   enabled = lvim.builtin.web_programming.active,
     -- },
-    -- {
-    --   "smjonas/inc-rename.nvim",
-    --   lazy = true,
-    --   cmd = "IncRename",
-    --   config = function()
-    --     require("inc_rename").setup()
-    --   end,
-    --   enabled = lvim.builtin.noice.active,
-    -- },
+    {
+      "AckslD/swenv.nvim",
+      enabled = lvim.builtin.python_programming.active,
+      ft = "python",
+      event = { "BufRead", "BufNew" },
+    },
+    {
+      "smjonas/inc-rename.nvim",
+      lazy = true,
+      cmd = "IncRename",
+      config = function()
+        require("inc_rename").setup()
+      end,
+      enabled = lvim.builtin.noice.active,
+    },
     {
       "m-demare/hlargs.nvim",
       lazy = true,
@@ -924,7 +931,6 @@ M.config = function()
         require("user.typtools").config()
       end,
       enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
-
     },
     {
       "roobert/tailwindcss-colorizer-cmp.nvim",
@@ -940,10 +946,58 @@ M.config = function()
       lazy = true,
     },
     -- "nvim-treesitter/playground",
+    -- {
+    --   "mawkler/modicator.nvim",
+    --   event = "ColorScheme",
+    --   dependencies = { url = "git@github.com:LunarVim/primer.nvim.git" }, -- Add your colorscheme plugin here
+    --   init = function()
+    --     -- These are required for Modicator to work
+    --     vim.o.cursorline = true
+    --     vim.o.number = true
+    --     vim.o.termguicolors = true
+    --   end,
+    --   opts = {
+    --     show_warnings = false,
+    --     highlights = {
+    --       -- Default options for bold/italic
+    --       defaults = {
+    --         bold = true,
+    --         italic = false,
+    --       },
+    --     },
+    --     integration = {
+    --       lualine = {
+    --         enabled = true,
+    --         -- Letter of lualine section to use (if `nil`, gets detected automatically)
+    --         mode_section = nil,
+    --         -- Whether to use lualine's mode highlight's foreground or background
+    --         highlight = 'bg',
+    --       },
+    --     },
+    --   },
+    -- },
+
+    -- {
+    --   dir = "/Users/chris/Repos/bookmark.nvim",
+    -- },
+    -- "lunarvim/synthwave84.nvim",
+    -- {
+    --   "kndndrj/nvim-dbee",
+    --   build = function()
+    --     require("dbee").install()
+    --   end,
+    -- },
+    -- "kkharji/sqlite.lua",
+    -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
+    -- { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
+    { url = "git@github.com:LunarVim/primer.nvim.git" },
+    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
+    -- "stevearc/dressing.nvim",
+    -- "AckslD/swenv.nvim",
+    "nvim-treesitter/playground",
     "mfussenegger/nvim-jdtls",
     -- "opalmay/vim-smoothie",
     -- "j-hui/fidget.nvim",
-
     {
       "windwp/nvim-ts-autotag",
       config = function()
@@ -1004,8 +1058,38 @@ M.config = function()
       end,
       enabled = not lvim.builtin.bigfile.active,
     },
+    {
+      "HiPhish/rainbow-delimiters.nvim",
+      config = function()
+        local rainbow_delimiters = require 'rainbow-delimiters'
+        require("rainbow-delimiters.setup").setup {
+          strategy = {
+              [''] = rainbow_delimiters.strategy['global'],
+              commonlisp = rainbow_delimiters.strategy['local'],
+          },
+          query = {
+              [''] = 'rainbow-delimiters',
+              lua = 'rainbow-blocks',
+          },
+          priority = {
+              [''] = 110,
+              lua = 210,
+          },
+          highlight = {
+              -- 'RainbowDelimiterRed',
+              'RainbowDelimiterYellow',
+              'RainbowDelimiterBlue',
+              'RainbowDelimiterOrange',
+              'RainbowDelimiterGreen',
+              'RainbowDelimiterViolet',
+              'RainbowDelimiterCyan',
+          },
+          -- blacklist = {'c', 'cpp'},
+        }
+      end,
+      event = "BufRead",
+    },
   }
 end
 
 return M
-

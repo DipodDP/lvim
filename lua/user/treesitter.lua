@@ -1,15 +1,15 @@
-if lvim.colorscheme == "darkplus" then
-  lvim.builtin.treesitter.rainbow = {
-    enable = true,
-    extended_mode = false,
-    colors = {
-      "DodgerBlue",
-      "Orchid",
-      "Gold",
-    },
-    disable = { "html" },
-  }
-end
+-- if lvim.colorscheme == "darkplus" then
+--   lvim.builtin.treesitter.rainbow = {
+--     enable = true,
+--     extended_mode = false,
+--     colors = {
+--       "DodgerBlue",
+--       "Orchid",
+--       "Gold",
+--     },
+--     disable = { "html" },
+--   }
+-- end
 
 -- lvim.builtin.treesitter.ensure_installed = {
 --   "dockerfile",
@@ -21,27 +21,27 @@ end
 --   "lua"
 -- }
 
-lvim.builtin.treesitter.rainbow = {
-  enable = true,
-  query = {
-    "rainbow-parens",
-  },
-  strategy = require("ts-rainbow").strategy.global,
-  hlgroups = {
-    "TSRainbowRed",
-    "TSRainbowBlue",
-    -- "TSRainbowOrange",
-    -- "TSRainbowCoral",
-    "TSRainbowPink",
-    "TSRainbowYellow",
-    -- "TSRainbowViolet",
-    "TSRainbowGreen",
-  },
-}
+-- lvim.builtin.treesitter.rainbow = {
+--   enable = true,
+--   query = {
+--     "rainbow-parens",
+--   },
+--   -- strategy = require("ts-rainbow").strategy.global,
+--   hlgroups = {
+--     -- "TSRainbowRed",
+--     "TSRainbowBlue",
+--     "TSRainbowOrange",
+--     -- "TSRainbowCoral",
+--     "TSRainbowPink",
+--     "TSRainbowYellow",
+--     -- "TSRainbowViolet",
+--     "TSRainbowGreen",
+--   },
+-- }
 
-lvim.builtin.treesitter.autotag.enable = true
+-- lvim.builtin.treesitter.autotag.enable = true
 
-lvim.builtin.treesitter.auto_install = false
+-- lvim.builtin.treesitter.auto_install = false
 
 lvim.builtin.treesitter.textobjects = {
   select = {

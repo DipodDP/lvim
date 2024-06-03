@@ -133,20 +133,20 @@ M.config = function()
       end,
       event = "BufRead",
     },
-    -- {
-    --   "folke/trouble.nvim",
-    --   config = function()
-    --     require("trouble").setup {
-    --       auto_open = false,
-    --       auto_close = true,
-    --       padding = false,
-    --       height = 10,
-    --       use_diagnostic_signs = true,
-    --     }
-    --   end,
-    --   event = "VeryLazy",
-    --   cmd = "Trouble",
-    -- },
+    {
+      "folke/trouble.nvim",
+      config = function()
+        require("trouble").setup {
+          auto_open = false,
+          auto_close = true,
+          padding = false,
+          height = 10,
+          use_diagnostic_signs = true,
+        }
+      end,
+      event = "VeryLazy",
+      cmd = "Trouble",
+    },
     -- {
     --   "ggandor/leap.nvim",
     --   config = function()
@@ -200,16 +200,16 @@ M.config = function()
         require("user.twilight").config()
       end,
     },
-    -- {
-    --   "andymass/vim-matchup",
-    --   event = "BufReadPost",
-    --   config = function()
-    --     vim.g.matchup_enabled = 1
-    --     vim.g.matchup_surround_enabled = 1
-    --     vim.g.matchup_matchparen_deferred = 1
-    --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    --   end,
-    -- },
+    {
+      "andymass/vim-matchup",
+      event = "BufReadPost",
+      config = function()
+        vim.g.matchup_enabled = 1
+        vim.g.matchup_surround_enabled = 1
+        vim.g.matchup_matchparen_deferred = 1
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    },
     {
       "iamcco/markdown-preview.nvim",
       build = "cd app && npm install",
@@ -288,16 +288,16 @@ M.config = function()
       end,
       enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
     },
-    -- {
-    --   "danymat/neogen",
-    --   lazy = true,
-    --   config = function()
-    --     require("neogen").setup {
-    --       enabled = true,
-    --     }
-    --   end,
-    --   dependencies = "nvim-treesitter/nvim-treesitter",
-    -- },
+    {
+      "danymat/neogen",
+      lazy = true,
+      config = function()
+        require("neogen").setup {
+          enabled = true,
+        }
+      end,
+      dependencies = "nvim-treesitter/nvim-treesitter",
+    },
       -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
     -- {
     --   "jose-elias-alvarez/typescript.nvim",
@@ -350,15 +350,15 @@ M.config = function()
     { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
     { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
     { "rouge8/neotest-rust", event = { "BufEnter *.rs" } },
-    {
-      "rcarriga/vim-ultest",
-      cmd = { "Ultest", "UltestSummary", "UltestNearest" },
-      dependencies = { "vim-test/vim-test" },
-      build = ":UpdateRemotePlugins",
-      lazy = true,
-      event = { "BufEnter *_test.*,*_spec.*,*est_*.*" },
-      enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
-    },
+    -- {
+    --   "rcarriga/vim-ultest",
+    --   cmd = { "Ultest", "UltestSummary", "UltestNearest" },
+    --   dependencies = { "vim-test/vim-test" },
+    --   build = ":UpdateRemotePlugins",
+    --   lazy = true,
+    --   event = { "BufEnter *_test.*,*_spec.*,*est_*.*" },
+    --   enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
+    -- },
     -- {
     --   "akinsho/flutter-tools.nvim",
     --   dependencies = "nvim-lua/plenary.nvim",
@@ -990,8 +990,8 @@ M.config = function()
     -- "kkharji/sqlite.lua",
     -- { url = "git@github.com:ChristianChiarulli/bookmark.nvim.git" },
     -- { url = "git@github.com:ChristianChiarulli/onedark.nvim.git" },
-    { url = "git@github.com:LunarVim/primer.nvim.git" },
-    { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
+    -- { url = "git@github.com:LunarVim/primer.nvim.git" },
+    -- { "christianchiarulli/tabnine-nvim", build = "./dl_binaries.sh", branch = "suggestion_hl_group" },
     -- "stevearc/dressing.nvim",
     -- "AckslD/swenv.nvim",
     "nvim-treesitter/playground",

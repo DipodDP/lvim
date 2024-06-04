@@ -47,47 +47,47 @@ M.set_terminal_keymaps = function()
   vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
 end
 
-M.set_hop_keymaps = function()
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap("n", "s", ":HopChar2MW<cr>", opts)
-  vim.api.nvim_set_keymap("n", "S", ":HopWordMW<cr>", opts)
-  vim.api.nvim_set_keymap(
-    "n",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "n",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "o",
-    "f",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "o",
-    "F",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "",
-    "t",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
-    {}
-  )
-  vim.api.nvim_set_keymap(
-    "",
-    "T",
-    "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
-    {}
-  )
-end
+-- M.set_hop_keymaps = function()
+--   local opts = { noremap = true, silent = true }
+--   vim.api.nvim_set_keymap("n", "s", ":HopChar2MW<cr>", opts)
+--   vim.api.nvim_set_keymap("n", "S", ":HopWordMW<cr>", opts)
+--   vim.api.nvim_set_keymap(
+--     "n",
+--     "f",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+--     {}
+--   )
+--   vim.api.nvim_set_keymap(
+--     "n",
+--     "F",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+--     {}
+--   )
+--   vim.api.nvim_set_keymap(
+--     "o",
+--     "f",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
+--     {}
+--   )
+--   vim.api.nvim_set_keymap(
+--     "o",
+--     "F",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>",
+--     {}
+--   )
+--   vim.api.nvim_set_keymap(
+--     "",
+--     "t",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
+--     {}
+--   )
+--   vim.api.nvim_set_keymap(
+--     "",
+--     "T",
+--     "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
+--     {}
+--   )
+-- end
 
 M.set_hlslens_keymaps = function()
   local opts = { noremap = true, silent = true }
@@ -115,7 +115,7 @@ local function set_bufferline_keymaps()
   lvim.keys.normal_mode["<S-h>"] = "<Cmd>BufferLineCyclePrev<CR>"
   lvim.keys.normal_mode["[b"] = "<Cmd>BufferLineMoveNext<CR>"
   lvim.keys.normal_mode["]b"] = "<Cmd>BufferLineMovePrev<CR>"
-  lvim.builtin.which_key.mappings["c"] = {}
+  lvim.builtin.which_key.mappings["c"] ="<Cmd>BufferKill<CR>" 
   lvim.builtin.which_key.mappings.b = {
     name = " Buffer",
     ["1"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "goto 1" },
@@ -269,7 +269,7 @@ M.config = function()
   end
   lvim.keys.visual_mode["<A-a>"] = "<C-a>"
   lvim.keys.visual_mode["<A-x>"] = "<C-x>"
-  lvim.keys.visual_mode["p"] = [["_dP]]
+
   lvim.keys.visual_mode["ga"] = "<esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>"
   lvim.keys.visual_mode["<leader>st"] = "<Cmd>lua require('user.telescope').grep_string_visual()<CR>"
 
@@ -666,18 +666,15 @@ keymap("n", "g#", "g#zz", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
-keymap("x", "p", [["_dP]])
--- keymap("v", "p", '"_dp', opts)
--- keymap("v", "P", '"_dP', opts)
-
 -- Cut selected
-keymap("v", "x", "ygvx")
-keymap("v", "c", "ygvc")
+keymap("v", "x", "ygvx", opts)
 
 -- Delete in blackhole register
-keymap("v", "DD", '"_d')
+keymap("n", "c", '"_c', opts)
+keymap("v", "c", '"_c', opts)
+keymap("v", "DD", '"_d', opts)
 
-keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "Q", "<cmd>BufferKill<CR>", opts)
 
 keymap(
   "n",

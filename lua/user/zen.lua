@@ -64,9 +64,9 @@ M.config = function()
     on_close = function()
       lvim.builtin.cmp.active = true
       vim.cmd [[
-          set foldlevel=4
-          set foldmethod=expr
-          set foldexpr=nvim_treesitter#foldexpr()
+          " set foldlevel=4
+          " set foldmethod=expr
+          " set foldexpr=nvim_treesitter#foldexpr()
           lua require("user.zen").show_diagnostics()
           " lua require("user.indent_blankline").enable()
           ]]

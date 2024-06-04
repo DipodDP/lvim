@@ -155,13 +155,6 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 -- =========================================
 require("user.plugins").config()
 
-require("swagger-preview").setup({
-  -- The port to run the preview server on
-  port = 8000,
-  -- The host to run the preview server on
-  host = "localhost",
-})
-
 reload "user.webdev-icons"
 reload "user.neotest"
 reload "user.surround"
@@ -169,6 +162,14 @@ reload "user.treesitter"
 reload "user.betterescape"
 reload "user.osc52"
 reload "user.yanky"
+
+
+require("swagger-preview").setup({
+  -- The port to run the preview server on
+  port = 8000,
+  -- The host to run the preview server on
+  host = "localhost",
+})
 
 -- Autocommands
 -- =========================================

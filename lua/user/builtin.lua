@@ -362,14 +362,14 @@ M.config = function()
 
   -- Toggleterm
   -- =========================================
-  lvim.builtin.terminal.active = true
-  lvim.builtin.terminal.execs = {}
-  lvim.builtin.terminal.autochdir = true
-  lvim.builtin.terminal.size = vim.o.columns * 0.4
-  lvim.builtin.terminal.on_config_done = function()
-    M.create_terminal(2, "<c-\\>", 20, "float")
-    M.create_terminal(3, "<A-0>", vim.o.columns * 0.4, "vertical")
-  end
+  -- lvim.builtin.terminal.active = true
+  -- lvim.builtin.terminal.execs = {}
+  -- lvim.builtin.terminal.autochdir = true
+  -- lvim.builtin.terminal.size = vim.o.columns * 0.4
+  -- lvim.builtin.terminal.on_config_done = function()
+  --   M.create_terminal(2, "<c-\\>", 20, "float")
+  --   M.create_terminal(3, "<A-0>", vim.o.columns * 0.4, "vertical")
+  -- end
 
   -- Treesitter
   -- =========================================
@@ -393,8 +393,8 @@ M.config = function()
   lvim.builtin.treesitter.incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<C-n>",
-      node_incremental = "<C-n>",
+      init_selection = "<C-i>",
+      node_incremental = "<C-i>",
       scope_incremental = "<C-s>",
       node_decremental = "<C-r>",
     },
@@ -939,7 +939,7 @@ M.enhanced_float_handler = function(handler)
           local to
           from, to = line:find(pattern, from)
           if from then
-            vim.api.nvim_buf_set_extmark(buf, -1, l - 1, from - 1, {
+            vim.api.nvim_buf_set_extmark(buf, l - 1, l - 1, from - 1, {
               end_col = to,
               hl_group = hl_group,
             })

@@ -213,9 +213,6 @@ local m_mappings = {
   -- [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }
 
--- Nvim-tree
-lvim.builtin.which_key.mappings["E"] = { "<cmd>NvimTreeFocus<cr>", "Focus in explorer" }
-
 -- local m_opts = {
 --   mode = "n", -- NORMAL mode
 --   prefix = "m",

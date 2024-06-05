@@ -14,7 +14,7 @@ lvim.log.level = "warn"
 lvim.lsp.code_lens_refresh = true
 -- lvim.builtin.time_based_themes = true -- set false to use your own configured theme
 -- lvim.transparent_window = false -- enable/disable transparency
--- require("user.neovim").config()
+require("user.neovim").config()
 -- lvim.lsp.installer.setup.automatic_installation = false
 
 -- Customization
@@ -181,6 +181,7 @@ reload "options"
 
 -- Additional Keybindings
 -- =========================================
+reload "keymaps"
 require("user.keybindings").config()
 
 -- require("transparent").setup({ -- Optional, you don't have to run setup.

@@ -582,6 +582,9 @@ M.config = function()
       enabled = lvim.builtin.file_browser.active,
     },
     {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+    },
+    {
       "j-hui/fidget.nvim",
       branch = "legacy",
       config = function()

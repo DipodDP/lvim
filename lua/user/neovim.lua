@@ -26,8 +26,8 @@ M.config = function()
   end
   vim.g.ultest_summary_width = 30
   vim.g.ultest_deprecation_notice = 0
-  vim.opt.completeopt = { "menu", "menuone", "noselect" }
-  vim.opt.relativenumber = true
+  -- vim.opt.completeopt = { "menu", "menuone", "noselect" }
+  -- vim.opt.relativenumber = true
   vim.opt.diffopt = {
     "internal",
     "filler",
@@ -35,19 +35,19 @@ M.config = function()
     "hiddenoff",
     "algorithm:minimal",
   }
-  vim.g.toggle_theme_icon = "   "
+  -- vim.g.toggle_theme_icon = "   "
   vim.opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
   vim.opt.ttyfast = true
-  vim.opt.wrap = true
-  vim.opt.termguicolors = true
-  vim.opt.updatetime = 100
+  -- vim.opt.wrap = true
+  -- vim.opt.termguicolors = true
+  vim.opt.updatetime = 1000 -- faster completion (4000ms default)
   vim.opt.timeoutlen = 250
   vim.opt.redrawtime = 1500
   vim.opt.ttimeoutlen = 10
   vim.opt.wrapscan = true -- Searches wrap around the end of the file
   vim.o.secure = true -- Disable autocmd etc for project local vimrc files.
   vim.o.exrc = false -- Allow project local vimrc files example .nvimrc see :h exrc
-  vim.o.sessionoptions = "buffers,curdir,folds,globals,help,tabpages,winpos,winsize"
+  -- vim.o.sessionoptions = "buffers,curdir,folds,globals,help,tabpages,winpos,winsize"
   vim.wo.foldmethod = "expr"
   vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
   vim.wo.foldlevel = 4
@@ -62,7 +62,7 @@ M.config = function()
   vim.opt.list = true
   vim.opt.confirm = true -- make vim prompt me to save before doing destructive things
   vim.opt.autowriteall = true -- automatically :write before running commands and changing files
-  vim.opt.clipboard = "unnamedplus"
+  -- vim.opt.clipboard = "unnamedplus"
   vim.opt.fillchars = {
     fold = " ",
     eob = " ", -- suppress ~ at EndOfBuffer
@@ -157,6 +157,7 @@ M.config = function()
       extension = {
         fnl = "fennel",
         wiki = "markdown",
+        conf = "dosini",
       },
       filename = {
         ["go.sum"] = "gosum",

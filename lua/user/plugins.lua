@@ -926,7 +926,7 @@ M.config = function()
     },
     {
       "pmizio/typescript-tools.nvim",
-      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig", "typescript-language-server/typescript-language-server" },
       opts = {},
       ft = {
         "javascript",

@@ -1,16 +1,16 @@
 local M = {}
 -- HACK: for some reason, the alt keybindings are not working in my wezterm
-M.set_wezterm_keybindings = function()
-  lvim.keys.insert_mode["å"] = lvim.keys.insert_mode["<A-a>"]
-  lvim.keys.insert_mode["ß"] = lvim.keys.insert_mode["<A-s>"]
-  lvim.keys.insert_mode["´"] = lvim.keys.insert_mode["<A-e>"]
-  lvim.keys.insert_mode["∆"] = lvim.keys.insert_mode["<A-j>"]
-  lvim.keys.insert_mode["˚"] = lvim.keys.insert_mode["<A-k>"]
-  lvim.keys.normal_mode["å"] = lvim.keys.normal_mode["<A-a>"]
-  lvim.keys.normal_mode["≈"] = lvim.keys.normal_mode["<A-x>"]
-  lvim.keys.visual_mode["å"] = lvim.keys.visual_mode["<A-a>"]
-  lvim.keys.visual_mode["≈"] = lvim.keys.visual_mode["<A-x>"]
-end
+-- M.set_wezterm_keybindings = function()
+--   lvim.keys.insert_mode["å"] = lvim.keys.insert_mode["<A-a>"]
+--   lvim.keys.insert_mode["ß"] = lvim.keys.insert_mode["<A-s>"]
+--   lvim.keys.insert_mode["´"] = lvim.keys.insert_mode["<A-e>"]
+--   lvim.keys.insert_mode["∆"] = lvim.keys.insert_mode["<A-j>"]
+--   lvim.keys.insert_mode["˚"] = lvim.keys.insert_mode["<A-k>"]
+--   lvim.keys.normal_mode["å"] = lvim.keys.normal_mode["<A-a>"]
+--   lvim.keys.normal_mode["≈"] = lvim.keys.normal_mode["<A-x>"]
+--   lvim.keys.visual_mode["å"] = lvim.keys.visual_mode["<A-a>"]
+--   lvim.keys.visual_mode["≈"] = lvim.keys.visual_mode["<A-x>"]
+-- end
 
 M.fzf_projects = function()
   local fzf_lua = require "fzf-lua"
@@ -225,7 +225,7 @@ M.config = function()
   --   { noremap = true, silent = true, nowait = true },
   -- }
   lvim.keys.insert_mode["<A-a>"] = "<ESC>ggVG<CR>"
-  lvim.keys.insert_mode["jk"] = "<ESC>:w<CR>"
+  -- lvim.keys.insert_mode["jk"] = "<ESC>:w<CR>"
   if lvim.builtin.noice.active then
     lvim.keys.insert_mode["<C-s>"] = function()
       local params = vim.lsp.util.make_position_params(0, "utf-16")
@@ -676,7 +676,9 @@ keymap("n", "c", '"_c', opts)
 keymap("v", "c", '"_c', opts)
 keymap("v", "DD", '"_d', opts)
 
-keymap("n", "Q", "<cmd>BufferKill<CR>", opts)
+keymap("v", "Y", "<CMD>lua require('osc52').copy_visual()<CR>", opts)
+
+keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
 
 keymap(
   "n",

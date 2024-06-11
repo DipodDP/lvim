@@ -115,7 +115,7 @@ local function set_bufferline_keymaps()
   lvim.keys.normal_mode["<S-h>"] = "<Cmd>BufferLineCyclePrev<CR>"
   lvim.keys.normal_mode["[b"] = "<Cmd>BufferLineMoveNext<CR>"
   lvim.keys.normal_mode["]b"] = "<Cmd>BufferLineMovePrev<CR>"
-  lvim.builtin.which_key.mappings["c"] = "<Cmd>BufferKill<CR>"
+  -- lvim.builtin.which_key.mappings["c"] = "<Cmd>BufferKill<CR>"
   lvim.builtin.which_key.mappings.b = {
     name = " Buffer",
     ["1"] = { "<Cmd>BufferLineGoToBuffer 1<CR>", "goto 1" },
@@ -678,7 +678,7 @@ keymap("v", "DD", '"_d', opts)
 
 keymap("v", "Y", "<CMD>lua require('osc52').copy_visual()<CR>", opts)
 
-keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "Q", "<cmd>BufferKill<CR>", opts)
 
 keymap(
   "n",

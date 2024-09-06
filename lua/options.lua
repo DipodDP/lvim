@@ -6,9 +6,6 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.dap.active = true
 lvim.keys.term_mode = { ["<C-l>"] = false }
 
-lvim.builtin.cmp.formatting = {
-    format = require("tailwindcss-colorizer-cmp").formatter
-}
 -- vim.g.netrw_browse_split = 0
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_winsize = 25

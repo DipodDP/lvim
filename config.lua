@@ -31,7 +31,7 @@ lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
 -- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
 lvim.builtin.test_runner = { active = true, runner = "neotest" } -- change this to enable/disable ultest or neotest
 lvim.builtin.cheat = { active = true } -- enable/disable cheat.sh integration
-lvim.builtin.sql_integration = { active = false } -- use sql integration
+lvim.builtin.sql_integration = { active = true } -- use sql integration
 -- lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
 -- lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
 -- lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
@@ -68,7 +68,7 @@ lvim.builtin.tree_provider = "nvimtree" -- can be "neo-tree" or "nvimtree" or ""
 lvim.builtin.noice = { active = false } -- enables noice.nvim and inc-rename.nvim
 lvim.builtin.go_programming = { active = false } -- gopher.nvim + nvim-dap-go
 lvim.builtin.python_programming = { active = true } -- swenv.nvim + nvim-dap-python + requirements.txt.vim
-lvim.builtin.web_programming = { active = true, extra = "typescript-tools.nvim" } -- (typescript.nvim or typescript-tools.nvim) + package-info.nvim
+lvim.builtin.web_programming = { active = true } -- (typescript.nvim or typescript-tools.nvim) + package-info.nvim
 lvim.builtin.rust_programming = { active = false } -- rustaceanvim + crates.nvim
 lvim.builtin.cpp_programming = { active = false } -- clangd_extensions.nvim + make-tools.nvim
 lvim.builtin.cmp.cmdline.enable = false
@@ -145,15 +145,16 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
 --   "yamlls",
 })
 
--- require("user.null_ls").config()
+require("user.null_ls").config()
 
 -- require 'lspconfig'.csharp_ls.setup {}
-
--- require("user.null_ls").config()
 
 -- Additional Plugins
 -- =========================================
 require("user.plugins").config()
+lvim.builtin.cmp.formatting = {
+    format = require("tailwindcss-colorizer-cmp").formatter
+}
 
 reload "user.webdev-icons"
 reload "user.neotest"
@@ -175,6 +176,7 @@ require("swagger-preview").setup({
 -- =========================================
 require("user.autocommands").config()
 reload "autocommands"
+
 -- Options
 -- =========================================
 reload "options"

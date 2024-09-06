@@ -305,32 +305,6 @@ M.config = function()
       end,
       dependencies = "nvim-treesitter/nvim-treesitter",
     },
-      -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
-    -- {
-    --   "jose-elias-alvarez/typescript.nvim",
-    --   ft = {
-    --     "javascript",
-    --     "javascriptreact",
-    --     "javascript.jsx",
-    --     "typescript",
-    --     "typescriptreact",
-    --     "typescript.tsx",
-    --   },
-    --   lazy = true,
-    --   config = function()
-    --     require("user.tss").config()
-    --   end,
-    --   enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
-    -- },
-    -- {
-    --   "vuki656/package-info.nvim",
-    --   config = function()
-    --     require("package-info").setup()
-    --   end,
-    --   lazy = true,
-    --   event = { "BufReadPre", "BufNew" },
-    --   enabled = lvim.builtin.web_programming.active,
-    -- },
     {
       "lervag/vimtex",
       init = function()
@@ -399,28 +373,28 @@ M.config = function()
     --   "kristijanhusak/vim-dadbod-completion",
     --   enabled = lvim.builtin.sql_integration.active,
     -- },
-    -- {
-    --   "kristijanhusak/vim-dadbod-ui",
-    --   cmd = {
-    --     "DBUIToggle",
-    --     "DBUIAddConnection",
-    --     "DBUI",
-    --     "DBUIFindBuffer",
-    --     "DBUIRenameBuffer",
-    --   },
-    --   init = function()
-    --     vim.g.db_ui_use_nerd_fonts = 1
-    --     vim.g.db_ui_show_database_icon = 1
-    --   end,
-    --   dependencies = {
-    --     {
-    --       "tpope/vim-dadbod",
-    --       lazy = true,
-    --     },
-    --   },
-    --   lazy = true,
-    --   enabled = lvim.builtin.sql_integration.active,
-    -- },
+    {
+      "kristijanhusak/vim-dadbod-ui",
+      cmd = {
+        "DBUIToggle",
+        "DBUIAddConnection",
+        "DBUI",
+        "DBUIFindBuffer",
+        "DBUIRenameBuffer",
+      },
+      init = function()
+        vim.g.db_ui_use_nerd_fonts = 1
+        vim.g.db_ui_show_database_icon = 1
+      end,
+      dependencies = {
+        {
+          "tpope/vim-dadbod",
+          lazy = true,
+        },
+      },
+      lazy = true,
+      enabled = lvim.builtin.sql_integration.active,
+    },
     -- {
     --   "karb94/neoscroll.nvim",
     --   config = function()
@@ -940,7 +914,7 @@ M.config = function()
       config = function()
         require("user.typtools").config()
       end,
-      enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
+      enabled = (lvim.builtin.web_programming.active),
     },
     {
       "roobert/tailwindcss-colorizer-cmp.nvim",
@@ -954,6 +928,7 @@ M.config = function()
         "typescript.tsx",
       },
       lazy = true,
+      enabled = (lvim.builtin.web_programming.active),
     },
     -- "nvim-treesitter/playground",
     -- {

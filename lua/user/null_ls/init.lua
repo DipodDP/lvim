@@ -52,16 +52,15 @@ M.config = function()
     nls.builtins.formatting.goimports,
     nls.builtins.formatting.gofumpt,
     nls.builtins.formatting.cmake_format,
-    nls.builtins.formatting.scalafmt,
-    nls.builtins.formatting.sqlformat,
+    -- nls.builtins.formatting.scalafmt,
     nls.builtins.formatting.terraform_fmt.with {
       filetypes = { "terraform", "tf", "terraform-vars", "hcl" },
     },
     -- Support for nix files
     nls.builtins.formatting.alejandra,
     nls.builtins.formatting.shfmt.with { extra_args = { "-i", "2", "-ci" } },
-    nls.builtins.formatting.black.with { extra_args = { "--fast" }, filetypes = { "python" } },
-    nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" }, filetypes = { "python" } },
+    nls.builtins.formatting.blue.with { filetypes = { "python" }, timeout = 10000, },
+    -- nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" }, filetypes = { "python" } },
     nls.builtins.diagnostics.ansiblelint.with {
       condition = function(utils)
         return utils.root_has_file "roles" and utils.root_has_file "inventories"
@@ -78,21 +77,24 @@ M.config = function()
       end,
     },
     nls.builtins.diagnostics.hadolint,
-    -- nls.builtins.diagnostics.selene,
+    -- nls.builtins.diagnostics.sqlfluff.with({
+    --   filetypes = { "sql", "SQL" },
+    --   extra_args = { "--dialect", "postgres" },
+    -- }),
     nls.builtins.diagnostics.eslint_d.with {
       condition = function(utils)
         return utils.root_has_file { ".eslintrc", ".eslintrc.js" }
       end,
       prefer_local = "node_modules/.bin",
     },
-    nls.builtins.diagnostics.selene,
+    -- nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
         return utils.root_has_file ".semgrepignore" and use_semgrep
       end,
       extra_args = { "--metrics", "off", "--exclude", "vendor", "--config", semgrep_rule_folder },
     },
-    nls.builtins.diagnostics.shellcheck,
+    -- nls.builtins.diagnostics.shellcheck,
     -- nls.builtins.diagnostics.luacheck,
     nls.builtins.diagnostics.vint,
     nls.builtins.diagnostics.chktex,
@@ -157,6 +159,8 @@ M.config = function()
     save_after_format = false,
     sources = sources,
   }
+  -- nls.setup()
 end
 
 return M
+

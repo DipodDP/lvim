@@ -64,7 +64,7 @@ keymap("v", "c", "ygvc")
 -- Delete in blackhole register
 keymap("v", "DD", '"_d')
 
-keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
+-- keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
 
 keymap(
   "n",

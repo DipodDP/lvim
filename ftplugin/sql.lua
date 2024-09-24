@@ -5,7 +5,7 @@ lsp_manager.setup("sqlls", {
   capabilities = require("lvim.lsp").common_capabilities(),
 })
 
-local json = [[
+local conf = [[
 {
   "language": "postgresql",
   "tabWidth": 2,
@@ -19,6 +19,6 @@ formatters.setup {
   {
     command = "sql-formatter",
     filetypes = { "sql" },
-    extra_args = { "-c", json }, -- specify your SQL dialect here
+    extra_args = { "-c", conf }, -- specify your SQL dialect here
   },
 }

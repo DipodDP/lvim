@@ -17,21 +17,21 @@ lvim.builtin.which_key.mappings["R"] = {
   f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
 }
 
-lvim.builtin.which_key.mappings["r"] = {
-  name = "Refactor",
-  e = { "<cmd>Refactor extract<cr>", "Replace" },
-}
+-- lvim.builtin.which_key.mappings["r"] = {
+--   name = "Refactor",
+--   e = { "<cmd>Refactor extract<cr>", "Replace" },
+-- }
 
-lvim.builtin.which_key.mappings["a"] = {
-  name = "A.I.",
-  c = { "<cmd>ChatGPT<cr>", "ChatGPT" },
-  a = { "<cmd>ChatGPTActAs<cr>", "Act As GPT" },
-  e = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit GPT" },
-  r = { "<cmd>ChatRunCustomCodeAction<cr>", "Code Action GPT" },
-  s = { "<cmd>Copilot suggestion<cr>", "Toggle Copilot Suggestion" },
-  p = { "<cmd>Copilot panel<cr>", "Toggle Copilot Panel" },
-  t = { "<cmd>Copilot toggle<cr>", "Toggle Copilot" },
-}
+-- lvim.builtin.which_key.mappings["a"] = {
+--   name = "A.I.",
+--   c = { "<cmd>ChatGPT<cr>", "ChatGPT" },
+--   a = { "<cmd>ChatGPTActAs<cr>", "Act As GPT" },
+--   e = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit GPT" },
+--   r = { "<cmd>ChatRunCustomCodeAction<cr>", "Code Action GPT" },
+--   s = { "<cmd>Copilot suggestion<cr>", "Toggle Copilot Suggestion" },
+--   p = { "<cmd>Copilot panel<cr>", "Toggle Copilot Panel" },
+--   t = { "<cmd>Copilot toggle<cr>", "Toggle Copilot" },
+-- }
 lvim.builtin.which_key.mappings["d"] = {
   name = "Debug",
   b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
@@ -106,7 +106,7 @@ lvim.builtin.which_key.mappings["l"] = {
     "<cmd>Telescope lsp_workspace_diagnostics<cr>",
     "Workspace Diagnostics",
   },
-  f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
+  f = { "<cmd>lua vim.lsp.buf.format({ async = true, timeout_ms = 10000 })<cr>", "Format" },
   F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
   i = { "<cmd>LspInfo<cr>", "Info" },
   h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
@@ -180,20 +180,6 @@ lvim.builtin.which_key.mappings["n"] = {
 -- lvim.builtin.which_key.mappings["s"] = nil
 -- lvim.builtin.which_key.mappings["w"] = nil
 
-local m_opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "m",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
-
 local m_mappings = {
   m = { "<cmd>BookmarkToggle<cr>", "Toggle" },
   j = { "<cmd>BookmarkNext<cr>", "Next" },
@@ -213,18 +199,18 @@ local m_mappings = {
   -- [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }
 
--- local m_opts = {
---   mode = "n", -- NORMAL mode
---   prefix = "m",
---   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
---   silent = true, -- use `silent` when creating keymaps
---   noremap = true, -- use `noremap` when creating keymaps
---   nowait = true, -- use `nowait` when creating keymaps
--- }
+local m_opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "m",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
 
--- local status_ok, which_key = pcall(require, "which-key")
--- if not status_ok then
---   return
--- end
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+  return
+end
 
--- which_key.register(m_mappings, m_opts)
+which_key.register(m_mappings, m_opts)

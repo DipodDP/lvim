@@ -61,6 +61,7 @@ M.config = function()
       require("user.markdown_syn").set_syntax()
     end,
   })
+end
 
   if lvim.builtin.sql_integration.active then
     -- Add vim-dadbod-completion in sql files

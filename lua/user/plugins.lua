@@ -136,19 +136,7 @@ M.config = function()
     {
       "folke/trouble.nvim",
       config = function()
-        require("trouble").setup {
-          focus = true,
-          preview = {
-            type = "float",
-            relative = "editor",
-            border = "rounded",
-            title = "Preview",
-            title_pos = "center",
-            position = { 0, -2 },
-            size = { width = 0.4, height = 0.3 },
-            zindex = 200,
-          },
-        }
+        require("user.troubl").config()
       end,
       event = "VeryLazy",
       cmd = "Trouble",
@@ -560,7 +548,6 @@ M.config = function()
     },
     {
       "j-hui/fidget.nvim",
-      branch = "legacy",
       config = function()
         require("user.fidget_spinner").config()
       end,
@@ -1037,11 +1024,50 @@ M.config = function()
       event = "BufRead",
     },
     {
-      "mireq/large_file",
+      "OXY2DEV/markview.nvim",
+      lazy = false,
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-tree/nvim-web-devicons",
+      },
       config = function()
-        require("large_file").setup()
+        local presets = require "markview.presets"
+
+        require("markview").setup {
+          checkboxes = presets.checkboxes.nerd,
+          headings = presets.headings.glow,
+        }
       end,
-      enabled = not lvim.builtin.bigfile.active,
+      enabled = lvim.builtin.markdown.active,
+    },
+    {
+      "abzcoding/project.nvim",
+      name = "new-project",
+      branch = "fix/nvim-12",
+      config = function()
+        require("user.project").config()
+      end,
+      enabled = not lvim.builtin.project.active and lvim.builtin.project.mine,
+    },
+    {
+      "folke/which-key.nvim",
+      name = "whhk",
+      event = "VeryLazy",
+      commit = "0119a83f6cd097701ff13044be4e1effc8dffe02",
+      pin = true,
+      config = function()
+        require("user.which").config()
+      end,
+      enabled = not lvim.builtin.which_key.active and lvim.builtin.which_key.mine,
+    },
+    {
+      "OXY2DEV/helpview.nvim",
+      lazy = true,
+      ft = "help",
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+      },
+      enabled = lvim.builtin.markdown.active,
     },
     {
       "HiPhish/rainbow-delimiters.nvim",

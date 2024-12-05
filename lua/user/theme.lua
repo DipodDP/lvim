@@ -4,7 +4,7 @@ function HighlightedFoldtext()
   local pos = vim.v.foldstart
   local line = vim.api.nvim_buf_get_lines(0, pos - 1, pos, false)[1]
   local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
-  local parser = vim.treesitter.get_parser(0, lang)
+  local parser = vim.treesitter.get_parser(0, lang, { error = false })
   local query = vim.treesitter.query.get(parser:lang(), "highlights")
 
   if query == nil then
@@ -40,9 +40,9 @@ function HighlightedFoldtext()
 end
 
 M.tokyonight = function()
-  -- require("tokyonight").setup {
-  lvim.builtin.theme.tokyonight.options = {
-    style = "storm",
+  require("tokyonight").setup {
+    style = "moon",
+    light_style = "day",
     transparent = lvim.transparent_window,
     terminal_colors = true,
     styles = {
@@ -82,8 +82,15 @@ M.tokyonight = function()
       hl.Cursor = { fg = current_colors.bg, bg = current_colors.fg }
       hl.NormalNC = { fg = current_colors.fg_dark, bg = "#1c1d28" }
       hl.Normal = { fg = current_colors.fg, bg = "#1f2335" }
-      hl.CursorLineNr = { fg = current_colors.orange, style = "bold" }
+      hl.CursorLineNr = { fg = current_colors.orange }
+      hl["rainbow1"] = { fg = c.red, bg = "#24283b" }
+      hl["rainbow2"] = { fg = c.orange, bg = "#24283b" }
+      hl["rainbow3"] = { fg = c.yellow, bg = "#24283b" }
+      hl["rainbow4"] = { fg = c.green, bg = "#24283b" }
+      hl["rainbow5"] = { fg = c.teal, bg = "#24283b" }
+      hl["rainbow6"] = { fg = c.magenta, bg = "#24283b" }
     end,
+    cache = true,
   }
 end
 
@@ -168,6 +175,13 @@ M.rose_pine = function()
       CmpItemKindReference = { fg = "gold" },
       CmpItemKindOperator = { fg = "subtle" },
       CmpItemKindTypeSnippet = { fg = "pine" },
+      ColorColumn = { bg = "#16141f" },
+      rainbow1 = { fg = "#eb6f92", bg = "#2a273f" },
+      rainbow2 = { fg = "#ea9d34", bg = "#2a273f" },
+      rainbow3 = { fg = "#f7c177", bg = "#2a273f" },
+      rainbow4 = { fg = "#31748f", bg = "#2a273f" },
+      rainbow5 = { fg = "#9ccfd8", bg = "#2a273f" },
+      rainbow6 = { fg = "#c4a7e7", bg = "#2a273f" },
     },
   }
 end
@@ -231,7 +245,7 @@ M.catppuccin = function()
       neotree = lvim.builtin.tree_provider == "neo-tree",
       overseer = lvim.builtin.task_runner == "overseer",
       symbols_outline = lvim.builtin.tag_provider == "symbols-outline",
-      which_key = lvim.builtin.which_key.active,
+      which_key = lvim.builtin.which_key.active or lvim.builtin.which_key.mine,
       leap = lvim.builtin.motion_provider == "leap",
       hop = lvim.builtin.motion_provider == "hop",
     },
@@ -242,9 +256,16 @@ M.catppuccin = function()
         CmpItemKindEnumMember = { fg = "#F5C2E7" },
         CmpItemMenu = { fg = "#7F849C" },
         CmpItemAbbr = { fg = "#BAC2DE" },
+        ColorColumn = { bg = "#181825" },
         Cursor = { fg = "#1e1e2e", bg = "#d9e0ee" },
         ["@constant.builtin"] = { fg = "#EBA0AC" },
         TSConstBuiltin = { fg = "#EBA0AC" },
+        rainbow1 = { fg = "#f38ba8", bg = "#302D41" },
+        rainbow2 = { fg = "#fab387", bg = "#302D41" },
+        rainbow3 = { fg = "#f9e2af", bg = "#302D41" },
+        rainbow4 = { fg = "#a6e3a1", bg = "#302D41" },
+        rainbow5 = { fg = "#74c7ec", bg = "#302D41" },
+        rainbow6 = { fg = "#b4befe", bg = "#302D41" },
       },
     },
   }
@@ -296,6 +317,13 @@ M.kanagawa = function()
         NvimTreeFolderIcon = { fg = "#7e9cd8" },
         CmpItemKindEnum = { fg = "#957FB8" },
         ["@parameter"] = { fg = "#DCA561" },
+        rainbow1 = { fg = "#C34043", bg = "#21212A" },
+        rainbow2 = { fg = "#FFA066", bg = "#21212A" },
+        rainbow3 = { fg = "#DCA561", bg = "#21212A" },
+        rainbow4 = { fg = "#76946A", bg = "#21212A" },
+        rainbow5 = { fg = "#4e8ca2", bg = "#21212A" },
+        rainbow6 = { fg = "#949fb5", bg = "#21212A" },
+        ColorColumn = { bg = "#181820" },
       }
     end,
     theme = "wave",
@@ -453,7 +481,6 @@ M.current_colors = function()
   local _time = os.date "*t"
   if _time.hour >= 1 and _time.hour < 9 then
     colors = M.colors.rose_pine_colors
-    -- colors = M.colors.catppuccin_colors
   elseif _time.hour >= 9 and _time.hour < 17 then
     colors = M.colors.tokyonight_colors
   elseif _time.hour >= 17 and _time.hour < 21 then
@@ -514,31 +541,35 @@ M.telescope_theme = function(colorset)
   link("LspDiagnosticsSignInfo", "DiagnosticInfo")
   link("NeoTreeDirectoryIcon", "NvimTreeFolderIcon")
   link("IndentBlanklineIndent1 ", "@comment")
-  if vim.fn.has "nvim-0.9" == 1 then
-    link("@lsp.type.decorator", "@function")
-    link("@lsp.type.enum", "@type")
-    link("@lsp.type.enumMember", "@constant")
-    link("@lsp.type.function", "@function")
-    link("@lsp.type.interface", "@interface")
-    link("@lsp.type.keyword", "@keyword")
-    link("@lsp.type.macro", "@macro")
-    link("@lsp.type.method", "@method")
-    link("@lsp.type.namespace", "@namespace")
-    link("@lsp.type.parameter", "@parameter")
-    link("@lsp.type.property", "@property")
-    link("@lsp.type.struct", "@structure")
-    link("@lsp.type.variable", "@variable")
-    link("@lsp.type.class", "@type")
-    link("@lsp.type.type", "@type")
-    link("@lsp.typemod.function.defaultLibrary", "Special")
-    link("@lsp.typemod.variable.defaultLibrary", "@variable.builtin")
-    -- link("@lsp.typemod.variable.global", "@constant.builtin")
-    link("@lsp.typemod.operator", "@operator")
-    link("@lsp.typemod.string", "@string")
-    link("@lsp.typemod.variable", "@variable")
-    link("@lsp.typemod.parameter.label", "@field")
-    link("@type.qualifier", "@keyword")
-  end
+  link("@lsp.type.decorator", "@function")
+  link("@lsp.type.enum", "@type")
+  link("@lsp.type.enumMember", "@constant")
+  link("@lsp.type.function", "@function")
+  link("@lsp.type.interface", "@interface")
+  link("@lsp.type.keyword", "@keyword")
+  link("@lsp.type.macro", "@macro")
+  link("@lsp.type.method", "@method")
+  link("@lsp.type.namespace", "@namespace")
+  link("@lsp.type.parameter", "@parameter")
+  link("@lsp.type.property", "@property")
+  link("@lsp.type.struct", "@structure")
+  link("@lsp.type.variable", "@variable")
+  link("@lsp.type.class", "@type")
+  link("@lsp.type.type", "@type")
+  link("@lsp.typemod.function.defaultLibrary", "Special")
+  link("@lsp.typemod.variable.defaultLibrary", "@variable.builtin")
+  -- link("@lsp.typemod.variable.global", "@constant.builtin")
+  link("@lsp.typemod.operator", "@operator")
+  link("@lsp.typemod.string", "@string")
+  link("@lsp.typemod.variable", "@variable")
+  link("@lsp.typemod.parameter.label", "@field")
+  link("@type.qualifier", "@keyword")
+  link("@markup.heading.1.markdown", "rainbow1")
+  link("@markup.heading.2.markdown", "rainbow2")
+  link("@markup.heading.3.markdown", "rainbow3")
+  link("@markup.heading.4.markdown", "rainbow4")
+  link("@markup.heading.5.markdown", "rainbow5")
+  link("@markup.heading.6.markdown", "rainbow6")
 
   -- NOTE: these are my personal preferences
   if lvim.builtin.time_based_themes then
@@ -587,7 +618,6 @@ M.telescope_theme = function(colorset)
   local hl = vim.api.nvim_get_hl(0, { name = "Folded" })
   hl.bg = bg
   vim.api.nvim_set_hl(0, "Folded", { fg = hl.fg, bg = hl.bg })
-  vim.opt.foldtext = [[luaeval('HighlightedFoldtext')()]]
 
   if not lvim.builtin.telescope.active then
     set_fg_bg("FzfLuaBorder", colors.bg, colors.bg)
@@ -611,16 +641,26 @@ M.telescope_theme = function(colorset)
     vim.api.nvim_set_hl(0, "SymbolUsageDef", { fg = h("Type").fg, bg = h("CursorLine").bg, italic = true })
     vim.api.nvim_set_hl(0, "SymbolUsageImpl", { fg = h("@keyword").fg, bg = h("CursorLine").bg, italic = true })
   end
+  if lvim.builtin.markdown.active then
+    link("MarkviewHeading1", "rainbow1")
+    link("MarkviewHeading1Sign", "rainbow1")
+    link("MarkviewHeading2", "rainbow2")
+    link("MarkviewHeading2Sign", "rainbow2")
+    link("MarkviewHeading3", "rainbow3")
+    link("MarkviewHeading4", "rainbow4")
+    link("MarkviewHeading5", "rainbow5")
+    link("MarkviewHeading6", "rainbow6")
+  end
 end
 
 M.toggle_theme = function()
   local theme = lvim.colorscheme
   local colorset = require("user.theme").colors.tokyonight_colors
-  if theme == "tokyonight" then
+  if theme == "tokyonight-moon" then
     lvim.colorscheme = "catppuccin-mocha"
     colorset = require("user.theme").colors.catppuccin_colors
   else
-    lvim.colorscheme = "tokyonight"
+    lvim.colorscheme = "tokyonight-moon"
   end
   if vim.g.toggle_theme_icon == "   " then
     vim.g.toggle_theme_icon = "   "

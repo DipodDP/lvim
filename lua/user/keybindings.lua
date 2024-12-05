@@ -331,10 +331,8 @@ M.config = function()
   lvim.builtin.which_key.mappings["H"] = "󰞋 Help"
   lvim.builtin.which_key.mappings["h"] = { "<cmd>nohlsearch<CR>", "󰸱 No Highlight" }
   lvim.builtin.which_key.mappings.g.name = " Git"
-  if vim.fn.has "nvim-0.10" == 1 then
-    lvim.builtin.which_key.mappings["I"] =
+  lvim.builtin.which_key.mappings["I"] =
     { "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", " Toggle Inlay" }
-  end
   lvim.builtin.which_key.mappings.l.name = " LSP"
   lvim.builtin.which_key.mappings["f"] = {
     require("user.telescope").find_project_files,
@@ -425,6 +423,7 @@ M.config = function()
     },
   }
   lvim.builtin.which_key.mappings.s.name = " Search"
+  lvim.builtin.which_key.mappings["sM"] = { "<cmd>Telescope man_pages sections=ALL<cr>", "Man Pages" }
   lvim.builtin.which_key.mappings["ss"] = {
     "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>",
     "String",
@@ -484,6 +483,10 @@ M.config = function()
   }
   -- Nvim-tree
   lvim.builtin.which_key.mappings["E"] = { "<cmd>NvimTreeFocus<cr>", "Focus in explorer" }
+
+  if lvim.builtin.symbols_usage.active then
+    lvim.builtin.which_key.mappings["Y"] = { "<cmd>lua require('symbol-usage').toggle()<cr>", "󰫦 Toggle Symbols" }
+  end
 
   -- My wezterm is weird
   -- =========================================

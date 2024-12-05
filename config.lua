@@ -19,25 +19,24 @@ require("user.neovim").config()
 
 -- Customization
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul
-lvim.builtin.lastplace = { active = true }                                               -- change to false if you are jumping to future
--- lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
-lvim.builtin.persistence = { active = true }                                             -- change to false if you don't want persistence
--- lvim.builtin.presence = { active = false } -- change to true if you want discord presence
--- lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
-lvim.builtin.dap.active = true                                   -- change this to enable/disable debugging
-lvim.builtin.fancy_statusline = { active = false }               -- enable/disable fancy statusline
-lvim.builtin.fancy_wild_menu = { active = false }                -- enable/disable cmp-cmdline
-lvim.builtin.fancy_diff = { active = false }                     -- enable/disable fancier git diff
--- lvim.builtin.lua_dev = { active = true } -- change this to enable/disable folke/lua_dev
-lvim.builtin.test_runner = { active = true, runner = "neotest" } -- change this to enable/disable ultest or neotest
-lvim.builtin.cheat = { active = true }                           -- enable/disable cheat.sh integration
-lvim.builtin.sql_integration = { active = true }                 -- use sql integration
--- lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
--- lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
--- lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
--- lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
-lvim.builtin.harpoon = { active = false }    -- use the harpoon plugin
--- lvim.builtin.remote_dev = { active = false } -- enable/disable remote development
+lvim.builtin.lastplace = { active = false } -- change to false if you are jumping to future
+lvim.builtin.tabnine = { active = true } -- change to false if you don't like tabnine
+lvim.builtin.persistence = { active = true } -- change to false if you don't want persistence
+lvim.builtin.presence = { active = false } -- change to true if you want discord presence
+lvim.builtin.orgmode = { active = false } -- change to true if you want orgmode.nvim
+lvim.builtin.dap.active = false -- change this to enable/disable debugging
+lvim.builtin.fancy_statusline = { active = true } -- enable/disable fancy statusline
+lvim.builtin.fancy_wild_menu = { active = false } -- enable/disable cmp-cmdline
+lvim.builtin.fancy_diff = { active = false } -- enable/disable fancier git diff
+lvim.builtin.test_runner = { active = true, runner = "ultest" } -- change this to enable/disable ultest or neotest
+lvim.builtin.cheat = { active = false } -- enable/disable cheat.sh integration
+lvim.builtin.sql_integration = { active = false } -- use sql integration
+lvim.builtin.smooth_scroll = "" -- for smoth scrolling, can be "cinnamon", "neoscroll" or ""
+lvim.builtin.neoclip = { active = true, enable_persistent_history = false }
+lvim.builtin.nonumber_unfocus = false -- diffrentiate between focused and non focused windows
+lvim.builtin.custom_web_devicons = false -- install https://github.com/Nguyen-Hoang-Nam/mini-file-icons
+lvim.builtin.harpoon = { active = true } -- use the harpoon plugin
+lvim.builtin.remote_dev = { active = false } -- enable/disable remote development
 lvim.builtin.cursorline = { active = false } -- use a bit fancier cursorline
 -- lvim.builtin.motion_provider = "hop" -- change this to use different motion providers ( hop or leap or flash)
 -- lvim.builtin.task_runner = "" -- change this to use different task runners ( "async_tasks" or "overseer" or "")
@@ -79,8 +78,12 @@ lvim.builtin.bigfile.active = true
 -- lvim.builtin.indentlines.active = false
 -- lvim.builtin.indentlines.mine = true -- NOTE: using v3 till fixed upstream in lunarvim
 lvim.builtin.mind = { active = false, root_path = "~/.mind" } -- enable/disable mind.nvim
-lvim.builtin.symbols_usage = { active = false }               -- enable/disable symbols-usage.nvim
-lvim.builtin.trouble = { active = false }                     -- enable/disable trouble.nvim
+lvim.builtin.symbols_usage = { active = false } -- enable/disable symbols-usage.nvim
+lvim.builtin.trouble = { active = false } -- enable/disable trouble.nvim
+lvim.builtin.markdown = { active = false } -- enable/disable markdown.nvim
+lvim.builtin.project.mine = false
+lvim.builtin.which_key.active = false -- pin to v2.0.1
+lvim.builtin.which_key.mine = true -- pin to v2.0.1
 
 -- Custom User Config
 -- =========================================

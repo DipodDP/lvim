@@ -28,10 +28,10 @@ M.config = function()
     )
   end
 
-  vim.cmd [[
+  if lvim.builtin.bigfile.active == false then
+    vim.cmd [[
   " disable syntax highlighting in big files
   function! DisableSyntaxTreesitter()
-      echo("Big file, disabling syntax, treesitter and folding")
       if exists(':TSBufDisable')
           exec 'TSBufDisable autotag'
           exec 'TSBufDisable highlight'

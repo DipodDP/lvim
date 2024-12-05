@@ -269,14 +269,20 @@ M.config = function()
   lvim.builtin.gitsigns.opts.current_line_blame_formatter = " <author>, <author_time> · <summary>"
   lvim.builtin.gitsigns.opts.attach_to_untracked = false
   lvim.builtin.gitsigns.opts.yadm = nil
+  lvim.builtin.gitsigns.opts.signs = {
+    add = { text = "┃" },
+    change = { text = "┃" },
+    delete = { text = "_" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+    untracked = { text = "┆" },
+  }
 
   -- IndentBlankline
   -- =========================================
-  -- if lvim.builtin.indentlines.mine then
-  --   require("user.indent_blankline").setup()
-  -- elseif lvim.builtin.indentlines.active then
-  --   require("user.indent_blankline").config()
-  -- end
+  if lvim.builtin.indentlines.mine == false and lvim.builtin.indentlines.active then
+    require("user.indent_blankline").config()
+  end
 
   -- LSP
   -- =========================================
@@ -330,6 +336,7 @@ M.config = function()
   else
     vim.lsp.handlers["textDocument/hover"] = M.enhanced_float_handler(vim.lsp.handlers.hover)
     vim.lsp.handlers["textDocument/signatureHelp"] = M.enhanced_float_handler(vim.lsp.handlers.signature_help)
+    vim.api.nvim_create_namespace "enhanced_handler"
   end
 
   -- NvimTree
@@ -349,16 +356,6 @@ M.config = function()
     end
   end
   -- lvim.builtin.nvimtree.hide_dotfiles = 0
-
-  -- Project
-  -- =========================================
-  lvim.builtin.project.active = true
-  lvim.builtin.project.detection_methods = { "lsp", "pattern" }
-
-  -- Theme
-  -- =========================================
-  -- require("user.theme").tokyonight()
-  -- lvim.builtin.theme.name = "tokyonight"
 
   -- Toggleterm
   -- =========================================
@@ -440,17 +437,7 @@ M.config = function()
       },
     },
     swap = {
-      enable = true,
-      swap_next = {
-        ["<leader><M-a>"] = "@parameter.inner",
-        ["<leader><M-f>"] = "@function.outer",
-        ["<leader><M-e>"] = "@element",
-      },
-      swap_previous = {
-        ["<leader><M-A>"] = "@parameter.inner",
-        ["<leader><M-F>"] = "@function.outer",
-        ["<leader><M-E>"] = "@element",
-      },
+      enable = false,
     },
     move = {
       enable = true,
@@ -604,6 +591,9 @@ M.config = function()
     telescope.load_extension "file_create"
     if lvim.builtin.file_browser.active then
       telescope.load_extension "file_browser"
+    end
+    if lvim.builtin.project.mine then
+      telescope.load_extension "projects"
     end
   end
 
@@ -906,6 +896,7 @@ end
 
 M.enhanced_float_handler = function(handler)
   return function(err, result, ctx, config)
+    local ns = vim.api.nvim_create_namespace "enhanced_handler"
     local buf, win = handler(
       err,
       result,
@@ -939,7 +930,7 @@ M.enhanced_float_handler = function(handler)
           local to
           from, to = line:find(pattern, from)
           if from then
-            vim.api.nvim_buf_set_extmark(buf, l - 1, l - 1, from - 1, {
+            vim.api.nvim_buf_set_extmark(buf, ns, l - 1, from - 1, {
               end_col = to,
               hl_group = hl_group,
             })

@@ -14,13 +14,16 @@ first: '\b([A-Z]{3,5})\b'
 second: '(?:\b[A-Z][a-z]+ )+\(([A-Z]{3,5})\)'
 # ... with the exception of these:
 exceptions:
+  - AARW
   - ACG
   - ACID
   - ACK
   - ACL
   - ADC
   - ADFS
+  - AES
   - AJAX
+  - AMD
   - AMSI
   - ANSI
   - API
@@ -33,14 +36,17 @@ exceptions:
   - ASIC
   - ASLR
   - ASN
+  - ATA
   - AWS
   - BAR
   - BASLR
   - BCP
   - BEV
+  - BFLA
   - BGP
   - BIOS
   - BNB
+  - BOLA
   - BPDU
   - BSD
   - BSOD
@@ -54,6 +60,7 @@ exceptions:
   - CFG
   - CFI
   - CIS
+  - CISO
   - CLI
   - CMD
   - CNA
@@ -73,6 +80,7 @@ exceptions:
   - CSRF
   - CSS
   - CSV
+  - CTF
   - CTI
   - CVE
   - CVS
@@ -96,7 +104,10 @@ exceptions:
   - DVCS
   - EAF
   - EAP
+  - EAT
+  - ECDH
   - ECDSA
+  - ECH
   - ECS
   - EDR
   - EEA
@@ -144,6 +155,7 @@ exceptions:
   - HAL
   - HAML
   - HDD
+  - HDMI
   - HEAD
   - HIPAA
   - HMAC
@@ -173,11 +185,13 @@ exceptions:
   - IID
   - IMAP
   - IOC
+  - IOCTL
   - IOPS
   - IPC
   - IPFS
   - IPS
   - IRC
+  - IRP
   - IRQL
   - ISAC
   - ISF
@@ -185,6 +199,7 @@ exceptions:
   - ISO
   - ISS
   - IUM
+  - JIT
   - JPEG
   - JPG
   - JSE
@@ -207,6 +222,7 @@ exceptions:
   - LESS
   - LFS
   - LIDAR
+  - LLM
   - LLVM
   - LNK
   - LRU
@@ -243,9 +259,11 @@ exceptions:
   - NIST
   - NOTE
   - NPM
+  - NTFS
   - NTLM
   - NTP
   - NVRAM
+  - OCR
   - ONLY
   - OPA
   - OSI
@@ -274,6 +292,7 @@ exceptions:
   - POSIX
   - POST
   - PPP
+  - PSP
   - PTE
   - PUT
   - QEMU
@@ -327,6 +346,7 @@ exceptions:
   - SFTP
   - SHA
   - SIEM
+  - SIM
   - SIP
   - SLA
   - SLSA
@@ -347,6 +367,7 @@ exceptions:
   - SPN
   - SQL
   - SSD
+  - SSDT
   - SSG
   - SSH
   - SSL
@@ -380,6 +401,7 @@ exceptions:
   - TTL
   - TTP
   - TUI
+  - UAC
   - UAF
   - UDP
   - UEFI
@@ -401,6 +423,7 @@ exceptions:
   - VNF
   - VPC
   - VPN
+  - VPS
   - VSS
   - WAF
   - WHQL
@@ -411,6 +434,7 @@ exceptions:
   - WSH
   - WSL
   - XDR
+  - XFG
   - XLAM
   - XLL
   - XML

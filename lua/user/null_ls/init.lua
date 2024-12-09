@@ -32,10 +32,15 @@ M.config = function()
       timeout = 10000,
     },
     nls.builtins.formatting.prettierd.with {
-      condition = function(utils)
-        return not utils.root_has_file { ".eslintrc", ".eslintrc.js" }
-      end,
+      -- condition = function(utils)
+      --   return not utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+      -- end,
       prefer_local = "node_modules/.bin",
+    },
+    nls.builtins.formatting.eslint_d.with {
+      condition = function(utils)
+        return utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+      end,
     },
     nls.builtins.formatting.stylua,
     nls.builtins.formatting.goimports,
@@ -49,7 +54,8 @@ M.config = function()
     -- Support for nix files
     nls.builtins.formatting.alejandra,
     nls.builtins.formatting.shfmt.with { extra_args = { "-i", "2", "-ci" } },
-    nls.builtins.formatting.black.with { extra_args = { "--fast" }, filetypes = { "python" } },
+    -- nls.builtins.formatting.black.with { extra_args = { "--fast" }, filetypes = { "python" } },
+    nls.builtins.formatting.blue.with { extra_args = { "--fast" }, filetypes = { "python" }, timeout = 10000 },
     nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" }, filetypes = { "python" } },
     nls.builtins.diagnostics.ansiblelint.with {
       condition = function(utils)

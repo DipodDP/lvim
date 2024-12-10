@@ -70,10 +70,10 @@ M.config = function()
 
   -- Autopairs
   -- =========================================
-  -- lvim.builtin.autopairs.on_config_done = function(autopairs)
-  --   local Rule = require "nvim-autopairs.rule"
-  --   autopairs.add_rule(Rule("$$", "$$", "tex"))
-  -- end
+  lvim.builtin.autopairs.on_config_done = function(autopairs)
+    local Rule = require "nvim-autopairs.rule"
+    autopairs.add_rule(Rule("$$", "$$", "tex"))
+  end
 
   -- Bufferline
   -- =========================================

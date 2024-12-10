@@ -47,7 +47,7 @@ M.config = function()
       vim.cmd [[
           set foldlevel=10
           lua require("user.zen").hide_diagnostics()
-          lua require("user.indent_blankline").disable()
+          " lua require("user.indent_blankline").disable()
           ]]
       if lvim.builtin.tmux_lualine == false then
         require("lualine").hide()
@@ -56,11 +56,11 @@ M.config = function()
     on_close = function()
       lvim.builtin.cmp.active = true
       vim.cmd [[
-          set foldlevel=4
-          set foldmethod=expr
-          set foldexpr=nvim_treesitter#foldexpr()
+          " set foldlevel=4
+          " set foldmethod=expr
+          " set foldexpr=nvim_treesitter#foldexpr()
           lua require("user.zen").show_diagnostics()
-          lua require("user.indent_blankline").enable()
+          " lua require("user.indent_blankline").enable()
           ]]
       if lvim.builtin.tmux_lualine == false then
         require("lualine").hide { unhide = true }

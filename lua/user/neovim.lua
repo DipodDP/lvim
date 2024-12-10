@@ -7,10 +7,10 @@ M.config = function()
     "getscriptPlugin",
     "gzip",
     "logipat",
-    -- "netrw",
-    -- "netrwPlugin",
-    -- "netrwSettings",
-    -- "netrwFileHandlers",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
     "matchit",
     "tar",
     "tarPlugin",
@@ -35,10 +35,10 @@ M.config = function()
     "hiddenoff",
     "algorithm:minimal",
   }
-  vim.g.toggle_theme_icon = "   "
+  -- vim.g.toggle_theme_icon = "   "
   vim.opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
   vim.opt.ttyfast = true
-  vim.opt.wrap = true
+  -- vim.opt.wrap = true
   vim.opt.termguicolors = true
   vim.opt.updatetime = 1000 -- faster completion (4000ms default)
   vim.opt.timeoutlen = 250

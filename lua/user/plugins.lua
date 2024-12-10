@@ -224,23 +224,23 @@ M.config = function()
       end,
       enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
     },
-    {
-      -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
-      "jose-elias-alvarez/typescript.nvim",
-      ft = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-      },
-      lazy = true,
-      config = function()
-        require("user.tss").config()
-      end,
-      enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
-    },
+    -- {
+    --   -- NOTE: This plugin is not maintained anymore, you might wanna use https://github.com/pmizio/typescript-tools.nvim
+    --   "jose-elias-alvarez/typescript.nvim",
+    --   ft = {
+    --     "javascript",
+    --     "javascriptreact",
+    --     "javascript.jsx",
+    --     "typescript",
+    --     "typescriptreact",
+    --     "typescript.tsx",
+    --   },
+    --   lazy = true,
+    --   config = function()
+    --     require("user.tss").config()
+    --   end,
+    --   enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript.nvim"),
+    -- },
     {
       "vuki656/package-info.nvim",
       config = function()
@@ -844,7 +844,7 @@ M.config = function()
       config = function()
         require("user.typtools").config()
       end,
-      enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
+      -- enabled = (lvim.builtin.web_programming.active and lvim.builtin.web_programming.extra == "typescript-tools.nvim"),
     },
     {
       "nvim-neotest/nvim-nio",

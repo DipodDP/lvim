@@ -7,50 +7,56 @@ M.config = function()
   end
   lvim.plugins = {
     {
-      "folke/tokyonight.nvim",
-      config = function()
-        require("user.theme").tokyonight()
-        local _time = os.date "*t"
-        if (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes then
-          lvim.colorscheme = "tokyonight-moon"
-        end
-      end,
-    },
-    {
-      "rose-pine/neovim",
-      name = "rose-pine",
-      config = function()
-        require("user.theme").rose_pine()
-        lvim.colorscheme = "rose-pine"
-      end,
-      cond = function()
-        local _time = os.date "*t"
-        return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
-      end,
-    },
-    {
-      "catppuccin/nvim",
-      name = "catppuccin",
-      config = function()
-        require("user.theme").catppuccin()
-        local _time = os.date "*t"
-        if (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes then
-          lvim.colorscheme = "catppuccin-mocha"
-        end
-      end,
-    },
-    {
       "rebelot/kanagawa.nvim",
       config = function()
         require("user.theme").kanagawa()
-        lvim.colorscheme = "kanagawa"
-      end,
-      cond = function()
-        local _time = os.date "*t"
-        return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
-          and lvim.builtin.time_based_themes
       end,
     },
+    -- {
+    --   "folke/tokyonight.nvim",
+    --   config = function()
+    --     require("user.theme").tokyonight()
+    --     local _time = os.date "*t"
+    --     if (_time.hour >= 9 and _time.hour < 17) and lvim.builtin.time_based_themes then
+    --       lvim.colorscheme = "tokyonight-moon"
+    --     end
+    --   end,
+    -- },
+    -- {
+    --   "rose-pine/neovim",
+    --   name = "rose-pine",
+    --   config = function()
+    --     require("user.theme").rose_pine()
+    --     lvim.colorscheme = "rose-pine"
+    --   end,
+    --   cond = function()
+    --     local _time = os.date "*t"
+    --     return (_time.hour >= 1 and _time.hour < 9) and lvim.builtin.time_based_themes
+    --   end,
+    -- },
+    -- {
+    --   "catppuccin/nvim",
+    --   name = "catppuccin",
+    --   config = function()
+    --     require("user.theme").catppuccin()
+    --     local _time = os.date "*t"
+    --     if (_time.hour >= 17 and _time.hour < 21) and lvim.builtin.time_based_themes then
+    --       lvim.colorscheme = "catppuccin-mocha"
+    --     end
+    --   end,
+    -- },
+    -- {
+    --   "rebelot/kanagawa.nvim",
+    --   config = function()
+    --     require("user.theme").kanagawa()
+    --     lvim.colorscheme = "kanagawa"
+    --   end,
+    --   cond = function()
+    --     local _time = os.date "*t"
+    --     return ((_time.hour >= 21 and _time.hour < 24) or (_time.hour >= 0 and _time.hour < 1))
+    --       and lvim.builtin.time_based_themes
+    --   end,
+    -- },
     {
       "ray-x/lsp_signature.nvim",
       config = function()
@@ -799,15 +805,15 @@ M.config = function()
       event = "VeryLazy",
       enabled = lvim.builtin.sell_your_soul_to_devil.openai,
     },
-    {
-      "lukas-reineke/indent-blankline.nvim",
-      name = "new-indent",
-      main = "ibl",
-      config = function()
-        require("user.indent_blankline").setup()
-      end,
-      enabled = lvim.builtin.indentlines.mine,
-    },
+    -- {
+    --   "lukas-reineke/indent-blankline.nvim",
+    --   name = "new-indent",
+    --   main = "ibl",
+    --   config = function()
+    --     require("user.indent_blankline").setup()
+    --   end,
+    --   enabled = lvim.builtin.indentlines.mine,
+    -- },
     {
       "Wansmer/symbol-usage.nvim",
       event = "LspAttach",
@@ -889,6 +895,16 @@ M.config = function()
         "nvim-treesitter/nvim-treesitter",
       },
       enabled = lvim.builtin.markdown.active,
+    },
+    {
+      "andymass/vim-matchup",
+      event = "BufReadPost",
+      config = function()
+        vim.g.matchup_enabled = 1
+        vim.g.matchup_surround_enabled = 1
+        vim.g.matchup_matchparen_deferred = 1
+        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
     },
   }
 end

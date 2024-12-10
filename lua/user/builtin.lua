@@ -30,7 +30,7 @@ M.default_diagnostic_config = {
       { name = "DiagnosticSignHint", text = kind.icons.hint },
     },
   },
-  virtual_text = false,
+  virtual_text = true,
   underline = true,
   severity_sort = true,
   float = {
@@ -99,10 +99,10 @@ M.config = function()
   }
   lvim.builtin.cmp.sources = {
     { name = "nvim_lsp" },
-    { name = "cmp_tabnine", max_item_count = 3 },
-    { name = "buffer", max_item_count = 5, keyword_length = 5 },
-    { name = "path", max_item_count = 5 },
-    { name = "luasnip", max_item_count = 3 },
+    { name = "cmp_tabnine",  max_item_count = 3 },
+    { name = "buffer",       max_item_count = 5, keyword_length = 5 },
+    { name = "path",         max_item_count = 5 },
+    { name = "luasnip",      max_item_count = 3 },
     { name = "nvim_lua" },
     { name = "calc" },
     { name = "emoji" },
@@ -373,13 +373,13 @@ M.config = function()
   lvim.builtin.treesitter.context_commentstring.enable = true
   local languages = vim
     .iter({
-      { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
-      { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
-      { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
-      { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
-      { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
-      { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
-      { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
+      -- { "bash", "c", "c_sharp", "cmake", "comment", "cpp", "css", "d", "dart" },
+      -- { "dockerfile", "elixir", "elm", "erlang", "fennel", "fish", "go", "gomod" },
+      -- { "gomod", "graphql", "hcl", "vimdoc", "html", "java", "javascript", "jsdoc" },
+      -- { "json", "jsonc", "julia", "kotlin", "latex", "ledger", "lua", "make" },
+      -- { "markdown", "markdown_inline", "nix", "ocaml", "perl", "php", "python" },
+      -- { "query", "r", "regex", "rego", "ruby", "rust", "scala", "scss", "solidity" },
+      -- { "swift", "teal", "toml", "tsx", "typescript", "vim", "vue", "yaml", "zig" },
     })
     :flatten()
     :totable()
@@ -390,8 +390,8 @@ M.config = function()
   lvim.builtin.treesitter.incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<C-n>",
-      node_incremental = "<C-n>",
+      init_selection = "<C-i>",
+      node_incremental = "<C-i>",
       scope_incremental = "<C-s>",
       node_decremental = "<C-r>",
     },
@@ -609,8 +609,8 @@ M.config = function()
   lvim.builtin.which_key.setup.plugins.registers = true
   lvim.builtin.which_key.setup.icons = {
     breadcrumb = "/", -- symbol used in the command line area that shows your active key combo
-    separator = "·", -- symbol used between a key and it's label
-    group = "", -- symbol prepended to a group
+    separator = "·",  -- symbol used between a key and it's label
+    group = "",       -- symbol prepended to a group
   }
   lvim.builtin.which_key.setup.ignore_missing = true
 

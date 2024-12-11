@@ -31,6 +31,11 @@ M.config = function()
       filetypes = { "solidity" },
       timeout = 10000,
     },
+    nls.builtins.formatting.ruff.with {
+      condition = function(utils)
+        return utils.root_has_file { "ruff.toml", ".ruff.toml" }
+      end,
+    },
     nls.builtins.formatting.prettierd.with {
       -- condition = function(utils)
       --   return not utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
@@ -42,21 +47,19 @@ M.config = function()
         return utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
       end,
     },
-    nls.builtins.formatting.stylua,
+    -- nls.builtins.formatting.stylua,
     nls.builtins.formatting.goimports,
     nls.builtins.formatting.gofumpt,
     nls.builtins.formatting.cmake_format,
-    nls.builtins.formatting.scalafmt,
-    nls.builtins.formatting.sqlformat,
+    -- nls.builtins.formatting.scalafmt,
     nls.builtins.formatting.terraform_fmt.with {
       filetypes = { "terraform", "tf", "terraform-vars", "hcl" },
     },
     -- Support for nix files
     nls.builtins.formatting.alejandra,
     nls.builtins.formatting.shfmt.with { extra_args = { "-i", "2", "-ci" } },
-    -- nls.builtins.formatting.black.with { extra_args = { "--fast" }, filetypes = { "python" } },
-    nls.builtins.formatting.blue.with { extra_args = { "--fast" }, filetypes = { "python" }, timeout = 10000 },
-    nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" }, filetypes = { "python" } },
+    nls.builtins.formatting.blue.with { filetypes = { "python" }, timeout = 10000, },
+    -- nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" }, filetypes = { "python" } },
     nls.builtins.diagnostics.ansiblelint.with {
       condition = function(utils)
         return utils.root_has_file "roles" and utils.root_has_file "inventories"
@@ -67,7 +70,22 @@ M.config = function()
         return utils.root_has_file ".solhint.json"
       end,
     },
+    nls.builtins.diagnostics.ruff.with {
+      condition = function(utils)
+        return utils.root_has_file { "ruff.toml", ".ruff.toml" }
+      end,
+    },
     nls.builtins.diagnostics.hadolint,
+    nls.builtins.diagnostics.sqlfluff.with({
+      filetypes = { "sql", "SQL" },
+      extra_args = { "--dialect", "postgres" },
+    }),
+    nls.builtins.diagnostics.eslint_d.with {
+      condition = function(utils)
+        return utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+      end,
+      prefer_local = "node_modules/.bin",
+    },
     nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
@@ -75,7 +93,9 @@ M.config = function()
       end,
       extra_args = { "--metrics", "off", "--exclude", "vendor", "--config", semgrep_rule_folder },
     },
+    -- nls.builtins.diagnostics.luacheck,
     nls.builtins.diagnostics.vint,
+    nls.builtins.diagnostics.chktex,
     -- Support for nix files
     nls.builtins.diagnostics.deadnix,
     nls.builtins.diagnostics.statix,
@@ -87,20 +107,29 @@ M.config = function()
       filetypes = { "markdown" },
       extra_args = { "--config", vale_config },
     },
-    -- nls.builtins.diagnostics.revive.with {
-    --   condition = function(utils)
-    --     return utils.root_has_file "revive.toml" or revive_conf
-    --   end,
-    --   args = revive_args,
-    --   diagnostics_postprocess = function(d)
-    --     d.severity = vim.diagnostic.severity.INFO
-    --     d.end_col = d.col
-    --     d.end_row = d.row
-    --     d.end_lnum = d.lnum
-    --   end,
-    -- },
+    nls.builtins.diagnostics.revive.with {
+      condition = function(utils)
+        return utils.root_has_file "revive.toml"
+      end,
+      -- args = revive_args,
+      diagnostics_postprocess = function(d)
+        d.severity = vim.diagnostic.severity.INFO
+        d.end_col = d.col
+        d.end_row = d.row
+        d.end_lnum = d.lnum
+      end,
+    },
+    nls.builtins.code_actions.shellcheck.with {
+      filetypes = { "sh", "zsh", "bash" }
+    },
     -- WARN: broken on neovim-head because of `nvim.treesitter.get_node_at_pos` being deprecated
     -- nls.builtins.code_actions.gomodifytags,
+    nls.builtins.code_actions.eslint_d.with {
+      condition = function(utils)
+        return utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
+      end,
+      prefer_local = "node_modules/.bin",
+    },
     -- TODO: try these later on
     -- nls.builtins.formatting.google_java_format,
     -- nls.builtins.code_actions.proselint,
@@ -130,6 +159,7 @@ M.config = function()
     save_after_format = false,
     sources = sources,
   }
+  -- nls.setup()
 end
 
 return M

@@ -12,8 +12,8 @@ M.config = function()
   local opts = {
     capabilities = lvim_lsp.common_capabilities(),
     on_attach = function(client, bufnr)
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
+      client.server_capabilities.documentFormattingProvider = true
+      client.server_capabilities.documentRangeFormattingProvider = true
 
       lvim_lsp.common_on_attach(client, bufnr)
     end,
@@ -24,6 +24,13 @@ M.config = function()
       -- tsserver_logs = "verbose",
       tsserver_file_preferences = {
         importModuleSpecifierPreference = "non-relative",
+        includeInlayParameterNameHints = "all",
+        includeCompletionsForModuleExports = true,
+        quotePreference = "auto",
+      },
+      tsserver_format_options = {
+        allowIncompleteCompletions = true,
+        allowRenameOfImportPath = true,
       },
       tsserver_locale = "en",
       -- mirror of VSCode's `typescript.suggest.completeFunctionCalls`

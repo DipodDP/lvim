@@ -25,9 +25,9 @@ M.default_diagnostic_config = {
     },
     values = {
       { name = "DiagnosticSignError", text = kind.icons.error },
-      { name = "DiagnosticSignWarn", text = kind.icons.warn },
-      { name = "DiagnosticSignInfo", text = kind.icons.info },
-      { name = "DiagnosticSignHint", text = kind.icons.hint },
+      { name = "DiagnosticSignWarn",  text = kind.icons.warn },
+      { name = "DiagnosticSignInfo",  text = kind.icons.info },
+      { name = "DiagnosticSignHint",  text = kind.icons.hint },
     },
   },
   virtual_text = true,
@@ -154,7 +154,7 @@ M.config = function()
         return vim_item
       end
       vim_item.kind =
-        string.format("%s %s", kind.cmp_kind[vim_item.kind] or " ", cmp_sources[entry.source.name] or vim_item.kind)
+          string.format("%s %s", kind.cmp_kind[vim_item.kind] or " ", cmp_sources[entry.source.name] or vim_item.kind)
 
       return vim_item
     end
@@ -196,7 +196,7 @@ M.config = function()
     sources = cmp.config.sources({
       { name = "nvim_lsp", max_item_count = 8 },
       { name = "crates" },
-      { name = "luasnip", max_item_count = 5 },
+      { name = "luasnip",  max_item_count = 5 },
     }, {
       { name = "buffer", max_item_count = 5, keyword_length = 5 },
     }),
@@ -204,8 +204,8 @@ M.config = function()
   cmp.setup.filetype("tex", {
     sources = cmp.config.sources({
       { name = "latex_symbols", max_item_count = 3, keyword_length = 3 },
-      { name = "nvim_lsp", max_item_count = 8 },
-      { name = "luasnip", max_item_count = 5 },
+      { name = "nvim_lsp",      max_item_count = 8 },
+      { name = "luasnip",       max_item_count = 5 },
     }, {
       { name = "buffer", max_item_count = 5, keyword_length = 5 },
     }),
@@ -359,14 +359,14 @@ M.config = function()
 
   -- Toggleterm
   -- =========================================
-  lvim.builtin.terminal.active = true
-  lvim.builtin.terminal.execs = {}
-  lvim.builtin.terminal.autochdir = true
-  lvim.builtin.terminal.size = vim.o.columns * 0.4
-  lvim.builtin.terminal.on_config_done = function()
-    M.create_terminal(2, "<c-\\>", 20, "float")
-    M.create_terminal(3, "<A-0>", vim.o.columns * 0.4, "vertical")
-  end
+  -- lvim.builtin.terminal.active = true
+  -- lvim.builtin.terminal.execs = {}
+  -- lvim.builtin.terminal.autochdir = true
+  -- lvim.builtin.terminal.size = vim.o.columns * 0.4
+  -- lvim.builtin.terminal.on_config_done = function()
+  --   M.create_terminal(2, "<c-\\>", 20, "float")
+  --   M.create_terminal(3, "<A-0>", vim.o.columns * 0.4, "vertical")
+  -- end
 
   -- Treesitter
   -- =========================================
@@ -967,3 +967,4 @@ M.enhanced_float_handler = function(handler)
 end
 
 return M
+

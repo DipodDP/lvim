@@ -1,3 +1,4 @@
 {
-    "workspace.checkThirdParty": false
+  "workspace.checkThirdParty": false,
+  "diagnostics.globals": ["reload", "s", "t", "c", "i", "f", "strategy"]
 }

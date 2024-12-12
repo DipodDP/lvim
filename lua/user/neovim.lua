@@ -24,10 +24,56 @@ M.config = function()
   for _, plugin in pairs(disabled_plugins) do
     vim.g["loaded_" .. plugin] = 1
   end
+
+  local options = {
+    backup = false,                                  -- creates a backup file
+    clipboard = "unnamedplus",                       -- allows neovim to access the system clipboard
+    cmdheight = 1,                                   -- more space in the neovim command line for displaying messages
+    completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
+    conceallevel = 2,                                -- so that `` is visible in markdown files
+    fileencoding = "utf-8",                          -- the encoding written to a file
+    -- hlsearch = true,                                 -- highlight all matches on previous search pattern
+    -- ignorecase = true,                               -- ignore case in search patterns
+    mouse = "a",                                     -- allow the mouse to be used in neovim
+    pumheight = 10,                                  -- pop up menu height
+    -- showmode = false,                                -- we don't need to see things like -- INSERT -- anymore
+    -- showtabline = 0,                                 -- always show tabs
+    -- smartcase = true,                                -- smart case
+    -- smartindent = true,                              -- make indenting smarter again
+    -- splitbelow = true,                               -- force all horizontal splits to go below current window
+    -- splitright = true,                               -- force all vertical splits to go to the right of current window
+    -- swapfile = false,                                -- creates a swapfile
+    -- termguicolors = true,                            -- set term gui colors (most terminals support this)
+    -- undofile = true,                                 -- enable persistent undo
+    -- writebackup = false,                             -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+    -- expandtab = true,                                -- convert tabs to spaces
+    -- shiftwidth = 2, -- the number of spaces inserted for each indentation
+    -- tabstop = 2, -- insert 2 spaces for a tab
+    number = true, -- set numbered lines
+    laststatus = 3,
+    showcmd = false,
+    ruler = false,
+    relativenumber = true, -- set relative numbered lines
+    numberwidth = 4,       -- set number column width to 2 {default 4}
+    signcolumn = "yes",    -- always show the sign column, otherwise it would shift the text each time
+    wrap = true,           -- display lines as one long line
+    scrolloff = 3,
+    sidescrolloff = 8,
+    -- guifont = "monospace:h17", -- the font used in graphical neovim applications
+    -- title = true,
+    -- titleold = vim.split(os.getenv("SHELL") or "", "/")[3],
+    -- colorcolumn = "80",
+    -- colorcolumn = "120",
+  }
+
+  for k, v in pairs(options) do
+    vim.opt[k] = v
+  end
+
+
   vim.g.ultest_summary_width = 30
   vim.g.ultest_deprecation_notice = 0
-  vim.opt.completeopt = { "menu", "menuone", "noselect" }
-  vim.opt.relativenumber = true
+  -- vim.opt.completeopt = { "menu", "menuone", "noselect" }
   vim.opt.diffopt = {
     "internal",
     "filler",
@@ -45,8 +91,8 @@ M.config = function()
   vim.opt.redrawtime = 1500
   vim.opt.ttimeoutlen = 10
   vim.opt.wrapscan = true -- Searches wrap around the end of the file
-  vim.o.secure = true -- Disable autocmd etc for project local vimrc files.
-  vim.o.exrc = false -- Allow project local vimrc files example .nvimrc see :h exrc
+  vim.o.secure = true     -- Disable autocmd etc for project local vimrc files.
+  vim.o.exrc = false      -- Allow project local vimrc files example .nvimrc see :h exrc
   vim.o.sessionoptions = "buffers,curdir,folds,globals,help,tabpages,winpos,winsize"
   vim.wo.foldmethod = "expr"
   vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
@@ -55,16 +101,15 @@ M.config = function()
   vim.wo.foldminlines = 1
   vim.o.foldtext = "v:lua.HighlightedFoldtext()"
   vim.opt.guifont = "FiraCode Nerd Font:h13"
-  vim.opt.cmdheight = 1
+  -- vim.opt.cmdheight = 1
   vim.g.root_lsp_ignore = { "copilot" }
   vim.g.dashboard_enable_session = 0
   vim.g.dashboard_disable_statusline = 1
   vim.opt.pumblend = 10
   vim.opt.joinspaces = false
   vim.opt.list = true
-  vim.opt.confirm = true -- make vim prompt me to save before doing destructive things
+  vim.opt.confirm = true      -- make vim prompt me to save before doing destructive things
   vim.opt.autowriteall = true -- automatically :write before running commands and changing files
-  vim.opt.clipboard = "unnamedplus"
   vim.opt.fillchars = {
     fold = " ",
     eob = " ", -- suppress ~ at EndOfBuffer
@@ -114,12 +159,12 @@ M.config = function()
   vim.opt.formatoptions = {
     ["1"] = true,
     ["2"] = true, -- Use indent from 2nd line of a paragraph
-    q = true, -- continue comments with gq"
-    c = true, -- Auto-wrap comments using textwidth
-    r = true, -- Continue comments when pressing Enter
-    n = true, -- Recognize numbered lists
-    t = false, -- autowrap lines using text width value
-    j = true, -- remove a comment leader when joining lines.
+    q = true,     -- continue comments with gq"
+    c = true,     -- Auto-wrap comments using textwidth
+    r = true,     -- Continue comments when pressing Enter
+    n = true,     -- Recognize numbered lists
+    t = false,    -- autowrap lines using text width value
+    j = true,     -- remove a comment leader when joining lines.
     -- Only break if the line was not longer than 'textwidth' when the insert
     -- started and only at a white character that has been entered during the
     -- current insert command.
@@ -227,46 +272,46 @@ function M.maximize_current_split()
   end
 end
 
-function _G.qftf(info)
-  local fn = vim.fn
-  local items
-  local ret = {}
-  if info.quickfix == 1 then
-    items = fn.getqflist({ id = info.id, items = 0 }).items
-  else
-    items = fn.getloclist(info.winid, { id = info.id, items = 0 }).items
-  end
-  local limit = 25
-  local fname_fmt1, fname_fmt2 = "%-" .. limit .. "s", "…%." .. (limit - 1) .. "s"
-  local valid_fmt, invalid_fmt = "%s |%5d:%-3d|%s %s", "%s"
-  for i = info.start_idx, info.end_idx do
-    local e = items[i]
-    local fname = ""
-    local str
-    if e.valid == 1 then
-      if e.bufnr > 0 then
-        fname = vim.api.nvim_buf_get_name(e.bufnr)
-        if fname == "" then
-          fname = "[No Name]"
-        else
-          fname = fname:gsub("^" .. vim.env.HOME, "~")
-        end
-        if fn.strwidth(fname) <= limit then
-          fname = fname_fmt1:format(fname)
-        else
-          fname = fname_fmt2:format(fname:sub(1 - limit, -1))
-        end
-      end
-      local lnum = e.lnum > 99999 and "inf" or e.lnum
-      local col = e.col > 999 and "inf" or e.col
-      local qtype = e.type == "" and "" or " " .. e.type:sub(1, 1):upper()
-      str = valid_fmt:format(fname, lnum, col, qtype, e.text)
-    else
-      str = invalid_fmt:format(e.text)
-    end
-    table.insert(ret, str)
-  end
-  return ret
-end
+-- function _G.qftf(info)
+--   local fn = vim.fn
+--   local items
+--   local ret = {}
+--   if info.quickfix == 1 then
+--     items = fn.getqflist({ id = info.id, items = 0 }).items
+--   else
+--     items = fn.getloclist(info.winid, { id = info.id, items = 0 }).items
+--   end
+--   local limit = 25
+--   local fname_fmt1, fname_fmt2 = "%-" .. limit .. "s", "…%." .. (limit - 1) .. "s"
+--   local valid_fmt, invalid_fmt = "%s |%5d:%-3d|%s %s", "%s"
+--   for i = info.start_idx, info.end_idx do
+--     local e = items[i]
+--     local fname = ""
+--     local str
+--     if e.valid == 1 then
+--       if e.bufnr > 0 then
+--         fname = vim.api.nvim_buf_get_name(e.bufnr)
+--         if fname == "" then
+--           fname = "[No Name]"
+--         else
+--           fname = fname:gsub("^" .. vim.env.HOME, "~")
+--         end
+--         if fn.strwidth(fname) <= limit then
+--           fname = fname_fmt1:format(fname)
+--         else
+--           fname = fname_fmt2:format(fname:sub(1 - limit, -1))
+--         end
+--       end
+--       local lnum = e.lnum > 99999 and "inf" or e.lnum
+--       local col = e.col > 999 and "inf" or e.col
+--       local qtype = e.type == "" and "" or " " .. e.type:sub(1, 1):upper()
+--       str = valid_fmt:format(fname, lnum, col, qtype, e.text)
+--     else
+--       str = invalid_fmt:format(e.text)
+--     end
+--     table.insert(ret, str)
+--   end
+--   return ret
+-- end
 
 return M

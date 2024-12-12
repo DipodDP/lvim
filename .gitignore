@@ -49,9 +49,17 @@ luac.out
 *.hex
 
 # LunarVim
+
+java
+
 plugin/packer_compiled.lua
 
 .luacheckcache
+java
 
 # ETC
 .idea
+plugin/packer_compiled.lua
+lazy-lock.json
+rplugin/node/nvim-example
+test_db

@@ -14,6 +14,16 @@ require("user.neovim").config()
 lvim.lsp.code_lens_refresh = true
 lvim.lsp.installer.setup.automatic_installation = false
 
+-- lvim.reload_config_on_save = true
+-- lvim.builtin.terminal.persist_mode = true
+-- lvim.builtin.nvimtree.setup.view.side = "left"
+-- lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+-- lvim.builtin.dap.active = true
+-- lvim.keys.term_mode = { ["<C-l>"] = false }
+-- lvim.format_on_save.enabled = true
+-- lvim.format_on_save.timeout = 10000
+
+
 -- Customization
 -- =========================================
 lvim.builtin.sell_your_soul_to_devil = { active = false, prada = false, openai = false } -- if you want microsoft to abuse your soul

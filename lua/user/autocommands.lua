@@ -52,16 +52,16 @@ M.config = function()
       autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 1024 * 1024 | exec DisableSyntaxTreesitter() | endif
   augroup END
     ]]
-  create_aucmd("BufWinEnter", {
-    group = "_lvim_user",
-    pattern = "*.md",
-    desc = "beautify markdown",
-    callback = function()
-      vim.cmd [[set syntax=markdown]]
-      require("user.markdown_syn").set_syntax()
-    end,
-  })
-end
+    create_aucmd("BufWinEnter", {
+      group = "_lvim_user",
+      pattern = "*.md",
+      desc = "beautify markdown",
+      callback = function()
+        vim.cmd [[set syntax=markdown]]
+        require("user.markdown_syn").set_syntax()
+      end,
+    })
+  end
 
   if lvim.builtin.sql_integration.active then
     -- Add vim-dadbod-completion in sql files
@@ -187,8 +187,8 @@ M.make_run = function()
         "n",
         "<leader>r",
         "<cmd>lua require('lvim.core.terminal')._exec_toggle({cmd='python "
-          .. vim.fn.expand "%"
-          .. ";read',count=2,direction='float'})<CR>"
+        .. vim.fn.expand "%"
+        .. ";read',count=2,direction='float'})<CR>"
       )
       vim.keymap.set(
         "n",
@@ -206,19 +206,235 @@ M.make_run = function()
   })
 
   vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    local opts = {
-      focusable = false,
-      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-      border = 'rounded',
-      source = 'always',
-      prefix = ' ',
-      scope = 'cursor',
-    }
+    callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
       vim.diagnostic.open_float(nil, opts)
     end
   })
 
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = { "AlphaReady" },
+    callback = function()
+      vim.cmd [[
+      set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
+    ]]
+    end,
+  })
+
+  -- vim.api.nvim_create_autocmd({"FileType"},{
+  --   pattern = {
+  --     "sql",
+  --     "mysql",
+  --     "psql"
+  --   },
+  --     callback = function ()
+  --       require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+  --     end
+  --   })
+
+  -- vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  --   callback = function()
+  --     vim.cmd "set whichwrap+=<,>,[,],h,l"
+  --     vim.cmd [[set iskeyword+=-]]
+  --     vim.cmd "set formatoptions-=cro"
+  --   end,
+  -- })
+
+  vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = {
+      "Jaq",
+      "qf",
+      "help",
+      "man",
+      "lspinfo",
+      "spectre_panel",
+      "lir",
+      "DressingSelect",
+      "tsplayground",
+      "",
+    },
+    callback = function()
+      vim.cmd [[
+      nnoremap <silent> <buffer> q :close<CR>
+      " nnoremap <silent> <buffer> <esc> :close<CR>
+      set nobuflisted
+    ]]
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "Jaq" },
+    callback = function()
+      vim.cmd [[
+      nnoremap <silent> <buffer> <m-r> :close<CR>
+      " nnoremap <silent> <buffer> <m-r> <NOP>
+      set nobuflisted
+    ]]
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufEnter" }, {
+    pattern = { "*" },
+    callback = function()
+      local buf_ft = vim.bo.filetype
+      if buf_ft == "" or buf_ft == nil then
+        vim.cmd [[
+      nnoremap <silent> <buffer> q :close<CR>
+      " nnoremap <silent> <buffer> <c-j> j<CR>
+      " nnoremap <silent> <buffer> <c-k> k<CR>
+      set nobuflisted
+    ]]
+      end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = { "" },
+    callback = function()
+      local get_project_dir = function()
+        local cwd = vim.fn.getcwd()
+        local project_dir = vim.split(cwd, "/")
+        local project_name = project_dir[#project_dir]
+        return project_name
+      end
+      vim.opt.titlestring = get_project_dir()
+    end,
+  })
+
+  vim.cmd [[
+" autocmd FileType toggleterm nnoremap <buffer> <CR> :startinsert<CR>
+  autocmd BufEnter * if &filetype ==# 'toggleterm' | startinsert! | endif
+]]
+
+  vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = { "term://*" },
+    callback = function()
+      vim.cmd "startinsert"
+      -- vim.cmd "set cmdheight=1"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "*.txt", "*.md", "*.tex" },
+    callback = function()
+      vim.opt_local.wrap = true
+      vim.opt_local.spell = true
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "gitcommit", "markdown", "norg" },
+    callback = function()
+      vim.opt_local.wrap = true
+      vim.opt_local.spell = true
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "NeogitCommitMessage" },
+    callback = function()
+      vim.opt_local.wrap = true
+      vim.opt_local.spell = true
+      vim.cmd "startinsert!"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "VimResized" }, {
+    callback = function()
+      vim.cmd "tabdo wincmd ="
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
+    callback = function()
+      vim.cmd "quit"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+    callback = function()
+      vim.cmd "set formatoptions-=cro"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+    callback = function()
+      vim.highlight.on_yank { higroup = "Visual", timeout = 40 }
+    end,
+  })
+
+  -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  --   pattern = { "*.java" },
+  --   callback = function()
+  --     vim.lsp.codelens.refresh()
+  --   end,
+  -- })
+
+  vim.api.nvim_create_autocmd({ "VimEnter" }, {
+    callback = function()
+      vim.cmd "hi link illuminatedWord LspReferenceText"
+    end,
+  })
+
+  vim.cmd [[
+  augroup terminal_setup | au!
+  autocmd TermOpen * nnoremap <buffer><LeftRelease> <LeftRelease>i
+  autocmd TermEnter * startinsert!
+  augroup end
+]]
+
+  vim.api.nvim_create_autocmd({ "TermEnter" }, {
+    pattern = { "*" },
+    callback = function()
+      vim.cmd "startinsert"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+    pattern = { "*" },
+    callback = function()
+      vim.cmd "checktime"
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "CursorHold" }, {
+    callback = function()
+      local status_ok, luasnip = pcall(require, "luasnip")
+      if not status_ok then
+        return
+      end
+      if luasnip.expand_or_jumpable() then
+        -- ask maintainer for option to make this silent
+        -- luasnip.unlink_current()
+        vim.cmd [[silent! lua require("luasnip").unlink_current()]]
+      end
+    end,
+  })
+
+  -- perform osc52 yank
+  vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+      if vim.v.event.operator == 'y' or vim.v.event.operator == 'c' then
+        require('osc52').copy_register('+')
+      end
+    end
+  })
+
+  -- prevent overwriting yank by delete
+  vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+      if vim.v.event.operator == 'd' then
+        vim.fn.setreg('"', vim.fn.getreg('0'))
+      end
+    end
+  })
 end
 
 return M

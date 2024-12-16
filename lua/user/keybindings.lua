@@ -1,17 +1,17 @@
 local M = {}
 
 -- HACK: for some reason, the alt keybindings are not working in my wezterm
-M.set_wezterm_keybindings = function()
-  lvim.keys.insert_mode["å"] = lvim.keys.insert_mode["<A-a>"]
-  lvim.keys.insert_mode["ß"] = lvim.keys.insert_mode["<A-s>"]
-  lvim.keys.insert_mode["´"] = lvim.keys.insert_mode["<A-e>"]
-  lvim.keys.insert_mode["∆"] = lvim.keys.insert_mode["<A-j>"]
-  lvim.keys.insert_mode["˚"] = lvim.keys.insert_mode["<A-k>"]
-  lvim.keys.normal_mode["å"] = lvim.keys.normal_mode["<A-a>"]
-  lvim.keys.normal_mode["≈"] = lvim.keys.normal_mode["<A-x>"]
-  lvim.keys.visual_mode["å"] = lvim.keys.visual_mode["<A-a>"]
-  lvim.keys.visual_mode["≈"] = lvim.keys.visual_mode["<A-x>"]
-end
+-- M.set_wezterm_keybindings = function()
+--   lvim.keys.insert_mode["å"] = lvim.keys.insert_mode["<A-a>"]
+--   lvim.keys.insert_mode["ß"] = lvim.keys.insert_mode["<A-s>"]
+--   lvim.keys.insert_mode["´"] = lvim.keys.insert_mode["<A-e>"]
+--   lvim.keys.insert_mode["∆"] = lvim.keys.insert_mode["<A-j>"]
+--   lvim.keys.insert_mode["˚"] = lvim.keys.insert_mode["<A-k>"]
+--   lvim.keys.normal_mode["å"] = lvim.keys.normal_mode["<A-a>"]
+--   lvim.keys.normal_mode["≈"] = lvim.keys.normal_mode["<A-x>"]
+--   lvim.keys.visual_mode["å"] = lvim.keys.visual_mode["<A-a>"]
+--   lvim.keys.visual_mode["≈"] = lvim.keys.visual_mode["<A-x>"]
+-- end
 
 M.fzf_projects = function()
   local fzf_lua = require "fzf-lua"
@@ -219,6 +219,92 @@ M.set_lsp_lines_keymap = function()
 end
 
 M.config = function()
+  local opts = { noremap = true, silent = true }
+  -- For the description on keymaps, I have a function getOptions(desc) which returns noremap=true, silent=true and desc=desc. Then call: keymap(mode, keymap, command, getOptions("some randome desc")
+
+  local keymap = vim.keymap.set
+
+  keymap("n", "<C-Space>", "<cmd>WhichKey \\<space><cr>", opts)
+
+  -- Normal --
+  -- Better window navigation
+  keymap("n", "<m-h>", "<C-w>h", opts)
+  keymap("n", "<m-j>", "<C-w>j", opts)
+  keymap("n", "<m-k>", "<C-w>k", opts)
+  keymap("n", "<m-l>", "<C-w>l", opts)
+  keymap("n", "<m-tab>", "<c-6>", opts)
+
+  keymap("n", "<Down>", "<cmd>BookmarkNext<cr>", opts)
+  keymap("n", "<Up>", "<cmd>BookmarkPrev<cr>", opts)
+  keymap("n", "<Right>", "<cmd>FilemarkNext<cr>", opts)
+  keymap("n", "<Left>", "<cmd>FilemarkPrev<cr>", opts)
+
+  keymap("n", "[b", "<cmd>bprevious<cr>", opts)
+  keymap("n", "]b", "<cmd>bnext<cr>", opts)
+
+  -- vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
+
+  -- Tabs --
+  -- keymap("n", "\\", ":tabnew %<cr>", opts)
+  -- keymap("n", "<s-\\>", ":tabclose<cr>", opts)
+  -- keymap("n", "<s-\\>", ":tabonly<cr>", opts)
+
+  -- Tabs --
+  -- keymap("n", "\\", ":tabnew %<cr>", opts)
+  -- keymap("n", "<s-\\>", ":tabclose<cr>", opts)
+  -- keymap("n", "<s-\\>", ":tabonly<cr>", opts)
+
+  -- Resize with arrows
+  -- keymap("n", "<M-Up>", ":resize -2<CR>", opts)
+  -- keymap("n", "<M-Down>", ":resize +2<CR>", opts)
+  -- keymap("n", "<M-Left>", ":vertical resize -2<CR>", opts)
+  -- keymap("n", "<M-Right>", ":vertical resize +2<CR>", opts)
+
+  keymap("n", "<c-j>", "<c-d>", opts)
+  keymap("n", "<c-k>", "<c-u>", opts)
+  keymap("n", "<c-c>", "<s-m>", opts)
+
+  keymap("n", "n", "nzz", opts)
+  keymap("n", "N", "Nzz", opts)
+  keymap("n", "*", "*zz", opts)
+  keymap("n", "#", "#zz", opts)
+  keymap("n", "g*", "g*zz", opts)
+  keymap("n", "g#", "g#zz", opts)
+
+  -- Visual --
+  -- Stay in indent mode
+  -- keymap("v", "<", "<gv", opts)
+  -- keymap("v", ">", ">gv", opts)
+
+  keymap("x", "p", [["_dP]], opts)
+  -- keymap("v", "p", '"_dp', opts)
+
+  -- Cut selected
+  keymap("v", "x", "ygvx")
+  -- keymap("v", "c", "ygvc")
+
+  -- Delete in blackhole register
+  -- keymap("v", "DD", '"_d')
+  -- Delete in blackhole register
+  keymap("n", "c", '"_c', opts)
+  keymap("v", "c", '"_c', opts)
+  keymap("v", "DD", '"_d', opts)
+
+  keymap("v", "Y", "<CMD>lua require('osc52').copy_visual()<CR>", opts)
+
+  -- keymap("n", "Q", "<cmd>Bdelete!<CR>", opts)
+
+  keymap(
+    "n",
+    "<F6>",
+    [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>]],
+    opts
+  )
+  keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
+  keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
+  keymap("n", "-", ":lua require'lir.float'.toggle()<cr>", opts)
+  keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
+
   -- Additional keybindings
   -- =========================================
   lvim.keys.normal_mode["<CR>"] = {
@@ -240,7 +326,7 @@ M.config = function()
     lvim.keys.insert_mode["<C-s>"] = "<cmd>lua vim.lsp.buf.signature_help()<CR>"
   end
   lvim.keys.insert_mode["<A-s>"] =
-    "<cmd>lua require('telescope').extensions.luasnip.luasnip(require('telescope.themes').get_cursor({}))<CR>"
+  "<cmd>lua require('telescope').extensions.luasnip.luasnip(require('telescope.themes').get_cursor({}))<CR>"
   lvim.keys.command_mode["w!!"] = "execute 'silent! write !sudo tee % >/dev/null' <bar> edit!"
   lvim.keys.normal_mode["]d"] = "<cmd>lua vim.diagnostic.goto_next()<cr>"
   lvim.keys.normal_mode["[d"] = "<cmd>lua vim.diagnostic.goto_prev()<cr>"
@@ -250,10 +336,10 @@ M.config = function()
   lvim.keys.normal_mode["<C-n>i"] = { "<C-i>", { noremap = true } }
   if vim.fn.has "mac" == 1 then
     lvim.keys.normal_mode["gx"] =
-      [[<cmd>lua os.execute("open " .. vim.fn.shellescape(vim.fn.expand "<cWORD>")); vim.cmd "redraw!"<cr>]]
+    [[<cmd>lua os.execute("open " .. vim.fn.shellescape(vim.fn.expand "<cWORD>")); vim.cmd "redraw!"<cr>]]
   elseif vim.fn.has "linux" then
     lvim.keys.normal_mode["gx"] =
-      [[<cmd>lua os.execute("xdg-open " .. vim.fn.shellescape(vim.fn.expand "<cWORD>")); vim.cmd "redraw!"<cr>]]
+    [[<cmd>lua os.execute("xdg-open " .. vim.fn.shellescape(vim.fn.expand "<cWORD>")); vim.cmd "redraw!"<cr>]]
   end
   if lvim.builtin.bufferline.active then
     set_bufferline_keymaps()
@@ -264,13 +350,13 @@ M.config = function()
   lvim.keys.normal_mode["<esc><esc>"] = "<cmd>nohlsearch<cr>"
   lvim.keys.normal_mode["Y"] = "y$"
   lvim.keys.normal_mode["gv"] =
-    "<cmd>vsplit | lua vim.lsp.buf.definition({on_list = function(items) vim.fn.setqflist({}, 'r', items) vim.cmd('cfirst') end})<cr>"
+  "<cmd>vsplit | lua vim.lsp.buf.definition({on_list = function(items) vim.fn.setqflist({}, 'r', items) vim.cmd('cfirst') end})<cr>"
   if lvim.builtin.harpoon.active then
     set_harpoon_keymaps()
   end
   lvim.keys.visual_mode["<A-a>"] = "<C-a>"
   lvim.keys.visual_mode["<A-x>"] = "<C-x>"
-  lvim.keys.visual_mode["p"] = [["_dP]]
+  -- lvim.keys.visual_mode["p"] = [["_dP]]
   lvim.keys.visual_mode["ga"] = "<esc><Cmd>lua vim.lsp.buf.range_code_action()<CR>"
   lvim.keys.visual_mode["<leader>st"] = "<Cmd>lua require('user.telescope').grep_string_visual()<CR>"
 
@@ -322,7 +408,7 @@ M.config = function()
   }
   if lvim.builtin.legendary.active then
     lvim.builtin.which_key.mappings["C"] =
-      { "<cmd>lua require('legendary').find('commands')<cr>", " Command Palette" }
+    { "<cmd>lua require('legendary').find('commands')<cr>", " Command Palette" }
     lvim.keys.normal_mode["<c-P>"] = "<cmd>lua require('legendary').find()<cr>"
   end
 
@@ -333,7 +419,7 @@ M.config = function()
   lvim.builtin.which_key.mappings["h"] = { "<cmd>nohlsearch<CR>", "󰸱 No Highlight" }
   lvim.builtin.which_key.mappings.g.name = " Git"
   lvim.builtin.which_key.mappings["I"] =
-    { "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", " Toggle Inlay" }
+  { "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", " Toggle Inlay" }
   lvim.builtin.which_key.mappings.l.name = " LSP"
   lvim.builtin.which_key.mappings["f"] = {
     require("user.telescope").find_project_files,
@@ -353,7 +439,7 @@ M.config = function()
 
   if status_ok_comment and cmt["toggle"] ~= nil then
     lvim.builtin.which_key.vmappings["/"] =
-      { "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "Comment" }
+    { "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", "Comment" }
   end
 
   if lvim.builtin.noice.active then

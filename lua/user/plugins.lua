@@ -806,11 +806,32 @@ M.config = function()
       enabled = lvim.builtin.sell_your_soul_to_devil.openai,
     },
     -- {
+    --   "james1236/backseat.nvim",
+    --   config = function()
+    --     require("backseat").setup {
+    --       highlight = {
+    --         icon = "󰳃 ",
+    --         group = "SpecialComment",
+    --       },
+    --     }
+    --   end,
+    --   event = "VeryLazy",
+    --   enabled = lvim.builtin.sell_your_soul_to_devil.openai,
+    -- },
+    -- {
     --   "lukas-reineke/indent-blankline.nvim",
     --   name = "new-indent",
     --   main = "ibl",
+    --   enabled = lvim.builtin.indentlines.mine,
+    -- },
+    -- {
+    --   "hedyhli/outline.nvim",
     --   config = function()
-    --     require("user.indent_blankline").setup()
+    --     require("user.outline").config()
+    --   end,
+    --   event = "BufReadPost",
+    --   enabled = lvim.builtin.tag_provider == "outline",
+    -- },
     --   end,
     --   enabled = lvim.builtin.indentlines.mine,
     -- },
@@ -849,6 +870,40 @@ M.config = function()
     {
       "nvim-neotest/nvim-nio",
       enabled = lvim.builtin.dap.active,
+    },
+    -- "f-person/git-blame.nvim",
+    -- "ruifm/gitlinker.nvim",
+    -- "mattn/vim-gist",
+    -- "mattn/webapi-vim",
+    -- "mfussenegger/nvim-dap-python",
+    -- "andy-bell101/neotest-java",
+    -- "nvim-neotest/neotest-go",
+    -- "nvim-neotest/neotest-python",
+    -- "rouge8/neotest-rust",
+    -- "haydenmeade/neotest-jest",
+    {
+      "hrsh7th/cmp-emoji",
+      event = "BufRead",
+    },
+    -- "ThePrimeagen/vim-be-good",
+    -- "folke/noice.nvim",
+    -- "rcarriga/nvim-notify",
+
+    -- "rmagatti/auto-session",
+    -- "rmagatti/session-lens",
+    -- "christianchiarulli/nvim-ts-rainbow",
+    -- "karb94/neoscroll.nvim",
+    {
+      "max397574/better-escape.nvim",
+      event = "BufRead",
+    },
+    {
+      "ojroques/nvim-osc52",
+      event = "BufRead",
+    },
+    {
+      "gbprod/yanky.nvim",
+      event = "BufRead",
     },
     {
       "OXY2DEV/markview.nvim",
@@ -897,14 +952,35 @@ M.config = function()
       enabled = lvim.builtin.markdown.active,
     },
     {
-      "andymass/vim-matchup",
-      event = "BufReadPost",
+      "HiPhish/rainbow-delimiters.nvim",
       config = function()
-        vim.g.matchup_enabled = 1
-        vim.g.matchup_surround_enabled = 1
-        vim.g.matchup_matchparen_deferred = 1
-        vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        local rainbow_delimiters = require 'rainbow-delimiters'
+        require("rainbow-delimiters.setup").setup {
+          strategy = {
+              [''] = rainbow_delimiters.strategy['global'],
+              commonlisp = rainbow_delimiters.strategy['local'],
+          },
+          query = {
+              [''] = 'rainbow-delimiters',
+              lua = 'rainbow-blocks',
+          },
+          priority = {
+              [''] = 110,
+              lua = 210,
+          },
+          highlight = {
+              -- 'RainbowDelimiterRed',
+              'RainbowDelimiterYellow',
+              'RainbowDelimiterBlue',
+              'RainbowDelimiterOrange',
+              'RainbowDelimiterGreen',
+              'RainbowDelimiterViolet',
+              'RainbowDelimiterCyan',
+          },
+          -- blacklist = {'c', 'cpp'},
+        }
       end,
+      event = "BufRead",
     },
   }
 end

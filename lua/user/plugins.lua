@@ -158,14 +158,14 @@ M.config = function()
       end,
       enabled = lvim.builtin.lsp_lines,
     },
-    {
-      "folke/zen-mode.nvim",
-      lazy = true,
-      cmd = "ZenMode",
-      config = function()
-        require("user.zen").config()
-      end,
-    },
+    -- {
+    --   "folke/zen-mode.nvim",
+    --   lazy = true,
+    --   cmd = "ZenMode",
+    --   config = function()
+    --     require("user.zen").config()
+    --   end,
+    -- },
     {
       "nvim-pack/nvim-spectre",
       lazy = true,
@@ -902,9 +902,18 @@ M.config = function()
       event = "BufRead",
     },
     {
-      "gbprod/yanky.nvim",
+      "kylechui/nvim-surround",
       event = "BufRead",
+      config = function()
+        require("user.surround").config()
+      end,
     },
+    "MattesGroeger/vim-bookmarks",
+
+    -- {
+    --   "gbprod/yanky.nvim",
+    --   event = "BufRead",
+    -- },
     {
       "OXY2DEV/markview.nvim",
       lazy = false,

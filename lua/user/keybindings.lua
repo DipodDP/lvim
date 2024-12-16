@@ -301,7 +301,7 @@ M.config = function()
     opts
   )
   keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
-  keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
+  -- keymap("n", "<C-z>", "<cmd>ZenMode<cr>", opts)
   keymap("n", "-", ":lua require'lir.float'.toggle()<cr>", opts)
   keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
 
@@ -313,6 +313,7 @@ M.config = function()
   }
   lvim.keys.insert_mode["<A-a>"] = "<ESC>ggVG<CR>"
   lvim.keys.insert_mode["jk"] = "<ESC>:w<CR>"
+  lvim.keys.insert_mode["jj"] = "<ESC>"
   if lvim.builtin.noice.active then
     lvim.keys.insert_mode["<C-s>"] = function()
       local params = vim.lsp.util.make_position_params(0, "utf-16")
@@ -556,7 +557,7 @@ M.config = function()
       w = { "<cmd>Trouble diagnostics toggle<cr>", "Workspace Diagnostics" },
     }
   end
-  lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", " Zen" }
+  -- lvim.builtin.which_key.mappings["z"] = { "<cmd>ZenMode<cr>", " Zen" }
   lvim.builtin.which_key.mappings["w"] = { "<cmd>w!<CR>", " Save" }
   lvim.builtin.which_key.vmappings["g"] = {
     name = " Git",

@@ -13,31 +13,6 @@ local M = {}
 --   lvim.keys.visual_mode["≈"] = lvim.keys.visual_mode["<A-x>"]
 -- end
 
-M.fzf_projects = function()
-  local fzf_lua = require "fzf-lua"
-  local history = require "project_nvim.utils.history"
-  fzf_lua.fzf_exec(function(cb)
-    local results = history.get_recent_projects()
-    for _, e in ipairs(results) do
-      cb(e)
-    end
-    cb()
-  end, {
-    actions = {
-      ["default"] = {
-        function(selected)
-          fzf_lua.files { cwd = selected[1] }
-        end,
-      },
-      ["ctrl-d"] = {
-        function(selected)
-          history.delete_project { value = selected[1] }
-        end,
-        fzf_lua.actions.resume,
-      },
-    },
-  })
-end
 
 M.set_terminal_keymaps = function()
   local opts = { noremap = true }
@@ -111,7 +86,8 @@ M.set_hlslens_keymaps = function()
 end
 
 local function set_bufferline_keymaps()
-  lvim.keys.normal_mode["<S-x>"] = "<Cmd>lua require('user.bufferline').delete_buffer()<CR>"
+  -- lvim.keys.normal_mode["<S-x>"] = "<Cmd>lua require('user.bufferline').delete_buffer()<CR>"
+  lvim.keys.normal_mode["<S-x>"] = "<Cmd>bdelete!<CR>"
   lvim.keys.normal_mode["<S-l>"] = "<Cmd>BufferLineCycleNext<CR>"
   lvim.keys.normal_mode["<S-h>"] = "<Cmd>BufferLineCyclePrev<CR>"
   lvim.keys.normal_mode["[b"] = "<Cmd>BufferLineMoveNext<CR>"
@@ -284,8 +260,6 @@ M.config = function()
   -- keymap("v", "c", "ygvc")
 
   -- Delete in blackhole register
-  -- keymap("v", "DD", '"_d')
-  -- Delete in blackhole register
   keymap("n", "c", '"_c', opts)
   keymap("v", "c", '"_c', opts)
   keymap("v", "DD", '"_d', opts)
@@ -307,7 +281,7 @@ M.config = function()
 
   -- Additional keybindings
   -- =========================================
-  lvim.keys.normal_mode["<CR>"] = {
+  lvim.keys.normal_mode["<C-c>"] = {
     "<cmd>lua require('user.neovim').maximize_current_split()<CR>",
     { noremap = true, silent = true, nowait = true },
   }

@@ -76,17 +76,17 @@ M.config = function()
       end,
     },
     nls.builtins.diagnostics.hadolint,
-    nls.builtins.diagnostics.sqlfluff.with({
-      filetypes = { "sql", "SQL" },
-      extra_args = { "--dialect", "postgres" },
-    }),
+    -- nls.builtins.diagnostics.sqlfluff.with({
+    --   filetypes = { "sql", "SQL" },
+    --   extra_args = { "--dialect", "postgres" },
+    -- }),
     nls.builtins.diagnostics.eslint_d.with {
       condition = function(utils)
         return utils.root_has_file { ".eslintrc", ".eslintrc.js", ".eslintrc.json" }
       end,
       prefer_local = "node_modules/.bin",
     },
-    nls.builtins.diagnostics.selene,
+    -- nls.builtins.diagnostics.selene,
     nls.builtins.diagnostics.semgrep.with {
       condition = function(utils)
         return utils.root_has_file ".semgrepignore" and use_semgrep

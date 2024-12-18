@@ -196,7 +196,7 @@ M.config = function()
       end,
       enabled = lvim.builtin.presence.active,
     },
-    { "mfussenegger/nvim-jdtls", ft = "java" },
+    { "mfussenegger/nvim-jdtls",     ft = "java" },
     {
       "kristijanhusak/orgmode.nvim",
       keys = { "go", "gC" },
@@ -273,10 +273,10 @@ M.config = function()
       event = { "BufReadPost", "BufNew" },
       enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "neotest"),
     },
-    { "nvim-neotest/neotest-go", event = { "BufEnter *.go" } },
+    { "nvim-neotest/neotest-go",     event = { "BufEnter *.go" } },
     { "nvim-neotest/neotest-python", event = { "BufEnter *.py" } },
-    { "rouge8/neotest-rust", event = { "BufEnter *.rs" } },
-    { "lawrence-laz/neotest-zig", event = { "BufEnter *.zig" } },
+    { "rouge8/neotest-rust",         event = { "BufEnter *.rs" } },
+    { "lawrence-laz/neotest-zig",    event = { "BufEnter *.zig" } },
     {
       "rcarriga/vim-ultest",
       cmd = { "Ultest", "UltestSummary", "UltestNearest" },
@@ -286,14 +286,14 @@ M.config = function()
       event = { "BufEnter *_test.*,*_spec.*,*est_*.*" },
       enabled = (lvim.builtin.test_runner.active and lvim.builtin.test_runner.runner == "ultest"),
     },
-    {
-      "akinsho/flutter-tools.nvim",
-      dependencies = "nvim-lua/plenary.nvim",
-      config = function()
-        require("user.flutter_tools").config()
-      end,
-      ft = "dart",
-    },
+    -- {
+    --   "akinsho/flutter-tools.nvim",
+    --   dependencies = "nvim-lua/plenary.nvim",
+    --   config = function()
+    --     require("user.flutter_tools").config()
+    --   end,
+    --   ft = "dart",
+    -- },
     {
       "RishabhRD/nvim-cheat.sh",
       dependencies = "RishabhRD/popfix",
@@ -893,9 +893,15 @@ M.config = function()
     -- "rmagatti/session-lens",
     -- "christianchiarulli/nvim-ts-rainbow",
     -- "karb94/neoscroll.nvim",
+    -- {
+    --   "max397574/better-escape.nvim",
+    --   event = "BufRead",
+    -- },
     {
-      "max397574/better-escape.nvim",
-      event = "BufRead",
+      "Pocco81/auto-save.nvim",
+      config = function()
+        require("auto-save").setup()
+      end,
     },
     {
       "ojroques/nvim-osc52",
@@ -966,25 +972,25 @@ M.config = function()
         local rainbow_delimiters = require 'rainbow-delimiters'
         require("rainbow-delimiters.setup").setup {
           strategy = {
-              [''] = rainbow_delimiters.strategy['global'],
-              commonlisp = rainbow_delimiters.strategy['local'],
+            [''] = rainbow_delimiters.strategy['global'],
+            commonlisp = rainbow_delimiters.strategy['local'],
           },
           query = {
-              [''] = 'rainbow-delimiters',
-              lua = 'rainbow-blocks',
+            [''] = 'rainbow-delimiters',
+            lua = 'rainbow-blocks',
           },
           priority = {
-              [''] = 110,
-              lua = 210,
+            [''] = 110,
+            lua = 210,
           },
           highlight = {
-              -- 'RainbowDelimiterRed',
-              'RainbowDelimiterYellow',
-              'RainbowDelimiterBlue',
-              'RainbowDelimiterOrange',
-              'RainbowDelimiterGreen',
-              'RainbowDelimiterViolet',
-              'RainbowDelimiterCyan',
+            -- 'RainbowDelimiterRed',
+            'RainbowDelimiterYellow',
+            'RainbowDelimiterBlue',
+            'RainbowDelimiterOrange',
+            'RainbowDelimiterGreen',
+            'RainbowDelimiterViolet',
+            'RainbowDelimiterCyan',
           },
           -- blacklist = {'c', 'cpp'},
         }
